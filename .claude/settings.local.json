@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.jetbrains.com)",
+      "mcp__context7__resolve-library-id",
+      "WebFetch(domain:github.com)",
+      "Read(//Users/kennethkousen/Documents/OReilly/AI-Codecon-Sept2025/cosmic-catalog/**)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git reset:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

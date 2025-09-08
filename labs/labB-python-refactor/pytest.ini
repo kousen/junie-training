@@ -1,0 +1,3 @@
+[tool:pytest]
+pythonpath = .
+testpaths = tests

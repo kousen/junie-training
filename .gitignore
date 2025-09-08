@@ -1,0 +1,205 @@
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE and Editor Files
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+.history/
+
+# Node.js / npm / yarn
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.npm
+.yarn-integrity
+.pnp.*
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+*.egg-info/
+dist/
+build/
+*.egg
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# Java / Gradle / Maven
+target/
+build/
+out/
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# React / TypeScript / JavaScript
+dist/
+*.log
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+coverage/
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.vuepress/dist
+.serverless/
+.fusebox/
+.dynamodb/
+.tern-port
+*.tsbuildinfo
+
+# Slidev
+.slidev/
+dist/
+
+# Testing
+test-results/
+playwright-report/
+playwright/.cache/
+e2e/screenshots/
+e2e/videos/
+
+# Environment Variables
+.env
+.env.*
+!.env.example
+!.env.template
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Cache and Temporary Files
+.cache/
+.temp/
+.tmp/
+tmp/
+temp/
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+
+# Security - Never commit these
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+.secrets
+credentials.json
+token.json
+
+# Documentation build artifacts
+docs/_build/
+site/
+
+# Package files
+*.dmg
+*.iso
+*.msi
+*.exe
+*.deb
+*.rpm
+
+# Lock files (debatable - uncomment if you don't want to commit)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+# Gemfile.lock
+# poetry.lock
+
+# MCP Configuration (may contain sensitive data)
+mcp.json.local
+mcp.json.backup
+
+# Junie-specific (if any local overrides)
+.junie/local/
+.junie/*.local.md
+
+# Course-specific
+solutions/
+participant-submissions/
+recordings/
+*.solution.*
+
+# Backup files
+*.backup
+*.bak
+*.orig
+*~
+
+# Archives
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Custom
+TODO.local.md
+NOTES.local.md
+scratch/
