@@ -7,7 +7,9 @@
       "Read(//Users/kennethkousen/Documents/OReilly/AI-Codecon-Sept2025/cosmic-catalog/**)",
       "Bash(git init:*)",
       "Bash(git add:*)",
-      "Bash(git reset:*)"
+      "Bash(git reset:*)",
+      "Bash(npx slidev export:*)",
+      "Bash(npm install:*)"
     ],
     "deny": [],
     "ask": []
