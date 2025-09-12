@@ -1,1 +1,1 @@
-# This file makes src a Python package
+"""src package for math tools and related utilities."""
