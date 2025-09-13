@@ -28,6 +28,7 @@ This training covers:
 - **Cheat Sheets**: Quick reference for Junie commands and MCP tools
 - **Sample Prompts**: Ready-to-use prompts for common tasks
 - **Quick Reference**: One-page guide with essential information
+- **Git Cheat Sheet**: Common workshop git flows (cherry-pick, tags, cleanup) — see `docs/git-cheatsheet.md`
 
 ### Demo
 - **Playwright Demo**: E2E test generation using MCP integration
