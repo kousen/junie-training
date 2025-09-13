@@ -22,6 +22,7 @@ This training covers:
 - **Lab B (Python)**: PEP 8 refactoring with pytest and type hints
 - **Lab C (React/TS)**: Form validation with React Testing Library
 - **Lab D (MCP)**: Smart dependency upgrades using context7
+- **Lab E (Web/TS + OWM)**: Weather app using OpenWeatherMap Geocoding + One Call 3.0 with an Express proxy (see `labs/labE-web-owm-weather`). New API keys may take 30–60 minutes to activate.
 
 ### Resources
 - **Cheat Sheets**: Quick reference for Junie commands and MCP tools
