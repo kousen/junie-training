@@ -137,7 +137,7 @@ Create `.junie/guidelines.md` with this content:
 ## Testing Standards
 - Given-When-Then pattern for test names
 - Use @WebMvcTest for controller tests
-- Mock service layer with @MockBean
+- Mock service layer with `@MockitoBean` (import `org.springframework.test.context.bean.override.mockito.MockitoBean`)
 - AssertJ for all assertions
 - Test both success and failure cases
 - Minimum 80% code coverage
