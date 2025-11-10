@@ -27,11 +27,13 @@
   "mcpServers": {
     "context7": {
       "command": "npx",
-      "args": ["@upstash/context7"]
+      "args": ["-y", "@upstash/context7-mcp"]
     }
   }
 }
 ```
+
+**Note:** API key is optional. For higher rate limits, add `"--api-key", "YOUR_API_KEY"` to the args array.
 
 4. Save and restart Junie
 5. Verify in Junie panel that context7 shows as connected

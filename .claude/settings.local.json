@@ -9,7 +9,10 @@
       "Bash(git add:*)",
       "Bash(git reset:*)",
       "Bash(npx slidev export:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(git checkout:*)",
+      "WebSearch",
+      "WebFetch(domain:blog.jetbrains.com)"
     ],
     "deny": [],
     "ask": []

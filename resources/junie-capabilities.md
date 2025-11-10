@@ -32,7 +32,7 @@
 - Extensible with custom MCP servers
 
 **Model Selection**
-- Multiple AI models (GPT-5, Claude Sonnet)
+- Multiple AI models (GPT-5, Claude 3.5 Sonnet, Claude 4.5 Sonnet)
 - Model-specific strengths and token limits
 - Ability to switch models mid-conversation
 
@@ -127,25 +127,26 @@
 - Keep Approvals mode for critical changes
 - Have rollback plan ready
 
-## 🔮 Planned Features (Roadmap)
+## 🔮 Recent and Upcoming Features
 
-### Q1 2025
-- Enhanced token management
-- Better context preservation
-- Improved error messages
-- Extended language support
+### Recently Released (2025)
+- GPT-5 model support (August 2025)
+- Claude 4.5 Sonnet integration (September 2025)
+- Plan feature with two-column interface
+- Enhanced terminal integration
 
-### Q2 2025
-- Junie for GitHub integration
-- Team collaboration features
-- Custom model fine-tuning
-- Advanced MCP marketplace
+### In Development
+- Stop-continue mode for better control
+- Real-time steering mode
+- Manual model selection and custom endpoints
+- Advanced brave mode controls
+- Scaling to hundreds of files and steps
 
 ### Future Considerations
 - Voice commands
 - Real-time collaboration
-- Subagent capabilities
-- Offline mode support
+- GitHub PR review integration
+- MCP marketplace
 
 ## 📝 When to Use Junie vs Alternatives
 

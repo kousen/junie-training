@@ -38,12 +38,17 @@ This training covers:
 ### For Instructors
 - Node.js 16+ (for Slidev)
 - JetBrains IDE with Junie plugin
-- JetBrains AI Pro subscription
+- JetBrains AI subscription (Free, Pro, or Ultimate)
 
 ### For Participants
-- JetBrains IDE (IntelliJ IDEA, PyCharm, or WebStorm)
-- JetBrains AI Pro subscription
+- JetBrains IDE (IntelliJ IDEA, PyCharm, WebStorm, GoLand, PhpStorm, RustRover, or RubyMine)
+- JetBrains AI subscription (Free tier available with credit-based usage, Pro/Ultimate for unlimited)
 - Development environment (Java 17+, Python 3.8+, or Node.js 16+)
+
+**Note on Pricing Tiers:**
+- **Free Tier**: Unlimited code completion, local AI models, credit-based cloud assistance (good for trying Junie)
+- **AI Pro**: Increased usage quotas for regular use
+- **AI Ultimate**: Highest quotas for intensive workflows
 
 ## 💻 Running the Slides
 

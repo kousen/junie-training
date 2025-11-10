@@ -63,15 +63,19 @@ background: 'linear-gradient(135deg, #065f46, #047857)'
 
 ## <span style="color: #86efac;">📚 Prerequisites Check</span>
 
-<div style="font-size: 1.2em; line-height: 2; color: #d1fae5;">
+<div style="font-size: 1.1em; line-height: 2; color: #d1fae5;">
 
-✅ **JetBrains IDE** (IntelliJ IDEA, PyCharm, or WebStorm)
+✅ **JetBrains IDE** (IntelliJ IDEA, PyCharm, WebStorm, GoLand, PhpStorm, RustRover, RubyMine)
 
-✅ **JetBrains AI Pro** subscription
+✅ **JetBrains AI** subscription (Free tier available!)
 
 ✅ **Development Environment** (Java 17+ / Python 3.8+ / Node 16+)
 
-<div style="margin-top: 1.5em; padding: 1em; background: rgba(251,191,36,0.15); border-radius: 8px; border: 2px solid #fbbf24;">
+<div style="margin-top: 1em; padding: 1em; background: rgba(52,211,153,0.15); border-radius: 8px; border: 2px solid #10b981;">
+<span style="color: #86efac;">🆓 Free Tier:</span> <span style="color: #a7f3d0;">Credit-based cloud assistance perfect for getting started</span>
+</div>
+
+<div style="margin-top: 0.5em; padding: 1em; background: rgba(251,191,36,0.15); border-radius: 8px; border: 2px solid #fbbf24;">
 <span style="color: #fbbf24;">💡 Quick Setup:</span> <span style="color: #fef3c7;">We'll install Junie together in the first 5 minutes</span>
 </div>
 
@@ -98,9 +102,9 @@ graph LR
 
 **Available Models:**
 <div style="display: flex; gap: 1rem; margin-top: 0.5em;">
-<span style="background: rgba(251,191,36,0.2); padding: 0.5em 1em; border-radius: 5px; color: #fef3c7;">🎯 GPT-5 (default)</span>
-<span style="background: rgba(167,139,250,0.2); padding: 0.5em 1em; border-radius: 5px; color: #e9d5ff;">🧠 Claude Sonnet 3.7</span>
-<span style="background: rgba(52,211,153,0.2); padding: 0.5em 1em; border-radius: 5px; color: #d1fae5;">⚡ Claude Sonnet 4.0</span>
+<span style="background: rgba(251,191,36,0.2); padding: 0.5em 1em; border-radius: 5px; color: #fef3c7;">🎯 GPT-5</span>
+<span style="background: rgba(167,139,250,0.2); padding: 0.5em 1em; border-radius: 5px; color: #e9d5ff;">🧠 Claude 3.5 Sonnet</span>
+<span style="background: rgba(52,211,153,0.2); padding: 0.5em 1em; border-radius: 5px; color: #d1fae5;">⚡ Claude 4.5 Sonnet</span>
 </div>
 
 </div>
@@ -365,7 +369,7 @@ background: 'linear-gradient(135deg, #7c3aed, #6d28d9)'
 • Real-time library docs<br/>
 • 1000+ libraries<br/>
 • Version compatibility<br/>
-• No API key needed!
+• Optional API key (higher rate limits)
 </span>
 </div>
 
@@ -388,9 +392,9 @@ background: 'linear-gradient(135deg, #7c3aed, #6d28d9)'
 ```json
 {
   "mcpServers": {
-    "context7": { 
-      "command": "npx", 
-      "args": ["@upstash/context7"] 
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
     },
     "playwright": {
       "command": "npx",
@@ -856,50 +860,6 @@ jobs:
 <div style="background: rgba(52,211,153,0.15); padding: 1em; border-radius: 8px; border: 1px solid #10b981;">
 <strong style="color: #86efac;">PR Review</strong><br/>
 <span style="color: #a7f3d0;">Team alignment</span>
-</div>
-
-</div>
-
----
-background: 'linear-gradient(135deg, #7c3aed, #6d28d9)'
----
-
-## <span style="color: #fbbf24;">📈 Future Roadmap</span>
-
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; color: #e9d5ff;">
-
-<div>
-
-### <span style="color: #c4b5fd;">Q1 2025</span>
-• 🎯 GPT-5 as default<br/>
-• 🔄 Multi-repo support<br/>
-• 💻 VS Code beta
-
-### <span style="color: #c4b5fd;">Q2 2025</span>
-• 🐙 GitHub PR reviews<br/>
-• 🛍️ MCP marketplace<br/>
-• 👥 Team guidelines
-
-</div>
-
-<div>
-
-```mermaid
-graph TD
-    A[2025 Q1] --> B[2025 Q2]
-    B --> C[2025 Q3]
-    C --> D[Future]
-    
-    D --> E[Voice Commands]
-    D --> F[Real-time Collab]
-    D --> G[AI Review Bot]
-    
-    style A fill:#6366f1,color:#fff
-    style B fill:#a78bfa,color:#fff
-    style C fill:#34d399,color:#000
-    style D fill:#fbbf24,color:#000
-```
-
 </div>
 
 </div>

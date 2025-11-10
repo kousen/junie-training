@@ -19,7 +19,7 @@
 1. Open the `labA-java-rest` project in IntelliJ IDEA
 2. Verify the project builds: `./gradlew build`
 3. Open Junie panel: View → Tool Windows → Junie
-4. Select your preferred model (GPT-5 or Claude Sonnet)
+4. Select your preferred model (GPT-5, Claude 3.5 Sonnet, or Claude 4.5 Sonnet)
 
 ## Part 2: Analyze Existing Code with Ask Mode (10 minutes)
 

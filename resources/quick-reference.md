@@ -3,10 +3,15 @@
 ## 🚀 Getting Started
 
 ### Installation
-1. **IDE**: IntelliJ IDEA / PyCharm / WebStorm
+1. **IDE**: IntelliJ IDEA / PyCharm / WebStorm / GoLand / PhpStorm / RustRover / RubyMine
 2. **Plugin**: Settings → Plugins → Search "Junie" → Install
-3. **License**: JetBrains AI Pro subscription required
+3. **License**: JetBrains AI subscription (Free tier available, Pro/Ultimate for unlimited)
 4. **Open**: View → Tool Windows → Junie (or `Ctrl/Cmd+Alt+J`)
+
+### Pricing Tiers
+- **Free**: Credit-based cloud assistance, unlimited code completion
+- **Pro**: Increased quotas for regular use
+- **Ultimate**: Highest quotas for intensive workflows
 
 ## 🎯 Core Concepts
 
@@ -132,9 +137,9 @@
 
 | Model | Best For | Speed |
 |-------|----------|-------|
-| **GPT-5** | Complex tasks, default | Fast |
-| **Claude 3.7** | Nuanced code, reasoning | Medium |
-| **Claude 4.0** | Latest features | Fast |
+| **GPT-5** | Complex tasks | Fast |
+| **Claude 3.5 Sonnet** | Nuanced code, reasoning | Medium |
+| **Claude 4.5 Sonnet** | Latest features | Fast |
 
 ## 🎯 Prompt Templates
 
