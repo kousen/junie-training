@@ -216,7 +216,7 @@ background: 'linear-gradient(135deg, #b91c1c, #7f1d1d)'
 ### <span style="color: #86efac;">Agent Skills & Slash Commands</span>
 <div style="color: #a7f3d0;">
 • Reusable task-oriented extensions<br/>
-• `.junie/skills/<name>/SKILL.md`<br/>
+• `.junie/skills/{name}/SKILL.md`<br/>
 • Custom slash commands in CLI<br/>
 • Project-level and user-level scopes
 </div>
