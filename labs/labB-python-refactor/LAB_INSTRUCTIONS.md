@@ -11,7 +11,7 @@
 - Experience Junie's capabilities in PyCharm
 
 ## Prerequisites
-- PyCharm with Junie installed
+- PyCharm with Junie installed (or Junie CLI)
 - Python 3.8+ installed
 - pytest installed (`pip install pytest pytest-cov`)
 
@@ -24,8 +24,10 @@ python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
-3. Open Junie panel: View → Tool Windows → Junie
+3. Open Junie: **AI Chat panel → Agent dropdown → Junie** (or `Ctrl/Cmd+Alt+J`)
 4. Verify pytest works: `pytest`
+
+> **Alternative — Junie CLI:** Run `junie` in the project directory.
 
 ## Part 2: Analyze the Messy Code (5 minutes)
 
@@ -117,7 +119,7 @@ Run tests: `pytest -v`
 
 ### Task 4: Create Python Guidelines
 
-Create `.junie/guidelines.md`:
+Create `.junie/AGENTS.md` (or the legacy `.junie/guidelines.md` — both work):
 
 ```markdown
 # Python Project Guidelines

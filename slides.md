@@ -67,12 +67,12 @@ background: 'linear-gradient(135deg, #065f46, #047857)'
 
 ✅ **JetBrains IDE** (IntelliJ IDEA, PyCharm, WebStorm, GoLand, PhpStorm, RustRover, RubyMine)
 
-✅ **JetBrains AI** subscription (Free tier available!)
+✅ **JetBrains AI** subscription (AI Credits model — 1 Credit = $1 USD)
 
-✅ **Development Environment** (Java 17+ / Python 3.8+ / Node 16+)
+✅ **Development Environment** (Java 17+ / Python 3.8+ / Node 18+)
 
 <div style="margin-top: 1em; padding: 1em; background: rgba(52,211,153,0.15); border-radius: 8px; border: 2px solid #10b981;">
-<span style="color: #86efac;">🆓 Free Tier:</span> <span style="color: #a7f3d0;">Credit-based cloud assistance perfect for getting started</span>
+<span style="color: #86efac;">🆓 AI Free:</span> <span style="color: #a7f3d0;">3 AI Credits/month — or use BYOK (Bring Your Own Key) with any provider</span>
 </div>
 
 <div style="margin-top: 0.5em; padding: 1em; background: rgba(251,191,36,0.15); border-radius: 8px; border: 2px solid #fbbf24;">
@@ -85,26 +85,42 @@ background: 'linear-gradient(135deg, #065f46, #047857)'
 background: 'linear-gradient(135deg, #1e40af, #1e3a8a)'
 ---
 
-## <span style="color: #fbbf24;">🚀 Installation in 60 Seconds</span>
+## <span style="color: #fbbf24;">🚀 Getting Started — Two Paths</span>
 
-```mermaid
-graph LR
-    A[Open IDE Settings] --> B[Plugins Marketplace]
-    B --> C[Search Junie]
-    C --> D[Install & Restart]
-    D --> E[View Tool Windows]
-    
-    style A fill:#6366f1,stroke:#fff,stroke-width:2px,color:#fff
-    style E fill:#34d399,stroke:#fff,stroke-width:2px,color:#000
-```
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1em;">
 
-<div style="margin-top: 2em; font-size: 1.1em;">
+<div style="background: rgba(96,165,250,0.15); padding: 1em; border-radius: 8px; border: 2px solid #60a5fa;">
 
-**Available Models:**
-<div style="display: flex; gap: 1rem; margin-top: 0.5em;">
-<span style="background: rgba(251,191,36,0.2); padding: 0.5em 1em; border-radius: 5px; color: #fef3c7;">🎯 GPT-5</span>
-<span style="background: rgba(167,139,250,0.2); padding: 0.5em 1em; border-radius: 5px; color: #e9d5ff;">🧠 Claude 3.5 Sonnet</span>
-<span style="background: rgba(52,211,153,0.2); padding: 0.5em 1em; border-radius: 5px; color: #d1fae5;">⚡ Claude 4.5 Sonnet</span>
+### <span style="color: #60a5fa;">IDE Plugin</span>
+<span style="color: #dbeafe;">
+1. AI Chat panel → Agent dropdown → Select **Junie**<br/>
+2. Or: Settings → Plugins → Search "Junie"<br/>
+3. Start prompting
+</span>
+
+</div>
+
+<div style="background: rgba(168,85,247,0.15); padding: 1em; border-radius: 8px; border: 2px solid #a78bfa;">
+
+### <span style="color: #a78bfa;">Junie CLI (Beta)</span>
+<span style="color: #e9d5ff;">
+1. `brew tap jetbrains/junie && brew install junie`<br/>
+2. Or: `curl -fsSL https://junie.jetbrains.com/install.sh | bash`<br/>
+3. Run `junie` in any project
+</span>
+
+</div>
+
+</div>
+
+<div style="margin-top: 1.5em; font-size: 1.1em;">
+
+**Available Models (LLM-agnostic):**
+<div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5em;">
+<span style="background: rgba(251,191,36,0.2); padding: 0.4em 0.8em; border-radius: 5px; color: #fef3c7;">GPT 5 / 5.2</span>
+<span style="background: rgba(167,139,250,0.2); padding: 0.4em 0.8em; border-radius: 5px; color: #e9d5ff;">Opus 4.5 / Sonnet 4.5</span>
+<span style="background: rgba(52,211,153,0.2); padding: 0.4em 0.8em; border-radius: 5px; color: #d1fae5;">Gemini 3 Pro / Flash</span>
+<span style="background: rgba(248,113,113,0.2); padding: 0.4em 0.8em; border-radius: 5px; color: #fecaca;">Grok 4.1</span>
 </div>
 
 </div>
@@ -162,6 +178,98 @@ graph TD
     style E fill:#fbbf24,color:#000
     style F fill:#f87171,color:#fff
 ```
+
+---
+background: 'linear-gradient(135deg, #b91c1c, #7f1d1d)'
+---
+
+## <span style="color: #fbbf24;">🆕 What's New in Junie (March 2026)</span>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; font-size: 1em;">
+
+<div style="background: rgba(96,165,250,0.15); padding: 1em; border-radius: 8px; border-left: 4px solid #60a5fa;">
+
+### <span style="color: #60a5fa;">Junie CLI (Beta)</span>
+<div style="color: #dbeafe;">
+• Standalone terminal agent<br/>
+• LLM-agnostic — BYOK support<br/>
+• Plan mode, brave mode, prompt history<br/>
+• One-click migration from Claude Code
+</div>
+
+</div>
+
+<div style="background: rgba(168,85,247,0.15); padding: 1em; border-radius: 8px; border-left: 4px solid #a78bfa;">
+
+### <span style="color: #a78bfa;">AGENTS.md</span>
+<div style="color: #e9d5ff;">
+• New open-standard guidelines format<br/>
+• Replaces `.junie/guidelines.md` (legacy)<br/>
+• Shared across AI coding agents<br/>
+• Auto-import from other agents
+</div>
+
+</div>
+
+<div style="background: rgba(52,211,153,0.15); padding: 1em; border-radius: 8px; border-left: 4px solid #34d399;">
+
+### <span style="color: #86efac;">Agent Skills & Slash Commands</span>
+<div style="color: #a7f3d0;">
+• Reusable task-oriented extensions<br/>
+• `.junie/skills/<name>/SKILL.md`<br/>
+• Custom slash commands in CLI<br/>
+• Project-level and user-level scopes
+</div>
+
+</div>
+
+<div style="background: rgba(251,191,36,0.15); padding: 1em; border-radius: 8px; border-left: 4px solid #fbbf24;">
+
+### <span style="color: #fde047;">CI/CD & Beyond</span>
+<div style="color: #fef3c7;">
+• GitHub Action (`@junie-agent`)<br/>
+• GitLab CI (`#junie` in comments)<br/>
+• Junie merged into AI Chat (Dec 2025)<br/>
+• AI Credits pricing model
+</div>
+
+</div>
+
+</div>
+
+---
+background: 'linear-gradient(135deg, #1e3a5f, #0f172a)'
+---
+
+## <span style="color: #fbbf24;">🗺️ JetBrains AI Landscape (2026)</span>
+
+```mermaid
+graph TD
+    A[JetBrains AI Ecosystem] --> B[Junie IDE Plugin]
+    A --> C[Junie CLI]
+    A --> D[JetBrains Air ADE]
+    A --> E[AI Assistant]
+
+    B --> B1[AI Chat integration]
+    B --> B2[MCP tools]
+
+    C --> C1[Terminal agent]
+    C --> C2[CI/CD pipelines]
+    C --> C3[GitHub/GitLab Actions]
+
+    D --> D1[Multi-agent environment]
+    D --> D2[Codex / Claude / Gemini CLI]
+
+    style A fill:#6366f1,stroke:#fff,stroke-width:3px,color:#fff
+    style B fill:#60a5fa,color:#000
+    style C fill:#a78bfa,color:#000
+    style D fill:#fbbf24,color:#000
+    style E fill:#34d399,color:#000
+```
+
+<div style="text-align: center; margin-top: 1em; color: #94a3b8; font-size: 0.9em;">
+Air = agentic dev environment (macOS preview) built on Fleet codebase, using Agent Client Protocol (ACP)
+</div>
 
 ---
 background: 'linear-gradient(135deg, #312e81, #4c1d95)'
@@ -244,9 +352,9 @@ background: 'linear-gradient(135deg, #1e40af, #1e3a8a)'
 
 ## <span style="color: #fbbf24;">📝 Project Guidelines</span>
 
-<div style="font-size: 1.1em; color: #e0f2fe;">
+<div style="font-size: 1.05em; color: #e0f2fe;">
 
-**Location:** `.junie/guidelines.md`
+**New:** `.junie/AGENTS.md` (open standard) &nbsp;|&nbsp; **Legacy:** `.junie/guidelines.md` (still supported)
 
 ```markdown
 ## Technology Stack
@@ -259,7 +367,11 @@ background: 'linear-gradient(135deg, #1e40af, #1e3a8a)'
 - Tests: Given-When-Then
 ```
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5em;">
+<div style="font-size: 0.85em; margin-top: 0.5em; color: #94a3b8;">
+Lookup order: `.junie/AGENTS.md` → `AGENTS.md` (project root) → `.junie/guidelines.md` (legacy)
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1em;">
 
 <div style="background: rgba(239,68,68,0.15); padding: 0.8em; border-radius: 8px; border: 1px solid #ef4444;">
 <strong style="color: #fca5a5;">❌ Without Guidelines</strong><br/>
@@ -709,7 +821,7 @@ test('successful login', async ({ page }) => {
 background: 'linear-gradient(135deg, #1e40af, #1e3a8a)'
 ---
 
-## <span style="color: #fbbf24;">⚔️ Junie vs The Competition</span>
+## <span style="color: #fbbf24;">⚔️ Junie's Differentiators</span>
 
 <style>
 .compare-table { width: 100%; border-collapse: collapse; }
@@ -725,46 +837,46 @@ background: 'linear-gradient(135deg, #1e40af, #1e3a8a)'
 <tr>
 <th>Feature</th>
 <th>Junie</th>
-<th>Copilot</th>
+<th>Claude Code</th>
+<th>Copilot Agent</th>
 <th>Cursor</th>
-<th>Codeium</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">Multi-file edits</td>
-<td class="yes">✅ Full</td>
-<td class="no">❌</td>
+<td style="text-align: left;">IDE + CLI + CI/CD</td>
+<td class="yes">✅ All three</td>
+<td class="partial">CLI only</td>
+<td class="partial">IDE + CI</td>
+<td class="partial">IDE only</td>
+</tr>
+<tr>
+<td style="text-align: left;">LLM-agnostic</td>
+<td class="yes">✅ BYOK</td>
+<td class="no">Claude only</td>
+<td class="no">GPT only</td>
 <td class="yes">✅</td>
-<td class="partial">⚠️</td>
 </tr>
 <tr>
 <td style="text-align: left;">Test execution</td>
 <td class="yes">✅ Yes</td>
-<td class="no">❌</td>
-<td class="no">❌</td>
-<td class="no">❌</td>
-</tr>
-<tr>
-<td style="text-align: left;">Rollback</td>
 <td class="yes">✅ Yes</td>
-<td class="no">❌</td>
 <td class="partial">⚠️</td>
 <td class="no">❌</td>
 </tr>
 <tr>
 <td style="text-align: left;">MCP tools</td>
 <td class="yes">✅ Yes</td>
-<td class="no">❌</td>
-<td class="no">❌</td>
-<td class="no">❌</td>
+<td class="yes">✅ Yes</td>
+<td class="partial">⚠️</td>
+<td class="partial">⚠️</td>
 </tr>
 <tr>
-<td style="text-align: left;">IDE native</td>
+<td style="text-align: left;">JetBrains native</td>
 <td class="yes">✅ Full</td>
-<td class="partial">⚠️</td>
+<td class="partial">via ACP</td>
+<td class="partial">Plugin</td>
 <td class="no">❌</td>
-<td class="partial">⚠️</td>
 </tr>
 </tbody>
 </table>
@@ -828,38 +940,41 @@ Systematic migration
 background: 'linear-gradient(135deg, #dc2626, #991b1b)'
 ---
 
-## <span style="color: #fbbf24;">🚀 CI/CD Integration</span>
+## <span style="color: #fbbf24;">🚀 CI/CD Integration — Junie GitHub Action</span>
 
 ```yaml
-name: Junie Guidelines Check
-on: [pull_request]
+name: Junie Agent
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
 
 jobs:
-  guidelines-compliance:
+  junie:
+    if: contains(github.event.comment.body, '@junie-agent')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Check guidelines
-        run: |
-          # Validate against .junie/guidelines.md
-          # Ensure consistency
+      - uses: JetBrains/junie-github-action@v1
+        with:
+          junie-api-key: ${{ secrets.JUNIE_API_KEY }}
 ```
 
-<div style="display: flex; justify-content: center; gap: 2rem; margin-top: 2em;">
+<div style="display: flex; justify-content: center; gap: 2rem; margin-top: 1.5em;">
 
 <div style="background: rgba(251,191,36,0.15); padding: 1em; border-radius: 8px; border: 1px solid #f59e0b;">
-<strong style="color: #fde047;">Pre-commit</strong><br/>
-<span style="color: #fef3c7;">Local validation</span>
+<strong style="color: #fde047;">GitHub</strong><br/>
+<span style="color: #fef3c7;">`@junie-agent` in PRs/issues</span>
 </div>
 
 <div style="background: rgba(96,165,250,0.15); padding: 1em; border-radius: 8px; border: 1px solid #3b82f6;">
-<strong style="color: #93c5fd;">CI Pipeline</strong><br/>
-<span style="color: #dbeafe;">Automated checks</span>
+<strong style="color: #93c5fd;">GitLab</strong><br/>
+<span style="color: #dbeafe;">`#junie` in MR comments</span>
 </div>
 
 <div style="background: rgba(52,211,153,0.15); padding: 1em; border-radius: 8px; border: 1px solid #10b981;">
-<strong style="color: #86efac;">PR Review</strong><br/>
-<span style="color: #a7f3d0;">Team alignment</span>
+<strong style="color: #86efac;">CLI Headless</strong><br/>
+<span style="color: #a7f3d0;">`junie --auth="$KEY" "prompt"`</span>
 </div>
 
 </div>
@@ -895,12 +1010,12 @@ graph LR
     A[Today] --> B[This Week]
     B --> C[This Month]
     C --> D[This Quarter]
-    
-    A --> A1[Install Junie]
-    B --> B1[Create Guidelines]
-    C --> C1[Daily Workflow]
+
+    A --> A1[Install Junie + CLI]
+    B --> B1[Create AGENTS.md]
+    C --> C1[Add Skills + CI/CD]
     D --> D1[Measure Impact]
-    
+
     style A fill:#f87171,color:#fff
     style B fill:#fbbf24,color:#000
     style C fill:#34d399,color:#000
@@ -909,7 +1024,7 @@ graph LR
 
 <div style="text-align: center; margin-top: 2em; padding: 1em; background: rgba(251,191,36,0.15); border-radius: 10px; border: 2px solid #fbbf24;">
 <span style="color: #fef3c7; font-size: 1.2em;">
-🚀 Start with Approvals Mode → Build Trust → Scale Up
+🚀 Start with Approvals Mode → Build Trust → Scale Up → Automate with CI/CD
 </span>
 </div>
 
@@ -923,15 +1038,15 @@ background: 'linear-gradient(135deg, #dc2626, #991b1b)'
 
 ### Let's Explore Together:
 
-🤔 **What would you trust Junie to do unattended?**
+🤔 **IDE plugin vs CLI vs CI/CD — which fits your workflow?**
 
 🛡️ **Where do you always want human review?**
 
-📋 **How could guidelines help your team?**
+📋 **How could AGENTS.md guidelines help your team?**
 
-🔧 **Which MCP tools fit your workflow?**
+🔧 **Which MCP tools and Agent Skills would you create?**
 
-🚀 **How will AI agents change development?**
+🚀 **How will multi-agent environments (Air, ACP) change development?**
 
 </div>
 
@@ -946,13 +1061,14 @@ background: 'linear-gradient(135deg, #065f46, #047857)'
 <div>
 
 ### Documentation
-• 📖 [Getting Started](https://www.jetbrains.com/help/junie/get-started-with-junie.html)<br/>
-• 📝 [Guidelines Guide](https://www.jetbrains.com/help/junie/customize-guidelines.html)<br/>
-• 🔧 [MCP Settings](https://www.jetbrains.com/help/junie/mcp-settings.html)
+• 📖 [Junie Docs](https://junie.jetbrains.com/docs/)<br/>
+• 📝 [Guidelines & Memory](https://junie.jetbrains.com/docs/guidelines-and-memory.html)<br/>
+• 🔧 [Agent Skills](https://junie.jetbrains.com/docs/agent-skills.html)<br/>
+• 🖥️ [CLI Quickstart](https://junie.jetbrains.com/docs/junie-cli.html)
 
-### Tutorials
-• 💡 [IntelliJ Playbook](https://www.jetbrains.com/guide/idea/tutorials/junie-playbook/)<br/>
-• 🐍 [PyCharm Playbook](https://www.jetbrains.com/guide/pycharm/tutorials/junie-playbook/)
+### CI/CD
+• 🐙 [GitHub Action](https://github.com/JetBrains/junie-github-action)<br/>
+• 🦊 [GitLab CI](https://junie.jetbrains.com/docs/junie-gitlab-ci-cd.html)
 
 </div>
 
@@ -1041,12 +1157,18 @@ background: 'linear-gradient(135deg, #1e40af, #1e3a8a)'
 
 <div style="background: rgba(96,165,250,0.15); padding: 1em; border-radius: 8px; border: 1px solid #3b82f6;">
 
-### <span style="color: #93c5fd;">Keyboard Shortcuts</span>
+### <span style="color: #93c5fd;">IDE Shortcuts</span>
 <span style="color: #dbeafe;">
 • `Ctrl+Alt+J` - Open Junie<br/>
 • `Ctrl+Enter` - Execute<br/>
-• `Esc` - Cancel operation<br/>
-• `Ctrl+Z` - Undo changes
+• `Esc` - Cancel operation
+</span>
+### <span style="color: #93c5fd;">CLI Shortcuts</span>
+<span style="color: #dbeafe;">
+• `Shift+Tab` - Plan mode<br/>
+• `Ctrl+B` - Brave mode<br/>
+• `Ctrl+R` - Prompt history<br/>
+• `Ctrl+T` - Session transcript
 </span>
 
 </div>

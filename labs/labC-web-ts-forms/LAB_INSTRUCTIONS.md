@@ -11,8 +11,8 @@
 - Experience Junie in WebStorm
 
 ## Prerequisites
-- WebStorm with Junie installed
-- Node.js 16+ installed
+- WebStorm with Junie installed (or Junie CLI)
+- Node.js 18+ installed
 - npm or yarn configured
 - Basic React and TypeScript knowledge
 
@@ -29,8 +29,10 @@ yarn install
 ```bash
 npm run dev
 ```
-4. Open Junie panel: View → Tool Windows → Junie
+4. Open Junie: **AI Chat panel → Agent dropdown → Junie** (or `Ctrl/Cmd+Alt+J`)
 5. Run initial tests: `npm test`
+
+> **Alternative — Junie CLI:** Run `junie` in the project directory.
 
 ## Part 2: Analyze Requirements (5 minutes)
 
@@ -108,7 +110,7 @@ Run tests: `npm test`
 
 ### Task 4: Create React/TypeScript Guidelines
 
-Create `.junie/guidelines.md`:
+Create `.junie/AGENTS.md` (or the legacy `.junie/guidelines.md` — both work):
 
 ```markdown
 # React TypeScript Form Guidelines

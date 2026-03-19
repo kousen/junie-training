@@ -2,16 +2,25 @@
 
 ## 🚀 Getting Started
 
-### Installation
+### IDE Installation
 1. **IDE**: IntelliJ IDEA / PyCharm / WebStorm / GoLand / PhpStorm / RustRover / RubyMine
-2. **Plugin**: Settings → Plugins → Search "Junie" → Install
-3. **License**: JetBrains AI subscription (Free tier available, Pro/Ultimate for unlimited)
-4. **Open**: View → Tool Windows → Junie (or `Ctrl/Cmd+Alt+J`)
+2. **Access**: AI Chat panel → Agent dropdown → Select **Junie** (or `Ctrl/Cmd+Alt+J`)
+3. **License**: JetBrains AI subscription (AI Credits model) or BYOK
 
-### Pricing Tiers
-- **Free**: Credit-based cloud assistance, unlimited code completion
-- **Pro**: Increased quotas for regular use
-- **Ultimate**: Highest quotas for intensive workflows
+### CLI Installation (Beta)
+```bash
+# macOS
+brew tap jetbrains/junie && brew install junie
+
+# Linux/macOS
+curl -fsSL https://junie.jetbrains.com/install.sh | bash
+```
+
+### Pricing (AI Credits — 1 Credit = $1 USD)
+- **AI Free**: 3 credits/month, no top-ups
+- **AI Pro**: $10/month → 10 credits
+- **AI Ultimate**: $30/month → 35 credits ($5 bonus)
+- **BYOK**: Use your own API keys (OpenAI, Anthropic, Google, Grok)
 
 ## 🎯 Core Concepts
 
@@ -30,7 +39,9 @@
 
 ## 📝 Guidelines
 
-**Location**: `.junie/guidelines.md`
+**Preferred:** `.junie/AGENTS.md` (open standard) | **Legacy:** `.junie/guidelines.md` (still supported)
+
+Lookup order: `.junie/AGENTS.md` → `AGENTS.md` (project root) → `.junie/guidelines.md`
 
 ### Minimal Template
 ```markdown
@@ -133,13 +144,16 @@
 | Cancel | `Esc` | `Esc` |
 | Undo | `Ctrl+Z` | `Cmd+Z` |
 
-## 📊 Model Selection
+## 📊 Model Selection (LLM-Agnostic)
 
-| Model | Best For | Speed |
-|-------|----------|-------|
-| **GPT-5** | Complex tasks | Fast |
-| **Claude 3.5 Sonnet** | Nuanced code, reasoning | Medium |
-| **Claude 4.5 Sonnet** | Latest features | Fast |
+| Provider | Models | Notes |
+|----------|--------|-------|
+| **OpenAI** | GPT 5, GPT 5.2, GPT 5.2 Codex | |
+| **Anthropic** | Opus 4.5, Sonnet 4.5 | |
+| **Google** | Gemini 3 Pro, Gemini 3 Flash | |
+| **xAI** | Grok 4.1 (Fast) | |
+
+BYOK: Use your own provider API keys via Junie CLI or IDE settings.
 
 ## 🎯 Prompt Templates
 

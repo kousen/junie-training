@@ -10,7 +10,7 @@
 - Compare outputs with and without guidelines
 
 ## Prerequisites
-- IntelliJ IDEA with Junie installed
+- IntelliJ IDEA with Junie installed (or Junie CLI)
 - Java 17+ installed
 - Gradle or Maven configured
 
@@ -18,8 +18,10 @@
 
 1. Open the `labA-java-rest` project in IntelliJ IDEA
 2. Verify the project builds: `./gradlew build`
-3. Open Junie panel: View → Tool Windows → Junie
-4. Select your preferred model (GPT-5, Claude 3.5 Sonnet, or Claude 4.5 Sonnet)
+3. Open Junie: **AI Chat panel → Agent dropdown → Junie** (or `Ctrl/Cmd+Alt+J`)
+4. Select your preferred model (e.g., Sonnet 4.5, GPT 5, Gemini 3 Pro)
+
+> **Alternative — Junie CLI:** Run `junie` in the project directory. Use `Shift+Tab` to toggle Plan mode (read-only analysis).
 
 ## Part 2: Analyze Existing Code with Ask Mode (10 minutes)
 
@@ -102,7 +104,9 @@ curl -X POST http://localhost:8080/api/users \
 
 ### Task 6: Create Project Guidelines
 
-Create `.junie/guidelines.md` with this content:
+Create `.junie/AGENTS.md` (the new open-standard format) with this content:
+
+> **Note:** The legacy path `.junie/guidelines.md` still works, but `AGENTS.md` is the current standard and is recognized by other AI coding agents too.
 
 ```markdown
 # Spring Boot REST API Guidelines

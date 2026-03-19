@@ -31,28 +31,23 @@
 - Generate browser tests (Playwright)
 - Extensible with custom MCP servers
 
-**Model Selection**
-- Multiple AI models (GPT-5, Claude 3.5 Sonnet, Claude 4.5 Sonnet)
-- Model-specific strengths and token limits
+**Model Selection (LLM-Agnostic)**
+- Multiple providers: OpenAI (GPT 5/5.2), Anthropic (Opus 4.5, Sonnet 4.5), Google (Gemini 3 Pro/Flash), Grok 4.1
+- BYOK (Bring Your Own Key) with any supported provider
 - Ability to switch models mid-conversation
 
 ## What Junie IS NOT
 
 ### ❌ Missing Features (vs other AI tools)
 
-**No Slash Commands**
-- Unlike Claude Code, no `/help`, `/clear`, etc.
-- All interactions through natural language
+**CLI-Only Features (not in IDE plugin)**
+- Slash commands (`/commands`, `/import`) are available in Junie CLI only
+- Custom slash commands can be created in CLI
+- Custom subagents for delegating specific workflows (CLI)
+
+**IDE Plugin Limitations**
+- No persistent status indicator outside Junie panel
 - Settings managed through IDE preferences
-
-**No Custom Statusline**
-- No persistent status indicator
-- Check status in Junie panel only
-
-**No Subagents**
-- Cannot spawn specialized agents
-- No agent orchestration
-- Single conversation thread
 
 **No Voice Input**
 - Text-only interaction
@@ -67,14 +62,15 @@
 
 | Feature | Junie | Claude Code | GitHub Copilot | Cursor |
 |---------|-------|-------------|----------------|--------|
-| **Multi-file edits** | ✅ | ✅ | ❌ | ✅ |
-| **Test execution** | ✅ | ✅ | ❌ | ❌ |
+| **IDE + CLI + CI/CD** | ✅ All three | CLI only | IDE + CI | IDE only |
+| **LLM-agnostic / BYOK** | ✅ | Claude only | GPT only | ✅ |
+| **Test execution** | ✅ | ✅ | Partial | ❌ |
 | **Rollback** | ✅ | ✅ | ❌ | Partial |
-| **MCP tools** | ✅ | ✅ | ❌ | ❌ |
-| **Slash commands** | ❌ | ✅ | ❌ | ✅ |
-| **Subagents** | ❌ | ✅ | ❌ | ❌ |
-| **IDE native** | ✅ | ❌ | Partial | ❌ |
-| **Guidelines** | ✅ | ✅ | ❌ | Partial |
+| **MCP tools** | ✅ | ✅ | Partial | Partial |
+| **Slash commands** | ✅ (CLI) | ✅ | ❌ | ✅ |
+| **Agent Skills** | ✅ | ❌ | ❌ | ❌ |
+| **JetBrains native** | ✅ | via ACP | Plugin | ❌ |
+| **AGENTS.md guidelines** | ✅ | ✅ (CLAUDE.md) | ❌ | ✅ (.cursorrules) |
 
 ## 🚫 Current Limitations
 
@@ -90,7 +86,7 @@
 - **No support**: Proprietary/obscure languages
 
 ### Operational Limitations
-- **Token limits**: Model-dependent (GPT-5: higher, Claude: lower)
+- **Token limits**: Model-dependent (varies by provider and model)
 - **Context window**: Can lose context in very long conversations
 - **Execution time**: Complex operations may timeout
 - **Network required**: No offline mode
@@ -129,24 +125,22 @@
 
 ## 🔮 Recent and Upcoming Features
 
-### Recently Released (2025)
-- GPT-5 model support (August 2025)
-- Claude 4.5 Sonnet integration (September 2025)
-- Plan feature with two-column interface
-- Enhanced terminal integration
+### Released (Late 2025 – March 2026)
+- **Junie CLI (Beta)** — Standalone terminal agent, LLM-agnostic, BYOK support (March 2026)
+- **AGENTS.md** — Open-standard guidelines format replacing legacy `.junie/guidelines.md`
+- **Agent Skills** — Reusable task extensions in `.junie/skills/`
+- **AI Chat integration** — Junie available via agent dropdown in AI Chat (Dec 2025)
+- **AI Credits pricing** — Transparent $1 = 1 credit model (Aug 2025)
+- **GitHub Action** — `@junie-agent` in PRs/issues triggers automated changes
+- **GitLab CI** — `#junie` in MR comments triggers agent
+- **JetBrains Air (ADE)** — Multi-agent dev environment (macOS preview, March 2026)
+- Custom slash commands and prompt history in CLI
+- One-click migration from Claude Code, Codex, and other agents
 
 ### In Development
-- Stop-continue mode for better control
-- Real-time steering mode
-- Manual model selection and custom endpoints
 - Advanced brave mode controls
 - Scaling to hundreds of files and steps
-
-### Future Considerations
-- Voice commands
-- Real-time collaboration
-- GitHub PR review integration
-- MCP marketplace
+- Additional ACP agent integrations
 
 ## 📝 When to Use Junie vs Alternatives
 
@@ -158,10 +152,10 @@
 - Using MCP tools
 
 ### Consider Claude Code When:
-- Need slash commands
+- Deep Anthropic ecosystem integration needed
 - Want subagent orchestration
-- Working outside IDEs
-- Need custom statusline
+- Working outside JetBrains IDEs
+- Prefer Claude-only workflow
 
 ### Consider Copilot When:
 - Want inline completions

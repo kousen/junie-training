@@ -3,6 +3,10 @@
 ## What is MCP?
 Model Context Protocol allows Junie to connect to external tools and services, extending its capabilities beyond the IDE.
 
+**Setup paths:**
+- **IDE**: Settings → Junie → MCP → Edit `mcp.json`
+- **CLI**: Junie CLI supports one-click MCP server installation and auto-detection
+
 ## Available MCP Tools
 
 ### 📚 context7

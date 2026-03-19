@@ -10,7 +10,7 @@
 - Handle breaking changes systematically
 
 ## Prerequisites
-- Any JetBrains IDE with Junie installed
+- Any JetBrains IDE with Junie installed (or Junie CLI)
 - Node.js project with outdated dependencies
 - MCP configured in Junie settings
 
@@ -18,9 +18,12 @@
 
 ### Task 1: Configure context7 MCP
 
+**IDE path:**
 1. Open Junie Settings: Settings → Junie → MCP
 2. Click "Add" to edit `mcp.json`
 3. Add context7 configuration:
+
+> **CLI path:** Junie CLI supports one-click MCP server installation and auto-detection. Run `junie` and ask it to set up context7.
 
 ```json
 {

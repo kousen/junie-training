@@ -1,8 +1,15 @@
 # Junie Commands Cheat Sheet
 
 ## Opening Junie
-- **View → Tool Windows → Junie** (or click Junie icon in sidebar)
+
+### IDE
+- **AI Chat panel → Agent dropdown → Junie** (preferred since Dec 2025)
+- **Or**: View → Tool Windows → Junie (legacy standalone plugin)
 - **Keyboard**: `Ctrl+Alt+J` (Windows/Linux) or `Cmd+Alt+J` (Mac)
+
+### CLI (Beta)
+- **Terminal**: Run `junie` in any project directory
+- **Auth**: JetBrains account, `JUNIE_API_KEY`, or BYOK with your own provider keys
 
 ## Mode Selection
 
@@ -86,7 +93,7 @@ Use when you want to:
 1. Ask: "What key behaviors need documentation?"
 2. Code: "Add comprehensive JavaDoc/docstrings"
 
-## Keyboard Shortcuts
+## IDE Keyboard Shortcuts
 
 | Action | Windows/Linux | Mac |
 |--------|--------------|-----|
@@ -94,6 +101,17 @@ Use when you want to:
 | Execute | `Ctrl+Enter` | `Cmd+Enter` |
 | Cancel | `Esc` | `Esc` |
 | Undo | `Ctrl+Z` | `Cmd+Z` |
+
+## CLI Keyboard Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| `Shift+Tab` | Toggle Plan Mode (read-only analysis) |
+| `Ctrl+B` | Toggle Brave Mode |
+| `Ctrl+R` | Search prompt history across sessions |
+| `Ctrl+T` | View full session transcript |
+| `/commands` | Manage custom slash commands |
+| `/import` | Import config from Claude Code, Codex, etc. |
 
 ## MCP Tool Commands
 
@@ -125,7 +143,7 @@ Use when you want to:
 **Solution**: Provide more specific details or use Ask mode first
 
 ### Generated code doesn't follow standards
-**Solution**: Create or update `.junie/guidelines.md`
+**Solution**: Create or update `.junie/AGENTS.md` (or legacy `.junie/guidelines.md`)
 
 ### Changes are too broad
 **Solution**: Break into smaller, specific requests

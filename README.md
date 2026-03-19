@@ -37,18 +37,19 @@ This training covers:
 
 ### For Instructors
 - Node.js 16+ (for Slidev)
-- JetBrains IDE with Junie plugin
-- JetBrains AI subscription (Free, Pro, or Ultimate)
+- JetBrains IDE with Junie (via AI Chat agent dropdown) or Junie CLI
+- JetBrains AI subscription (AI Credits model) or BYOK
 
 ### For Participants
 - JetBrains IDE (IntelliJ IDEA, PyCharm, WebStorm, GoLand, PhpStorm, RustRover, or RubyMine)
-- JetBrains AI subscription (Free tier available with credit-based usage, Pro/Ultimate for unlimited)
-- Development environment (Java 17+, Python 3.8+, or Node.js 16+)
+- JetBrains AI subscription (AI Credits — 1 Credit = $1 USD) or BYOK with your own API keys
+- Development environment (Java 17+, Python 3.8+, or Node.js 18+)
 
-**Note on Pricing Tiers:**
-- **Free Tier**: Unlimited code completion, local AI models, credit-based cloud assistance (good for trying Junie)
-- **AI Pro**: Increased usage quotas for regular use
-- **AI Ultimate**: Highest quotas for intensive workflows
+**Note on Pricing (AI Credits):**
+- **AI Free**: 3 credits/month, no top-ups
+- **AI Pro** ($10/month): 10 credits
+- **AI Ultimate** ($30/month): 35 credits ($5 bonus)
+- **BYOK**: Use your own provider keys (OpenAI, Anthropic, Google, Grok) — no JetBrains credits needed
 
 ## 💻 Running the Slides
 
