@@ -108,150 +108,31 @@ Run tests: `npm test`
 
 ## Part 4: Create Guidelines and Rebuild (10 minutes)
 
-### Task 4: Create React/TypeScript Guidelines
+### Task 4: Generate React/TypeScript Guidelines
 
-Create `.junie/AGENTS.md` (or the legacy `.junie/guidelines.md` — both work) with the following sections:
-
-**Technology Stack:**
-- React 18 with TypeScript
-- React Hook Form for form management
-- Zod for schema validation
-- React Testing Library for tests
-- Jest for test runner
-
-**TypeScript Standards:**
-- Strict mode enabled
-- Explicit return types for all functions
-- Interface over type for component props
-- Proper generic types for hooks
-
-```typescript
-interface FormData {
-  email: string;
-  password: string;
-  confirmPassword: string;
-  terms: boolean;
-}
-
-interface RegisterFormProps {
-  onSubmit: (data: FormData) => Promise<void>;
-  initialValues?: Partial<FormData>;
-}
+By now you've seen Junie generate code without guidelines. Ask it to create guidelines based on what it observes in the project. In Ask mode:
+```
+Analyze this React TypeScript project and generate an AGENTS.md file with
+guidelines covering: technology stack, TypeScript standards, form patterns,
+accessibility requirements, testing standards, and component structure.
+Save it to .junie/AGENTS.md
 ```
 
-**Form Patterns** — use React Hook Form with Zod for schema validation:
+> **Note:** The legacy path `.junie/guidelines.md` still works, but `AGENTS.md` is the current standard.
 
-```typescript
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+Review what Junie generates. It should cover areas like:
+- Technology stack (React, TypeScript, form library, validation, testing)
+- TypeScript standards (strict mode, interfaces vs types, generics)
+- Form patterns (React Hook Form + Zod integration)
+- Accessibility (labels, ARIA attributes, focus management, semantic HTML)
+- Testing standards (React Testing Library queries, jest-axe, coverage)
+- Component structure (file organization, state management)
 
-const schema = z.object({
-  email: z.string().email('Invalid email'),
-  password: z.string()
-    .min(8, 'Minimum 8 characters')
-    .regex(/[!@#$%^&*]/, 'Must contain special character')
-    .regex(/[0-9]/, 'Must contain number'),
-  confirmPassword: z.string(),
-  terms: z.boolean().refine(val => val, 'Must accept terms')
-}).refine(data => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ["confirmPassword"]
-});
-```
-
-**Accessibility Requirements** — all inputs must have associated labels, semantic HTML, proper ARIA attributes, and focus management on errors:
-
-```tsx
-<div role="group" aria-labelledby="email-label">
-  <label id="email-label" htmlFor="email">
-    Email Address
-    <span aria-label="required">*</span>
-  </label>
-  <input
-    id="email"
-    type="email"
-    aria-invalid={!!errors.email}
-    aria-describedby={errors.email ? "email-error" : undefined}
-    {...register('email')}
-  />
-  {errors.email && (
-    <span id="email-error" role="alert" className="error">
-      {errors.email.message}
-    </span>
-  )}
-</div>
-```
-
-**Custom Validators:**
-
-```typescript
-const passwordStrength = (password: string): boolean => {
-  const hasMinLength = password.length >= 8;
-  const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-  const hasNumber = /\d/.test(password);
-  const hasUpperCase = /[A-Z]/.test(password);
-  const hasLowerCase = /[a-z]/.test(password);
-
-  return hasMinLength && hasSpecialChar && hasNumber && hasUpperCase && hasLowerCase;
-};
-```
-
-**Testing Standards** — use React Testing Library, query by accessible roles first, never use test IDs unless necessary, test accessibility with jest-axe:
-
-```typescript
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { axe } from 'jest-axe';
-
-test('form is accessible', async () => {
-  const { container } = render(<RegisterForm />);
-  const results = await axe(container);
-  expect(results).toHaveNoViolations();
-});
-
-test('shows validation errors on submit', async () => {
-  const user = userEvent.setup();
-  render(<RegisterForm />);
-
-  const submitButton = screen.getByRole('button', { name: /register/i });
-  await user.click(submitButton);
-
-  expect(screen.getByRole('alert')).toHaveTextContent(/email is required/i);
-});
-```
-
-**Test Coverage:** minimum 90%, test all validation rules, happy path, error states, and accessibility.
-
-**File Organization:**
-
-```
-src/
-  components/
-    RegisterForm/
-      RegisterForm.tsx
-      RegisterForm.test.tsx
-      RegisterForm.module.css
-      validation.ts
-      types.ts
-```
-
-**State Management:**
-- Use React Hook Form for form state
-- Local state with useState for UI state only
-- No global state for forms unless necessary
-
-**Error Handling:**
-- Display inline validation errors
-- Show field-level errors immediately
-- Summary errors at top for screen readers
-- Clear error messages
-
-**Performance:**
-- Lazy load validation schemas
-- Debounce async validation
-- Memoize expensive computations
-- Use React.memo for pure components
+**Refine as needed.** Compare what Junie generated against the code it produced in Task 2. For example, you might want to add:
+- "Query by accessible roles first, never use test IDs unless necessary"
+- Minimum 90% coverage
+- `interface` over `type` for component props
+- Error summary at top of form for screen readers
 
 ### Task 5: Rebuild with Guidelines
 

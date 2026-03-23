@@ -102,86 +102,30 @@ curl -X POST http://localhost:8080/api/users \
 
 ## Part 4: Create and Apply Guidelines (10 minutes)
 
-### Task 6: Create Project Guidelines
+### Task 6: Generate Project Guidelines
 
-Create `.junie/AGENTS.md` (the new open-standard format) with this content:
+Ask Junie to analyze the project and generate guidelines. In Ask mode:
+```
+Analyze this Spring Boot project and generate an AGENTS.md file with guidelines
+covering: technology stack, architecture patterns, REST conventions, code style,
+and testing standards. Save it to .junie/AGENTS.md
+```
 
 > **Note:** The legacy path `.junie/guidelines.md` still works, but `AGENTS.md` is the current standard and is recognized by other AI coding agents too.
 
-```markdown
-# Spring Boot REST API Guidelines
+Review what Junie generates. It should cover areas like:
+- Technology stack (Java version, Spring Boot, testing frameworks)
+- Architecture patterns (layered architecture, DTOs, records)
+- REST conventions (base path, resource naming, status codes)
+- Code style (constructor injection, validation, exception handling)
+- Testing standards (naming patterns, test types, coverage)
+- Antipatterns to avoid
 
-## Technology Stack
-- Java 17
-- Spring Boot 3.2
-- Testing: JUnit 5 + AssertJ + MockMvc
-- Build: Gradle Kotlin DSL
-
-## Architecture Patterns
-- Controller → Service → Repository layers
-- DTOs for all API requests/responses
-- Use Java records for DTOs
-- Separate request and response DTOs
-
-## REST Conventions
-- Base path: /api/v1
-- Resource naming: plural nouns (/users, /products)
-- HTTP status codes:
-  - 200 OK for successful GET
-  - 201 Created for successful POST
-  - 404 Not Found for missing resources
-  - 400 Bad Request for validation errors
-
-## Code Style
-- Constructor injection only (no @Autowired on fields)
-- Validation with Jakarta Bean Validation
-- Custom exceptions with @ControllerAdvice
-- Use @RestController, not @Controller + @ResponseBody
-
-## Testing Standards
-- Given-When-Then pattern for test names
-- Use @WebMvcTest for controller tests
-- Mock service layer with @MockBean
-- AssertJ for all assertions
-- Test both success and failure cases
+**Refine as needed.** If Junie missed something important or made a choice you disagree with, edit the file or ask Junie to update it. For example, you might want to specify:
+- Given-When-Then test naming pattern
 - Minimum 80% code coverage
-
-## Example Patterns
-
-### DTO Example:
-```java
-public record UserRequestDto(
-    @NotBlank(message = "Name is required")
-    String name,
-    
-    @Email(message = "Valid email required")
-    @NotBlank(message = "Email is required")
-    String email
-) {}
-```
-
-### Test Example:
-```java
-@Test
-void givenValidUser_whenCreateUser_thenReturns201() {
-    // Given
-    var request = new UserRequestDto("John", "john@example.com");
-    
-    // When & Then
-    mockMvc.perform(post("/api/v1/users")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(objectMapper.writeValueAsString(request)))
-            .andExpect(status().isCreated())
-            .andExpect(jsonPath("$.id").exists());
-}
-```
-
-## Antipatterns to Avoid
-- Business logic in controllers
-- Returning entities directly (always use DTOs)
-- Field injection with @Autowired
-- Using @RequestMapping on methods (use specific @GetMapping, etc.)
-- Catching generic Exception
+- Java records for DTOs
+- Constructor injection only (no `@Autowired` on fields)
 
 ### Task 7: Regenerate with Guidelines
 

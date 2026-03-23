@@ -117,94 +117,30 @@ Run tests: `pytest -v`
 
 ## Part 4: Create Guidelines and Re-refactor (10 minutes)
 
-### Task 4: Create Python Guidelines
+### Task 4: Generate Python Guidelines
 
-Create `.junie/AGENTS.md` (or the legacy `.junie/guidelines.md` — both work) with the following sections:
-
-**Code Standards:**
-- Follow PEP 8 strictly
-- Maximum line length: 88 characters (Black formatter)
-- Use Python 3.8+ features
-
-**Type Hints** — all functions must have complete type hints using the typing module:
-
-```python
-from typing import List, Optional, Union
-
-def calculate(
-    values: List[float],
-    operation: str
-) -> Optional[float]:
-    ...
+Ask Junie to analyze the project and generate guidelines. In Ask mode:
+```
+Analyze this Python project and generate an AGENTS.md file with guidelines
+covering: PEP 8 standards, type hints, docstring style, naming conventions,
+error handling, and testing standards. Save it to .junie/AGENTS.md
 ```
 
-**Documentation** — Google-style docstrings for all public functions, including Args, Returns, Raises:
+> **Note:** The legacy path `.junie/guidelines.md` still works, but `AGENTS.md` is the current standard.
 
-```python
-def process_data(data: List[int]) -> float:
-    """Process numerical data and return average.
+Review what Junie generates. It should cover areas like:
+- Code standards (PEP 8, line length, Python version features)
+- Type hints (typing module usage, complete annotations)
+- Documentation (docstring style — Google, NumPy, or Sphinx)
+- Naming conventions (snake_case, PascalCase, UPPER_SNAKE_CASE)
+- Error handling (specific exceptions, no bare except)
+- Testing standards (pytest, parametrize, coverage targets)
 
-    Args:
-        data: List of integers to process.
-
-    Returns:
-        The average of the input values.
-
-    Raises:
-        ValueError: If data is empty.
-    """
-```
-
-**Naming Conventions:**
-- Functions: snake_case, verb_noun pattern
-- Classes: PascalCase
-- Constants: UPPER_SNAKE_CASE
-- Private methods: prefix with underscore
-
-**Error Handling:**
-- Use specific exceptions
-- Never use bare except
-- Document all exceptions in docstrings
-- Validate inputs early
-
-**Testing Standards:**
-- Use pytest exclusively
-- Parametrize tests for multiple cases
-- Test file naming: `test_*.py`
-- Test function naming: `test_<function>_<scenario>`
+**Refine as needed.** For example, you might want to specify:
+- Google-style docstrings (not NumPy or Sphinx)
+- 88-character line length (Black formatter default)
+- Parametrized tests with `@pytest.mark.parametrize`
 - Minimum 95% coverage
-
-**Test Pattern Example:**
-
-```python
-import pytest
-from typing import Any
-
-@pytest.mark.parametrize(
-    "input_value,expected",
-    [
-        (5, 25),
-        (0, 0),
-        (-3, 9),
-    ]
-)
-def test_square_various_inputs(
-    input_value: int,
-    expected: int
-) -> None:
-    """Test square function with various inputs."""
-    assert square(input_value) == expected
-
-def test_divide_by_zero_raises() -> None:
-    """Test that division by zero raises ValueError."""
-    with pytest.raises(ValueError, match="Cannot divide by zero"):
-        divide(10, 0)
-```
-
-**Code Organization:**
-- One class per file for major classes
-- Group related functions in modules
-- Use `__init__.py` for package exports
 
 ### Task 5: Regenerate with Guidelines
 
