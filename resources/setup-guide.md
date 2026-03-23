@@ -94,7 +94,9 @@ junie
 
 Air is JetBrains' new agentic development environment. It's in **public preview** (macOS only as of March 2026).
 
-**Download:** [jetbrains.com/air](https://www.jetbrains.com/air/)
+**Download:** [air.dev](https://air.dev/)
+
+**Docs:** [Getting Started with Air](https://www.jetbrains.com/help/air/getting-started.html)
 
 We will demo Air briefly during the workshop but it is **not required** for any labs.
 

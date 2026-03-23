@@ -1075,9 +1075,10 @@ background: 'linear-gradient(135deg, #065f46, #047857)'
 • 🔧 [Agent Skills](https://junie.jetbrains.com/docs/agent-skills.html)<br/>
 • 🖥️ [CLI Quickstart](https://junie.jetbrains.com/docs/junie-cli.html)
 
-### CI/CD
+### CI/CD & Air
 • 🐙 [GitHub Action](https://github.com/JetBrains/junie-github-action)<br/>
-• 🦊 [GitLab CI](https://junie.jetbrains.com/docs/junie-gitlab-ci-cd.html)
+• 🦊 [GitLab CI](https://junie.jetbrains.com/docs/junie-gitlab-ci-cd.html)<br/>
+• 🌐 [Air Getting Started](https://www.jetbrains.com/help/air/getting-started.html)
 
 </div>
 
