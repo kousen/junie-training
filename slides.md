@@ -525,6 +525,10 @@ Settings → Junie → MCP → Edit mcp.json
 
 </div>
 
+<div style="margin-top: 1em; padding: 0.8em; background: rgba(251,191,36,0.15); border-radius: 8px; border: 1px solid #fbbf24;">
+<span style="color: #fde047;">💡 MCP vs Local Tools:</span> <span style="color: #fef3c7;">Use MCP for capabilities you don't have locally (e.g., context7 for live docs). CLI agents can often use local commands directly — <code>npx playwright test</code> is simpler and cheaper on tokens than the MCP server.</span>
+</div>
+
 ---
 background: 'linear-gradient(135deg, #1e40af, #1e3a8a)'
 ---
@@ -816,6 +820,10 @@ test('successful login', async ({ page }) => {
 <span style="color: #a7f3d0;">✅ Retry Logic</span>
 </div>
 
+</div>
+
+<div style="margin-top: 1em; padding: 0.8em; background: rgba(251,191,36,0.15); border-radius: 8px; border: 1px solid #fbbf24;">
+<span style="color: #fde047;">💡 MCP vs CLI:</span> <span style="color: #fef3c7;">IDE plugin needs MCP to reach the browser. CLI agents (Junie CLI, Claude Code, Codex) can run <code>npx playwright test</code> directly — full test runner, cheaper on tokens. Use MCP for interactive browser exploration; use CLI for running tests.</span>
 </div>
 
 ---
