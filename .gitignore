@@ -171,6 +171,9 @@ site/
 # Gemfile.lock
 # poetry.lock
 
+# Claude Code (local settings contain machine-specific permissions)
+.claude/settings.local.json
+
 # MCP Configuration (may contain sensitive data)
 mcp.json.local
 mcp.json.backup

@@ -63,9 +63,8 @@ When creating lab instructions:
 ### File Organization
 ```
 /
-├── slides.md           # Main presentation
+├── slides.md           # Main presentation (source of truth)
 ├── slides.pdf         # Exported for distribution
-├── slides.pptx        # Editable backup
 ├── labs/
 │   ├── labA-java-rest/
 │   │   ├── LAB_INSTRUCTIONS.md

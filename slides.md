@@ -117,10 +117,11 @@ background: 'linear-gradient(135deg, #1e40af, #1e3a8a)'
 
 **Available Models (LLM-agnostic):**
 <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5em;">
-<span style="background: rgba(251,191,36,0.2); padding: 0.4em 0.8em; border-radius: 5px; color: #fef3c7;">GPT 5 / 5.2</span>
-<span style="background: rgba(167,139,250,0.2); padding: 0.4em 0.8em; border-radius: 5px; color: #e9d5ff;">Opus 4.5 / Sonnet 4.5</span>
-<span style="background: rgba(52,211,153,0.2); padding: 0.4em 0.8em; border-radius: 5px; color: #d1fae5;">Gemini 3 Pro / Flash</span>
-<span style="background: rgba(248,113,113,0.2); padding: 0.4em 0.8em; border-radius: 5px; color: #fecaca;">Grok 4.1</span>
+<span style="background: rgba(251,191,36,0.2); padding: 0.4em 0.8em; border-radius: 5px; color: #fef3c7;">GPT / GPT Codex</span>
+<span style="background: rgba(167,139,250,0.2); padding: 0.4em 0.8em; border-radius: 5px; color: #e9d5ff;">Opus / Sonnet</span>
+<span style="background: rgba(52,211,153,0.2); padding: 0.4em 0.8em; border-radius: 5px; color: #d1fae5;">Gemini Pro / Flash</span>
+<span style="background: rgba(248,113,113,0.2); padding: 0.4em 0.8em; border-radius: 5px; color: #fecaca;">Grok</span>
+<span style="background: rgba(148,163,184,0.2); padding: 0.4em 0.8em; border-radius: 5px; color: #cbd5e1; font-size: 0.85em;">Aliases auto-update to latest versions</span>
 </div>
 
 </div>
@@ -268,7 +269,7 @@ graph TD
 ```
 
 <div style="text-align: center; margin-top: 1em; color: #94a3b8; font-size: 0.9em;">
-Air = agentic dev environment (macOS preview) built on Fleet codebase, using Agent Client Protocol (ACP)
+Air = agentic dev environment (macOS public preview, March 2026) built on Fleet codebase, using Agent Client Protocol (ACP)
 </div>
 
 ---
@@ -853,23 +854,23 @@ background: 'linear-gradient(135deg, #1e40af, #1e3a8a)'
 <tr>
 <td style="text-align: left;">LLM-agnostic</td>
 <td class="yes">✅ BYOK</td>
-<td class="no">Claude only</td>
-<td class="no">GPT only</td>
+<td class="partial">Claude native, others via routing</td>
+<td class="partial">GPT native, others via routing</td>
 <td class="yes">✅</td>
 </tr>
 <tr>
 <td style="text-align: left;">Test execution</td>
 <td class="yes">✅ Yes</td>
 <td class="yes">✅ Yes</td>
-<td class="partial">⚠️</td>
-<td class="no">❌</td>
+<td class="yes">✅ Yes</td>
+<td class="yes">✅ Yes</td>
 </tr>
 <tr>
 <td style="text-align: left;">MCP tools</td>
 <td class="yes">✅ Yes</td>
 <td class="yes">✅ Yes</td>
-<td class="partial">⚠️</td>
-<td class="partial">⚠️</td>
+<td class="yes">✅ Yes</td>
+<td class="yes">✅ Yes</td>
 </tr>
 <tr>
 <td style="text-align: left;">JetBrains native</td>
