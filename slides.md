@@ -273,6 +273,68 @@ Air = agentic dev environment (macOS public preview, March 2026) built on Fleet 
 </div>
 
 ---
+background: 'linear-gradient(135deg, #0f172a, #1e3a5f)'
+---
+
+## <span style="color: #fbbf24;">🌐 What Makes Air Different?</span>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1em;">
+
+<div style="background: rgba(96,165,250,0.15); padding: 1em; border-radius: 8px; border-left: 4px solid #60a5fa;">
+
+### <span style="color: #60a5fa;">Concurrent Multi-Agent Tasks</span>
+<div style="color: #dbeafe;">
+• Run multiple agents in parallel<br/>
+• Claude + Codex + Gemini + Junie<br/>
+• Each task gets its own workspace<br/>
+• Track status: Running / Done / Input Required
+</div>
+
+</div>
+
+<div style="background: rgba(168,85,247,0.15); padding: 1em; border-radius: 8px; border-left: 4px solid #a78bfa;">
+
+### <span style="color: #a78bfa;">Isolated Workspaces</span>
+<div style="color: #e9d5ff;">
+• <strong>Local:</strong> Direct project access (fastest)<br/>
+• <strong>Git Worktree:</strong> Isolated branch<br/>
+• <strong>Docker:</strong> Full container isolation<br/>
+• Agents can't step on each other's changes
+</div>
+
+</div>
+
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+
+<div style="background: rgba(52,211,153,0.15); padding: 1em; border-radius: 8px; border-left: 4px solid #34d399;">
+
+### <span style="color: #86efac;">Permission Modes</span>
+<div style="color: #a7f3d0;">
+• Ask Permission / Auto-Edit<br/>
+• Plan (read-only analysis)<br/>
+• Full Access (autonomous)<br/>
+• Similar to Junie's safety controls
+</div>
+
+</div>
+
+<div style="background: rgba(251,191,36,0.15); padding: 1em; border-radius: 8px; border-left: 4px solid #fbbf24;">
+
+### <span style="color: #fde047;">Built-In Extras</span>
+<div style="color: #fef3c7;">
+• Web preview for frontend work<br/>
+• Inline diff review + commenting<br/>
+• MCP server integration<br/>
+• @-mention files, branches, symbols
+</div>
+
+</div>
+
+</div>
+
+---
 background: 'linear-gradient(135deg, #312e81, #4c1d95)'
 ---
 
