@@ -276,18 +276,18 @@ Air = agentic dev environment (macOS public preview, March 2026) built on Fleet 
 background: 'linear-gradient(135deg, #0f172a, #1e3a5f)'
 ---
 
-## <span style="color: #fbbf24;">🌐 What Makes Air Different?</span>
+## <span style="color: #fbbf24;">🌐 Air: Agentic Development Environment</span>
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1em;">
 
 <div style="background: rgba(96,165,250,0.15); padding: 1em; border-radius: 8px; border-left: 4px solid #60a5fa;">
 
-### <span style="color: #60a5fa;">Concurrent Multi-Agent Tasks</span>
+### <span style="color: #60a5fa;">Multi-Agent Sessions</span>
 <div style="color: #dbeafe;">
-• Run multiple agents in parallel<br/>
-• Claude + Codex + Gemini + Junie<br/>
-• Each task gets its own workspace<br/>
-• Track status: Running / Done / Input Required
+• Work with Claude, Codex, Gemini, Junie<br/>
+• Multiple agent sessions side by side<br/>
+• Each in its own workspace<br/>
+• You choose which agent fits each task
 </div>
 
 </div>
@@ -299,7 +299,7 @@ background: 'linear-gradient(135deg, #0f172a, #1e3a5f)'
 • <strong>Local:</strong> Direct project access (fastest)<br/>
 • <strong>Git Worktree:</strong> Isolated branch<br/>
 • <strong>Docker:</strong> Full container isolation<br/>
-• Agents can't step on each other's changes
+• Agents work without conflicts
 </div>
 
 </div>
@@ -332,6 +332,10 @@ background: 'linear-gradient(135deg, #0f172a, #1e3a5f)'
 
 </div>
 
+</div>
+
+<div style="text-align: center; margin-top: 1em; color: #94a3b8; font-size: 0.9em;">
+macOS public preview — <a href="https://air.dev" style="color: #93c5fd;">air.dev</a>
 </div>
 
 ---
