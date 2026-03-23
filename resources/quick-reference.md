@@ -146,14 +146,14 @@ Lookup order: `.junie/AGENTS.md` → `AGENTS.md` (project root) → `.junie/guid
 
 ## 📊 Model Selection (LLM-Agnostic)
 
-| Provider | Models | Notes |
-|----------|--------|-------|
-| **OpenAI** | GPT 5, GPT 5.2, GPT 5.2 Codex | |
-| **Anthropic** | Opus 4.5, Sonnet 4.5 | |
-| **Google** | Gemini 3 Pro, Gemini 3 Flash | |
-| **xAI** | Grok 4.1 (Fast) | |
+| Provider | Alias | Notes |
+|----------|-------|-------|
+| **OpenAI** | `gpt`, `gpt-codex` | |
+| **Anthropic** | `opus`, `sonnet` | |
+| **Google** | `gemini-pro`, `gemini-flash` | |
+| **xAI** | `grok` | |
 
-BYOK: Use your own provider API keys via Junie CLI or IDE settings.
+Aliases always point to the latest supported version. BYOK: Use your own provider API keys via Junie CLI or IDE settings.
 
 ## 🎯 Prompt Templates
 
