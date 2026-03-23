@@ -15,7 +15,6 @@ This training covers:
 ### Slides
 - `slides.md` - Source slides in Slidev format (60+ slides)
 - `slides.pdf` - Exported PDF for distribution
-- `slides.pptx` - Editable PowerPoint version
 
 ### Labs
 - **Lab A (Java)**: Spring Boot REST API with JUnit/AssertJ testing
@@ -68,9 +67,6 @@ npx slidev slides.md
 ```bash
 # Export to PDF
 npx slidev export slides.md --format pdf --output slides.pdf --dark
-
-# Export to PowerPoint
-npx slidev export slides.md --format pptx --output slides.pptx --dark
 ```
 
 ## 🧪 Lab Setup
