@@ -32,7 +32,7 @@
 - Extensible with custom MCP servers
 
 **Model Selection (LLM-Agnostic)**
-- Multiple providers: OpenAI (GPT 5/5.2), Anthropic (Opus 4.5, Sonnet 4.5), Google (Gemini 3 Pro/Flash), Grok 4.1
+- Multiple providers: OpenAI (`gpt`, `gpt-codex`), Anthropic (`opus`, `sonnet`), Google (`gemini-pro`, `gemini-flash`), xAI (`grok`) — aliases auto-update to latest versions
 - BYOK (Bring Your Own Key) with any supported provider
 - Ability to switch models mid-conversation
 
@@ -63,14 +63,14 @@
 | Feature | Junie | Claude Code | GitHub Copilot | Cursor |
 |---------|-------|-------------|----------------|--------|
 | **IDE + CLI + CI/CD** | ✅ All three | CLI only | IDE + CI | IDE only |
-| **LLM-agnostic / BYOK** | ✅ | Claude only | GPT only | ✅ |
-| **Test execution** | ✅ | ✅ | Partial | ❌ |
+| **LLM-agnostic / BYOK** | ✅ | Claude native, others via routing | GPT native, others via routing | ✅ |
+| **Test execution** | ✅ | ✅ | ✅ | ✅ |
 | **Rollback** | ✅ | ✅ | ❌ | Partial |
-| **MCP tools** | ✅ | ✅ | Partial | Partial |
+| **MCP tools** | ✅ | ✅ | ✅ | ✅ |
 | **Slash commands** | ✅ (CLI) | ✅ | ❌ | ✅ |
-| **Agent Skills** | ✅ | ❌ | ❌ | ❌ |
+| **Agent Skills** | ✅ | ✅ (skills) | ❌ | ❌ |
 | **JetBrains native** | ✅ | via ACP | Plugin | ❌ |
-| **AGENTS.md guidelines** | ✅ | ✅ (CLAUDE.md) | ❌ | ✅ (.cursorrules) |
+| **Project guidelines** | ✅ (AGENTS.md) | ✅ (CLAUDE.md) | ✅ (copilot-instructions.md) | ✅ (.cursorrules) |
 
 ## 🚫 Current Limitations
 

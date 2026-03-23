@@ -18,7 +18,7 @@ Real-time library documentation and version information.
   "mcpServers": {
     "context7": {
       "command": "npx",
-      "args": ["@upstash/context7"]
+      "args": ["-y", "@upstash/context7-mcp"]
     }
   }
 }
@@ -117,7 +117,7 @@ You can run multiple MCP servers simultaneously:
   "mcpServers": {
     "context7": {
       "command": "npx",
-      "args": ["@upstash/context7"]
+      "args": ["-y", "@upstash/context7-mcp"]
     },
     "playwright": {
       "command": "npx",
@@ -230,11 +230,21 @@ Pass sensitive data via environment variables:
 | firecrawl | `"Use Firecrawl to..."` | Web scraping |
 | custom | `"Use [tool] to..."` | Custom functionality |
 
+## MCP vs Local Tools
+
+Use MCP for capabilities you don't have locally. CLI agents (Junie CLI, Claude Code, Codex) can often use local commands directly, which is simpler and cheaper on tokens.
+
+| Tool | MCP Server | Local Alternative |
+|------|-----------|-------------------|
+| **context7** | ✅ Use MCP | No local equivalent |
+| **Playwright** | IDE plugin needs MCP | CLI: `npx playwright test` |
+| **Git/GitHub** | Not needed | `git`, `gh` CLI |
+
 ## Tips
 
 1. **Chain MCP calls**: Use context7 first, then generate code
 2. **Combine with guidelines**: MCP tools respect your guidelines
-3. **Cache results**: MCP responses are cached for efficiency
+3. **Prefer local tools when available**: CLI agents should use `npx playwright test` over the MCP server
 4. **Monitor usage**: Some tools have API limits
 5. **Test locally**: Verify MCP tools work before team rollout
 
