@@ -110,21 +110,16 @@ Run tests: `npm test`
 
 ### Task 4: Create React/TypeScript Guidelines
 
-Create `.junie/AGENTS.md` (or the legacy `.junie/guidelines.md` — both work):
+Create `.junie/AGENTS.md` (or the legacy `.junie/guidelines.md` — both work) with the following sections:
 
-```markdown
-# React TypeScript Form Guidelines
-
-## Technology Stack
+**Technology Stack:**
 - React 18 with TypeScript
 - React Hook Form for form management
 - Zod for schema validation
 - React Testing Library for tests
 - Jest for test runner
 
-## Component Standards
-
-### TypeScript
+**TypeScript Standards:**
 - Strict mode enabled
 - Explicit return types for all functions
 - Interface over type for component props
@@ -144,9 +139,8 @@ interface RegisterFormProps {
 }
 ```
 
-## Form Patterns
+**Form Patterns** — use React Hook Form with Zod for schema validation:
 
-### React Hook Form with Zod
 ```typescript
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -166,13 +160,7 @@ const schema = z.object({
 });
 ```
 
-## Accessibility Requirements
-
-### Form Fields
-- All inputs must have associated labels
-- Use semantic HTML elements
-- Proper ARIA attributes for errors
-- Focus management on errors
+**Accessibility Requirements** — all inputs must have associated labels, semantic HTML, proper ARIA attributes, and focus management on errors:
 
 ```tsx
 <div role="group" aria-labelledby="email-label">
@@ -195,9 +183,8 @@ const schema = z.object({
 </div>
 ```
 
-## Validation Patterns
+**Custom Validators:**
 
-### Custom Validators
 ```typescript
 const passwordStrength = (password: string): boolean => {
   const hasMinLength = password.length >= 8;
@@ -205,18 +192,12 @@ const passwordStrength = (password: string): boolean => {
   const hasNumber = /\d/.test(password);
   const hasUpperCase = /[A-Z]/.test(password);
   const hasLowerCase = /[a-z]/.test(password);
-  
+
   return hasMinLength && hasSpecialChar && hasNumber && hasUpperCase && hasLowerCase;
 };
 ```
 
-## Testing Standards
-
-### React Testing Library
-- Query by accessible roles first
-- Never use test IDs unless absolutely necessary
-- Test user interactions, not implementation
-- Test accessibility with jest-axe
+**Testing Standards** — use React Testing Library, query by accessible roles first, never use test IDs unless necessary, test accessibility with jest-axe:
 
 ```typescript
 import { render, screen, waitFor } from '@testing-library/react';
@@ -232,23 +213,18 @@ test('form is accessible', async () => {
 test('shows validation errors on submit', async () => {
   const user = userEvent.setup();
   render(<RegisterForm />);
-  
+
   const submitButton = screen.getByRole('button', { name: /register/i });
   await user.click(submitButton);
-  
+
   expect(screen.getByRole('alert')).toHaveTextContent(/email is required/i);
 });
 ```
 
-### Test Coverage Requirements
-- Minimum 90% coverage
-- Test all validation rules
-- Test happy path and error states
-- Test accessibility
+**Test Coverage:** minimum 90%, test all validation rules, happy path, error states, and accessibility.
 
-## Component Structure
+**File Organization:**
 
-### File Organization
 ```
 src/
   components/
@@ -260,23 +236,22 @@ src/
       types.ts
 ```
 
-## State Management
+**State Management:**
 - Use React Hook Form for form state
 - Local state with useState for UI state only
 - No global state for forms unless necessary
 
-## Error Handling
+**Error Handling:**
 - Display inline validation errors
 - Show field-level errors immediately
 - Summary errors at top for screen readers
 - Clear error messages
 
-## Performance
+**Performance:**
 - Lazy load validation schemas
 - Debounce async validation
 - Memoize expensive computations
 - Use React.memo for pure components
-```
 
 ### Task 5: Rebuild with Guidelines
 

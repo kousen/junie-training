@@ -119,20 +119,15 @@ Run tests: `pytest -v`
 
 ### Task 4: Create Python Guidelines
 
-Create `.junie/AGENTS.md` (or the legacy `.junie/guidelines.md` — both work):
+Create `.junie/AGENTS.md` (or the legacy `.junie/guidelines.md` — both work) with the following sections:
 
-```markdown
-# Python Project Guidelines
-
-## Code Standards
+**Code Standards:**
 - Follow PEP 8 strictly
 - Maximum line length: 88 characters (Black formatter)
 - Use Python 3.8+ features
 
-## Type Hints
-- All functions must have complete type hints
-- Use typing module for complex types
-- Example:
+**Type Hints** — all functions must have complete type hints using the typing module:
+
 ```python
 from typing import List, Optional, Union
 
@@ -143,45 +138,44 @@ def calculate(
     ...
 ```
 
-## Documentation
-- Google-style docstrings for all public functions
-- Include Args, Returns, Raises sections
-- Example:
+**Documentation** — Google-style docstrings for all public functions, including Args, Returns, Raises:
+
 ```python
 def process_data(data: List[int]) -> float:
     """Process numerical data and return average.
-    
+
     Args:
         data: List of integers to process.
-        
+
     Returns:
         The average of the input values.
-        
+
     Raises:
         ValueError: If data is empty.
     """
 ```
 
-## Naming Conventions
+**Naming Conventions:**
 - Functions: snake_case, verb_noun pattern
 - Classes: PascalCase
 - Constants: UPPER_SNAKE_CASE
 - Private methods: prefix with underscore
 
-## Error Handling
+**Error Handling:**
 - Use specific exceptions
 - Never use bare except
 - Document all exceptions in docstrings
 - Validate inputs early
 
-## Testing Standards
+**Testing Standards:**
 - Use pytest exclusively
 - Parametrize tests for multiple cases
-- Test file naming: test_*.py
-- Test function naming: test_<function>_<scenario>
+- Test file naming: `test_*.py`
+- Test function naming: `test_<function>_<scenario>`
 - Minimum 95% coverage
 
-## Test Patterns
+**Test Pattern Example:**
+
 ```python
 import pytest
 from typing import Any
@@ -207,11 +201,10 @@ def test_divide_by_zero_raises() -> None:
         divide(10, 0)
 ```
 
-## Code Organization
+**Code Organization:**
 - One class per file for major classes
 - Group related functions in modules
-- Use __init__.py for package exports
-```
+- Use `__init__.py` for package exports
 
 ### Task 5: Regenerate with Guidelines
 

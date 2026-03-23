@@ -182,7 +182,6 @@ void givenValidUser_whenCreateUser_thenReturns201() {
 - Field injection with @Autowired
 - Using @RequestMapping on methods (use specific @GetMapping, etc.)
 - Catching generic Exception
-```
 
 ### Task 7: Regenerate with Guidelines
 
