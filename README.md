@@ -72,7 +72,7 @@ npx slidev export slides.md --format pdf --output slides.pdf --dark
 ## 🧪 Lab Setup
 
 Each lab directory contains:
-- `LAB_INSTRUCTIONS.md` - Detailed step-by-step instructions
+- `README.md` - Detailed step-by-step instructions (renders automatically on GitHub)
 - `.junie/guidelines.md` - Example project guidelines
 - Starter code and configuration files
 

@@ -67,7 +67,7 @@ When creating lab instructions:
 ├── slides.pdf         # Exported for distribution
 ├── labs/
 │   ├── labA-java-rest/
-│   │   ├── LAB_INSTRUCTIONS.md
+│   │   ├── README.md
 │   │   ├── .junie/guidelines.md
 │   │   └── [starter code]
 │   └── [other labs...]

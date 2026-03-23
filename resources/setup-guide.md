@@ -148,7 +148,7 @@ git clone https://github.com/kousen/junie-training.git
 cd junie-training
 ```
 
-Each lab is in its own directory under `labs/` with a `LAB_INSTRUCTIONS.md` file.
+Each lab is in its own directory under `labs/` with a `README.md` that renders automatically on GitHub.
 
 ### Language-Specific Setup
 
