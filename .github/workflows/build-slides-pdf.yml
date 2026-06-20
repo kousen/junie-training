@@ -1,0 +1,50 @@
+name: Build slides PDF
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - slides.md
+      - .github/workflows/build-slides-pdf.yml
+  workflow_dispatch:
+
+concurrency:
+  group: slides-pdf
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Slidev export dependencies
+        run: npm install --no-save @slidev/cli @slidev/theme-seriph playwright playwright-chromium
+
+      - name: Install Chromium system dependencies
+        run: npx playwright install --with-deps chromium
+
+      - name: Export slides to PDF
+        run: npx slidev export slides.md --format pdf --output slides.pdf --dark
+
+      - name: Commit regenerated PDF
+        run: |
+          if git diff --quiet -- slides.pdf; then
+            echo "slides.pdf is already current"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add slides.pdf
+          git commit -m "chore: update slides PDF"
+          git push
+

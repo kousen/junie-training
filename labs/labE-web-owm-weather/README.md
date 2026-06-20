@@ -1,6 +1,6 @@
-# Lab E: Weather App with OpenWeatherMap (JS/TS)
+# Lab E: Optional Weather App with OpenWeatherMap (JS/TS)
 
-## Duration: 30–45 minutes
+## Duration: 20-30 minutes as optional overflow, 30-45 minutes for the full lab
 
 ## Learning Objectives
 - Resolve place names with the OWM Geocoding API and fetch weather via One Call 3.0.
@@ -10,8 +10,9 @@
 
 ## Prerequisites
 - Node.js 18+ and npm
+- WebStorm with Junie installed, or Junie CLI
 - An OpenWeatherMap API key in `.env` (see below)
-- Key propagation: new keys may take 30–60 minutes to activate for programmatic calls.
+- Key propagation: new keys may take 30-60 minutes to activate for programmatic calls.
 
 ## Part 1: Project Setup (5 minutes)
 1. Open this project folder: `labs/labE-web-owm-weather`
@@ -30,6 +31,26 @@
    ```
    - Frontend: http://localhost:5173
    - Proxy API: http://localhost:3001/api/weather?q=Portland,OR,US
+
+## Recommended Four-Hour Fast Path (15-20 minutes)
+
+Use this only if the room is moving quickly after Lab D.
+
+Start in Plan mode and paste:
+
+```
+Inspect this Vite/React weather app and Express proxy. Create a plan first and wait for approval before editing.
+
+After approval, implement one contained improvement:
+- Add a metric/imperial units toggle
+- Preserve the current query
+- Fetch through the existing /api/weather proxy
+- Show loading, empty, and error states clearly
+- Add or update Vitest/Testing Library tests for the toggle and one successful weather response
+- Run npm test and summarize the results
+
+Do not expose the OpenWeatherMap API key in browser code. Keep changes focused.
+```
 
 ## Part 2: Understand the Architecture (3 minutes)
 - `server/server.js`: Express route `/api/weather?q=...`
@@ -53,7 +74,7 @@
 - Show loading spinner while fetching
 - Empty state before search
 - Error state for 401/404/429/5xx
-- Tip: if your key is brand new, try again after 30–60 min
+- Tip: if your key is brand new, try again after 30-60 min
 
 ### Task 4: Light Caching (Optional)
 - Cache last successful response per `q+units` in memory for the session
@@ -77,5 +98,4 @@
 - One Call 3.0: https://openweathermap.org/api/one-call-3
 - Geocoding API: https://openweathermap.org/api/geocoding-api
 - Pricing: https://openweathermap.org/price
-- Note: New keys may take 30–60 minutes to activate for programmatic calls.
-
+- Note: New keys may take 30-60 minutes to activate for programmatic calls.

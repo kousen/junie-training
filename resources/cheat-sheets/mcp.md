@@ -5,7 +5,9 @@ Model Context Protocol allows Junie to connect to external tools and services, e
 
 **Setup paths:**
 - **IDE**: Settings → Junie → MCP → Edit `mcp.json`
-- **CLI**: Junie CLI supports one-click MCP server installation and auto-detection
+- **CLI**: Run `junie` and use `/mcp`
+- **Project config**: `.junie/mcp/mcp.json`
+- **User config**: `~/.junie/mcp/mcp.json`
 
 ## Available MCP Tools
 
@@ -40,7 +42,7 @@ Real-time library documentation and version information.
 ```
 
 ### 🎭 Playwright
-Browser automation and E2E test generation.
+Browser automation and E2E exploration.
 
 **Setup**:
 ```json
@@ -48,7 +50,7 @@ Browser automation and E2E test generation.
   "mcpServers": {
     "playwright": {
       "command": "npx",
-      "args": ["@playwright/mcp-server"]
+      "args": ["-y", "@playwright/mcp"]
     }
   }
 }
@@ -96,9 +98,8 @@ Web scraping and search capabilities.
 ## Configuration Steps
 
 ### 1. Open MCP Settings
-- Go to Settings/Preferences
-- Navigate to Junie → MCP
-- Click "Add" or "Edit"
+- IDE: Settings/Preferences → Junie → MCP
+- CLI: run `/mcp`
 
 ### 2. Edit mcp.json
 Add your desired MCP servers to the configuration file.
@@ -121,7 +122,7 @@ You can run multiple MCP servers simultaneously:
     },
     "playwright": {
       "command": "npx",
-      "args": ["@playwright/mcp-server"]
+      "args": ["-y", "@playwright/mcp"]
     },
     "custom-tool": {
       "command": "node",
@@ -142,7 +143,7 @@ You can run multiple MCP servers simultaneously:
 ### Common Errors
 
 **"MCP server not found"**
-- Install the MCP package: `npm install -g @tool/mcp-server`
+- Verify the package name and command. Prefer `npx -y <package>` for workshop setup.
 
 **"Connection timeout"**
 - Check firewall settings
@@ -239,6 +240,8 @@ Use MCP for capabilities you don't have locally. CLI agents (Junie CLI, Claude C
 | **context7** | ✅ Use MCP | No local equivalent |
 | **Playwright** | IDE plugin needs MCP | CLI: `npx playwright test` |
 | **Git/GitHub** | Not needed | `git`, `gh` CLI |
+
+For repeatable Playwright conventions, use an Agent Skill to define how tests should be written, then run Playwright through the local CLI.
 
 ## Tips
 

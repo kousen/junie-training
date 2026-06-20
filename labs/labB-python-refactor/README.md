@@ -1,9 +1,10 @@
 # Lab B: Python Refactoring with PyCharm and Junie
 
-## Duration: 30-45 minutes
+## Duration: 25-35 minutes in the four-hour workshop, 30-45 minutes for the full lab
 
 ## Learning Objectives
 - Refactor messy Python code to PEP 8 standards
+- Use Plan mode before a broad refactor
 - Add comprehensive type hints
 - Write Google-style docstrings
 - Create parametrized pytest test suites
@@ -86,6 +87,31 @@ Expected issues identified:
 - Inconsistent spacing
 - Class name not capitalized
 - Division by zero handling
+
+## Recommended Four-Hour Fast Path (15-20 minutes)
+
+Use this if you want a single richer Junie interaction instead of a long sequence of individual refactor prompts.
+
+1. Make sure `.junie/AGENTS.md` exists. If it does not, use Task 4 below first.
+2. Start in Plan mode and paste:
+
+```
+Inspect src/math_tools.py and the existing tests. Create a plan first, then wait for approval before editing.
+
+After approval, refactor the module so it is production-quality Python:
+- Keep the public behavior compatible unless you identify a bug and explain it
+- Apply PEP 8 naming and formatting
+- Add complete type hints
+- Add Google-style docstrings
+- Replace ambiguous return values with explicit exceptions where appropriate
+- Add or update pytest tests, using parametrize for repeated cases
+- Run python -m pytest and fix failures
+
+Follow .junie/AGENTS.md. Summarize changed files, test results, and any behavior changes.
+```
+
+3. Approve only after the plan explains behavior compatibility and test coverage.
+4. Use the full lab below when you want participants to compare unguided and guided output.
 
 ## Part 3: Refactor WITHOUT Guidelines (10 minutes)
 

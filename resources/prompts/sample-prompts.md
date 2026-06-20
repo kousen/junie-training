@@ -1,10 +1,46 @@
 # Sample Junie Prompts for Common Tasks
 
+## Plan-First Prompts
+
+Use these when the task is large enough that the implementation strategy matters.
+
+### General Plan
+```
+Before making changes, inspect the project and create a plan for this task:
+[describe task]
+
+Include:
+- Requirements and assumptions
+- Technical design
+- Files you expect to touch
+- Tests you will add or update
+- Risks or open questions
+
+Wait for my approval before implementing.
+```
+
+### Full Implementation Prompt
+```
+Use the project guidelines and implement this feature end to end:
+[describe feature]
+
+Acceptance criteria:
+- [criterion 1]
+- [criterion 2]
+- [criterion 3]
+
+Please:
+- Create or update tests first where practical
+- Make the smallest coherent set of code changes
+- Run the relevant test command
+- Summarize changed files, test results, and any follow-up risks
+```
+
 ## Java / Spring Boot
 
 ### REST API Development
 ```
-Create a REST controller for managing products with:
+Create a plan first, then implement a REST controller for managing products with:
 - GET /api/products (with pagination and sorting)
 - GET /api/products/{id}
 - POST /api/products (with validation)
@@ -37,7 +73,7 @@ Refactor the OrderService class to:
 
 ### Code Quality
 ```
-Refactor math_utils.py to:
+Create a plan first, then refactor math_utils.py to:
 - Follow PEP 8 standards
 - Add type hints for all functions
 - Include Google-style docstrings
@@ -68,7 +104,7 @@ Add comprehensive documentation to the analytics package:
 
 ### Component Development
 ```
-Create a SearchBar component with:
+Create a plan first, then build a SearchBar component with:
 - Debounced input (500ms)
 - Loading state during search
 - Error handling
@@ -217,11 +253,24 @@ Create a comprehensive README with:
 
 ### context7 Usage
 ```
-Use context7 to:
+Use /mcp if context7 is not configured yet. Then use context7 to:
 - Find the latest stable version of React Router
 - Get migration guide from v5 to v6
 - Check breaking changes
 - Show code examples for new patterns
+```
+
+### Migration Planning with context7
+```
+Create a migration plan before editing files.
+
+Use context7 to:
+- Check current React 18 migration guidance
+- Check breaking changes
+- Identify files in this project affected by the migration
+- Propose a small first implementation slice
+
+Wait for approval before applying dependency or source changes.
 ```
 
 ### Playwright Generation
@@ -231,6 +280,46 @@ Use Playwright to generate E2E tests for:
 - Product purchase journey
 - Admin dashboard access
 Include page objects, retry logic, and screenshots on failure
+```
+
+## Agent Skill Prompts
+
+### Create a Project Skill
+```
+Create a project Skill named [skill-name] in .junie/skills/[skill-name].
+
+The Skill should guide Junie whenever it [describe task].
+It should include:
+- Clear YAML frontmatter with name and description
+- Focused instructions, not generic advice
+- Examples from this project when useful
+- A checklist or template only if it makes the Skill easier to reuse
+
+After creating it, summarize when Junie should use it.
+```
+
+### Create a Playwright E2E Skill
+```
+Create a project Skill named playwright-e2e in .junie/skills/playwright-e2e.
+
+The Skill should guide Junie when creating or improving Playwright tests:
+- Prefer user-visible behavior over implementation details
+- Prefer accessible locators such as getByRole and getByLabel
+- Use page objects only after selector or navigation duplication appears
+- Keep tests deterministic and avoid arbitrary sleeps
+- Run npx playwright test after changes when dependencies are installed
+- Summarize failures, trace/report locations, and screenshots
+- Do not require Playwright MCP for repeatable local test runs
+
+Include a concise SKILL.md with good frontmatter. Add a small checklist file if helpful.
+```
+
+### Use an Existing Skill
+```
+Use the [skill-name] Skill for this task:
+[describe task]
+
+Before editing, summarize which Skill rules are relevant. After editing, run the relevant local verification command and report the result.
 ```
 
 ## Tips for Effective Prompts

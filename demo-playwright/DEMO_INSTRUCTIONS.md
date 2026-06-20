@@ -1,9 +1,9 @@
-# Playwright Demo: E2E Test Generation with MCP
+# Playwright Demo: E2E Test Generation
 
 ## Duration: 20-30 minutes
 
 ## Demo Objectives
-- Configure Playwright MCP tool
+- Explain when to use Playwright MCP versus a Playwright Skill
 - Generate comprehensive E2E tests
 - Demonstrate accessibility-first selectors
 - Show Page Object Model generation
@@ -11,11 +11,13 @@
 
 ## Prerequisites
 - WebStorm or VS Code with Junie
-- Node.js 16+ installed
+- Node.js 18+ installed
 - Target web application (can use public site)
-- Playwright MCP configured
+- Optional: Playwright MCP configured for interactive browser exploration
 
-## Part 1: Playwright MCP Setup (5 minutes)
+## Part 1: Playwright MCP Setup (Optional, 5 minutes)
+
+> Four-hour course note: prefer Mini-Lab F when the goal is repeatable team conventions. Use Playwright MCP here only when you want interactive browser context.
 
 ### Configure Playwright MCP
 
@@ -27,7 +29,7 @@
   "mcpServers": {
     "playwright": {
       "command": "npx",
-      "args": ["@playwright/mcp-server"]
+      "args": ["-y", "@playwright/mcp"]
     }
   }
 }
@@ -75,9 +77,9 @@ Analyze [chosen site URL] and identify:
 
 ### Task 2: Generate Login Tests
 
-In Code mode with Playwright MCP:
+In Code mode with Playwright MCP, or with the `playwright-e2e` Skill from Mini-Lab F:
 ```
-Using Playwright MCP, generate E2E tests for the login flow:
+Generate E2E tests for the login flow:
 1. Successful login with valid credentials
 2. Failed login with invalid credentials
 3. Password reset flow

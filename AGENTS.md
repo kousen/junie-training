@@ -1,8 +1,8 @@
-# Project Guidelines for Claude
+# Project Guidelines for Codex
 
 ## Project Context
 
-This is a comprehensive Junie training repository for teaching JetBrains' AI coding assistant across multiple IDEs. The training materials were developed with Claude's assistance and demonstrate best practices for AI-assisted development.
+This is a comprehensive Junie training repository for teaching JetBrains' AI coding assistant across multiple IDEs. The training materials were developed with Codex's assistance and demonstrate best practices for AI-assisted development.
 
 ## Slide Presentation Best Practices
 
@@ -68,11 +68,9 @@ When creating lab instructions:
 ├── labs/
 │   ├── labA-java-rest/
 │   │   ├── README.md
-│   │   ├── .junie/AGENTS.md
+│   │   ├── .junie/guidelines.md
 │   │   └── [starter code]
 │   └── [other labs...]
-├── .junie/
-│   └── skills/
 ├── resources/
 │   ├── cheat-sheets/
 │   ├── prompts/
@@ -90,18 +88,14 @@ When creating lab instructions:
 
 ### When Teaching Junie
 1. Always demonstrate the difference between with and without guidelines
-2. Start with Ask mode and Plan mode before Code mode
+2. Start with Ask mode before Code mode
 3. Show Approvals mode before Brave mode
-4. Prefer one complete prompt when a sequence of small prompts would waste class time
-5. Demonstrate `/remote` as a browser UI for the same running CLI session
-6. Include at least one Agent Skill creation/use exercise
-7. Use real-world examples, not contrived ones
-8. Emphasize safety and review practices
+4. Use real-world examples, not contrived ones
+5. Emphasize safety and review practices
 
 ### MCP Integration
 - context7 requires no API key (good for workshops)
-- Playwright MCP currently uses the `@playwright/mcp` package
-- For repeatable Playwright testing conventions, prefer an Agent Skill plus local `npx playwright test`
+- Playwright needs playwright-chromium installed
 - Always test MCP connections before demos
 - Provide fallback options if MCP fails
 
@@ -137,7 +131,7 @@ Consider adding:
 ## Success Metrics
 
 A successful training session will:
-- Have participants using Ask, Plan, and Code modes confidently
+- Have participants using both Ask and Code modes confidently
 - Show clear understanding of when to use each safety level
 - Result in participants creating their own guidelines
 - Generate interest in MCP tools
@@ -145,4 +139,4 @@ A successful training session will:
 
 ---
 
-**Note**: This document helps Claude (or other AI assistants) understand the project context and maintain consistency when making future updates.
+**Note**: This document helps Codex (or other AI assistants) understand the project context and maintain consistency when making future updates.

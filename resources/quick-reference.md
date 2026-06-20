@@ -7,27 +7,31 @@
 2. **Access**: AI Chat panel → Agent dropdown → Select **Junie** (or `Ctrl/Cmd+Alt+J`)
 3. **License**: JetBrains AI subscription (AI Credits model) or BYOK
 
-### CLI Installation (Beta)
+### CLI Installation
 ```bash
 # macOS
-brew tap jetbrains/junie && brew install junie
+brew tap jetbrains-junie/junie && brew install junie
 
 # Linux/macOS
 curl -fsSL https://junie.jetbrains.com/install.sh | bash
+
+# npm
+npm install -g @jetbrains/junie
 ```
 
 ### Pricing (AI Credits — 1 Credit = $1 USD)
 - **AI Free**: 3 credits/month, no top-ups
 - **AI Pro**: $10/month → 10 credits
 - **AI Ultimate**: $30/month → 35 credits ($5 bonus)
-- **BYOK**: Use your own API keys (OpenAI, Anthropic, Google, Grok)
+- **BYOK**: Use your own API keys (OpenAI, Anthropic, Google, xAI, OpenRouter, GitHub Copilot, or local runtimes where supported)
 
 ## 🎯 Core Concepts
 
-### Two Modes
+### Three Modes
 | Mode | Purpose | Use When |
 |------|---------|----------|
 | **Ask** | Read-only analysis | Understanding, exploring, reviewing |
+| **Plan** | Requirements, design, testing, delivery steps | Larger changes, unclear scope, high-risk edits |
 | **Code** | Make changes | Implementing, fixing, refactoring |
 
 ### Safety Levels
@@ -39,15 +43,15 @@ curl -fsSL https://junie.jetbrains.com/install.sh | bash
 
 ## 📝 Guidelines
 
-**Preferred:** `.junie/AGENTS.md` (open standard) | **Legacy:** `.junie/guidelines.md` (still supported)
+**Preferred:** `.junie/AGENTS.md` (open standard) | **Also supported:** root `AGENTS.md` | **Legacy:** `.junie/guidelines.md`
 
 Lookup order: `.junie/AGENTS.md` → `AGENTS.md` (project root) → `.junie/guidelines.md`
 
 ### Minimal Template
 ```markdown
 ## Technology Stack
-- Language: Java 17
-- Framework: Spring Boot 3.2
+- Language: Java 21
+- Framework: Spring Boot 3.5
 - Testing: JUnit 5 + AssertJ
 
 ## Conventions
@@ -72,7 +76,47 @@ Lookup order: `.junie/AGENTS.md` → `AGENTS.md` (project root) → `.junie/guid
 "Add accessibility tests"
 ```
 
+For repeatable Playwright conventions, create a Skill and run `npx playwright test` locally.
+
 ## ⚡ Common Commands
+
+### Junie CLI
+```bash
+junie
+junie --task "Add tests for the registration form"
+junie --project labs/labA-java-rest
+junie --model sonnet
+junie --help
+```
+
+### Slash Commands
+| Command | Use |
+|---------|-----|
+| `/plan <task>` | Create a plan before implementation |
+| `/mcp` | Configure or inspect MCP servers |
+| `/model` | Switch models |
+| `/usage` | Check usage and credits |
+| `/review` | Review local changes |
+| `/remote` | Continue a CLI session in the browser |
+
+### Remote Mode
+```bash
+junie
+/remote
+```
+
+Open `junie.jetbrains.com/remote` in a browser, including a phone browser. The terminal session keeps running on your machine. Stop sharing by running `/remote` again in the terminal.
+
+Remote mode uses the Junie service. JetBrains Account sign-in is the simplest path; a `JUNIE_API_KEY` is the alternate route. BYOK-only setups may need additional Junie authentication.
+
+### Agent Skills
+Project Skills live in `.junie/skills/<skill-name>/SKILL.md`.
+
+Useful examples in this repo:
+- `add-rest-endpoint`
+- `add-tests`
+- `code-review`
+- `playwright-e2e` (created in Mini-Lab F)
 
 ### Quick Wins
 - `"Explain this code"` - Understand complex logic
@@ -90,9 +134,9 @@ Lookup order: `.junie/AGENTS.md` → `AGENTS.md` (project root) → `.junie/guid
 
 ### TDD Pattern
 ```
-1. Ask: "What tests do we need?"
-2. Code: "Generate failing tests"
-3. Code: "Implement to pass tests"
+1. Ask: "What tests should fail for this behavior?"
+2. Plan: "Create an implementation and testing plan"
+3. Code: "Implement the plan and run the tests"
 ```
 
 ### Debug Pattern
@@ -104,9 +148,9 @@ Lookup order: `.junie/AGENTS.md` → `AGENTS.md` (project root) → `.junie/guid
 
 ### Refactor Pattern
 ```
-1. Code: "Add tests for current behavior"
-2. Code: "Refactor maintaining green tests"
-3. Ask: "Review improvements"
+1. Ask: "Characterize current behavior and risk"
+2. Plan: "Plan a safe refactor with tests"
+3. Code: "Refactor while keeping tests green"
 ```
 
 ## 💡 Pro Tips
@@ -130,7 +174,7 @@ Lookup order: `.junie/AGENTS.md` → `AGENTS.md` (project root) → `.junie/guid
 | Problem | Solution |
 |---------|----------|
 | Junie doesn't understand | Provide more context, use Ask mode first |
-| Wrong coding style | Create/update `.junie/guidelines.md` |
+| Wrong coding style | Create/update `.junie/AGENTS.md` |
 | Tests failing | Ask to "run tests and fix failures" |
 | Too many changes | Break into smaller requests |
 | Slow response | Reduce scope, be more specific |
@@ -143,6 +187,14 @@ Lookup order: `.junie/AGENTS.md` → `AGENTS.md` (project root) → `.junie/guid
 | Execute | `Ctrl+Enter` | `Cmd+Enter` |
 | Cancel | `Esc` | `Esc` |
 | Undo | `Ctrl+Z` | `Cmd+Z` |
+
+### CLI Shortcuts
+| Shortcut | Action |
+|----------|--------|
+| `Shift+Tab` | Toggle Plan mode |
+| `Ctrl+B` | Toggle Brave mode |
+| `Ctrl+R` | Search prompt history |
+| `Ctrl+T` | Show transcript |
 
 ## 📊 Model Selection (LLM-Agnostic)
 
@@ -167,6 +219,16 @@ Create [feature] with:
 Follow our guidelines
 ```
 
+### Plan First
+```
+Before making changes, create a plan that covers:
+- Requirements and assumptions
+- Technical design
+- Tests you will add or update
+- Files you expect to touch
+Wait for my approval before implementing.
+```
+
 ### Bug Fix
 ```
 Fix [issue description]:
@@ -186,7 +248,7 @@ Refactor [component] to:
 
 ## 📚 Resources
 
-- **Docs**: jetbrains.com/help/junie/
+- **Docs**: junie.jetbrains.com/docs/
 - **Guidelines**: github.com/JetBrains/junie-guidelines
 - **Support**: JetBrains AI Slack
 - **This Training**: github.com/kousen/junie-training
@@ -196,6 +258,9 @@ Refactor [component] to:
 ```
 Need to understand code?
   → Use ASK mode
+
+Need alignment before changing code?
+  → Use PLAN mode
 
 Ready to make changes?
   → Use CODE mode

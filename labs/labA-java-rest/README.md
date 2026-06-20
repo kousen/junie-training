@@ -1,9 +1,10 @@
 # Lab A: Spring Boot REST API with Junie
 
-## Duration: 45-60 minutes
+## Duration: 35-45 minutes in the four-hour workshop, 45-60 minutes for the full lab
 
 ## Learning Objectives
 - Use Ask mode to analyze existing code patterns
+- Use Plan mode to align before implementation
 - Use Code mode to generate new endpoints
 - Understand the impact of project guidelines
 - Generate comprehensive test suites with AssertJ
@@ -11,7 +12,7 @@
 
 ## Prerequisites
 - IntelliJ IDEA with Junie installed (or Junie CLI)
-- Java 17+ installed
+- Java 21+ installed
 - Gradle or Maven configured
 
 ## Part 1: Project Setup (5 minutes)
@@ -19,9 +20,9 @@
 1. Open the `labA-java-rest` project in IntelliJ IDEA
 2. Verify the project builds: `./gradlew build`
 3. Open Junie: **AI Chat panel → Agent dropdown → Junie** (or `Ctrl/Cmd+Alt+J`)
-4. Select your preferred model (e.g., Sonnet 4.5, GPT 5, Gemini 3 Pro)
+4. Select your preferred model
 
-> **Alternative — Junie CLI:** Run `junie` in the project directory. Use `Shift+Tab` to toggle Plan mode (read-only analysis).
+> **Alternative — Junie CLI:** Run `junie` in the project directory. Use `Shift+Tab` or `/plan` to start with Plan mode.
 
 ## Part 2: Analyze Existing Code with Ask Mode (10 minutes)
 
@@ -53,6 +54,32 @@ Review Junie's explanation of:
 - @WebMvcTest vs @SpringBootTest
 - MockMvc for API testing
 - AssertJ fluent assertions
+
+## Recommended Four-Hour Fast Path (15-20 minutes)
+
+Use this when the class needs to move quickly. It shows Junie's stronger coding-agent behavior and saves time compared with a long sequence of tiny prompts.
+
+1. Make sure `.junie/AGENTS.md` exists. If it does not, use Task 6 below first.
+2. Start in Plan mode and paste this full prompt:
+
+```
+Inspect this Spring Boot project and create a plan first. After I approve the plan, implement a small user-management REST API.
+
+Acceptance criteria:
+- GET /api/users returns all users
+- GET /api/users/{id} returns one user or a 404 response
+- POST /api/users creates a user from validated input
+- Use DTOs or records where appropriate
+- Add clear error handling
+- Add MockMvc tests with AssertJ assertions for success and failure cases
+- Run ./gradlew test and fix any failures
+
+Follow .junie/AGENTS.md. Keep the implementation small and explain the changed files, test command, and any tradeoffs.
+```
+
+3. Review the plan before approving implementation.
+4. Review the diff and test output before accepting the final result.
+5. If you want the guidelines contrast, run a shorter version of the same prompt before creating `.junie/AGENTS.md`, then compare the output.
 
 ## Part 3: Generate Code WITHOUT Guidelines (15 minutes)
 

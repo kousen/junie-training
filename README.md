@@ -1,14 +1,16 @@
 # Junie Training: AI Coding Agent for JetBrains IDEs
 
-A comprehensive 4-hour hands-on workshop teaching developers how to effectively use Junie, JetBrains' AI-powered coding agent, across IntelliJ IDEA, PyCharm, and WebStorm.
+A comprehensive 4-hour hands-on workshop teaching developers how to use Junie, JetBrains' coding agent, across JetBrains IDEs, the Junie CLI, and CI/CD workflows.
 
 ## 🎯 Workshop Overview
 
 This training covers:
-- **Core Concepts**: Ask vs Code modes, safety controls, and project guidelines
+- **Core Concepts**: Ask, Plan, and Code modes; safety controls; and project guidelines
 - **Hands-On Labs**: Practical exercises in Java, Python, and React/TypeScript
-- **MCP Integration**: Using external tools like context7 and Playwright
-- **Best Practices**: Team collaboration, CI/CD integration, and productivity tips
+- **MCP Integration**: Using external tools like context7 and Playwright where they add value
+- **Agent Skills**: Capturing repeatable project workflows in `.junie/skills/`
+- **Tool Fit**: When Junie is a better choice than Cursor or other coding agents
+- **Best Practices**: Team collaboration, CLI usage, CI/CD integration, and productivity tips
 
 ## 📚 Repository Contents
 
@@ -21,34 +23,36 @@ This training covers:
 - **Lab B (Python)**: PEP 8 refactoring with pytest and type hints
 - **Lab C (React/TS)**: Form validation with React Testing Library
 - **Lab D (MCP)**: Smart dependency upgrades using context7
-- **Lab E (Web/TS + OWM)**: Weather app using OpenWeatherMap Geocoding + One Call 3.0 with an Express proxy (see `labs/labE-web-owm-weather`). New API keys may take 30–60 minutes to activate.
+- **Lab E (Optional Web/TS + OWM)**: Weather app using OpenWeatherMap Geocoding + One Call 3.0 with an Express proxy. New API keys may take 30-60 minutes to activate.
+- **Mini-Lab F (Skills)**: Create a reusable Playwright E2E Skill and use local Playwright CLI for repeatable test runs
 
 ### Resources
 - **Cheat Sheets**: Quick reference for Junie commands and MCP tools
 - **Sample Prompts**: Ready-to-use prompts for common tasks
 - **Quick Reference**: One-page guide with essential information
+- **Junie Skills**: Reusable task workflows in `.junie/skills/`
 - **Git Cheat Sheet**: Common workshop git flows (cherry-pick, tags, cleanup) — see `docs/git-cheatsheet.md`
 
 ### Demo
-- **Playwright Demo**: E2E test generation using MCP integration
+- **Playwright Demo**: E2E test generation and Skill-driven local Playwright workflows
 
 ## 🚀 Prerequisites
 
 ### For Instructors
-- Node.js 16+ (for Slidev)
-- JetBrains IDE with Junie (via AI Chat agent dropdown) or Junie CLI
-- JetBrains AI subscription (AI Credits model) or BYOK
+- Node.js 18+ (for Slidev)
+- JetBrains IDE with Junie via the AI Chat agent dropdown, and preferably Junie CLI
+- JetBrains AI subscription, Junie API key, or BYOK provider key
 
 ### For Participants
 - JetBrains IDE (IntelliJ IDEA, PyCharm, WebStorm, GoLand, PhpStorm, RustRover, or RubyMine)
-- JetBrains AI subscription (AI Credits — 1 Credit = $1 USD) or BYOK with your own API keys
-- Development environment (Java 17+, Python 3.8+, or Node.js 18+)
+- JetBrains AI subscription (AI Credits: 1 Credit = $1 USD), Junie API key, or BYOK with your own API keys
+- Development environment (Java 21+, Python 3.8+, or Node.js 18+)
 
 **Note on Pricing (AI Credits):**
 - **AI Free**: 3 credits/month, no top-ups
 - **AI Pro** ($10/month): 10 credits
 - **AI Ultimate** ($30/month): 35 credits ($5 bonus)
-- **BYOK**: Use your own provider keys (OpenAI, Anthropic, Google, Grok) — no JetBrains credits needed
+- **BYOK**: Use your own provider keys (OpenAI, Anthropic, Google, xAI, OpenRouter, GitHub Copilot, or local runtimes) where supported
 
 ## 💻 Running the Slides
 
@@ -71,43 +75,47 @@ npx slidev export slides.md --format pdf --output slides.pdf --dark
 
 ## 🧪 Lab Setup
 
-Each lab directory contains:
+Most lab directories contain:
 - `README.md` - Detailed step-by-step instructions (renders automatically on GitHub)
-- `.junie/guidelines.md` - Example project guidelines
+- `.junie/AGENTS.md` - Example project guidelines; legacy `.junie/guidelines.md` may also be present
 - Starter code and configuration files
 
 ### Lab Structure
 
 1. **Part 1**: Project setup and exploration
-2. **Part 2**: Working without guidelines
-3. **Part 3**: Adding guidelines and comparing results
-4. **Part 4**: Advanced features and extensions
+2. **Part 2**: Ask mode analysis and Plan mode alignment
+3. **Part 3**: Full-prompt implementation with tests
+4. **Part 4**: Review, refine guidelines, and compare results
 
 ## 📖 Workshop Agenda
 
 | Time | Topic | Duration |
 |------|-------|----------|
-| 0:00 | Orientation & Setup | 30 min |
-| 0:30 | Core Workflow + Guidelines | 45 min |
-| 1:15 | Break | 10 min |
-| 1:25 | Cross-Language Labs | 60 min |
-| 2:25 | MCP in Action | 45 min |
-| 3:10 | Wrap-up & Q&A | 20 min |
+| 0:00 | Orientation & Setup | 25 min |
+| 0:25 | Surfaces, Safety, and Plan Mode | 70 min |
+| 1:35 | Break | 10 min |
+| 1:45 | Cross-Language Labs | 70 min |
+| 2:55 | Remote, MCP, Skills, and Cursor Comparison | 45 min |
+| 3:40 | Wrap-up & Q&A | 20 min |
 
 ## 🎓 Learning Objectives
 
 By the end of this workshop, participants will be able to:
 - Navigate between Ask and Code modes effectively
+- Use Plan mode to align on requirements, design, tests, and delivery steps
 - Create and apply project guidelines for consistency
 - Generate comprehensive test suites with AI assistance
 - Integrate MCP tools for enhanced capabilities
+- Create a project Skill for repeatable team workflows
 - Apply safety controls appropriately (Approvals, Allowlist, Brave Mode)
 - Implement AI-assisted TDD and refactoring workflows
+- Explain when Junie, Cursor, Codex, Claude, or Antigravity is the better workflow fit
 
 ## 📝 Key Concepts
 
 ### Operating Modes
 - **Ask Mode**: Read-only analysis for understanding code
+- **Plan Mode**: Requirements, technical design, testing strategy, and delivery steps before implementation
 - **Code Mode**: Active implementation with file modifications
 
 ### Safety Controls
@@ -116,7 +124,7 @@ By the end of this workshop, participants will be able to:
 - **Brave Mode**: Autonomous execution for trusted tasks
 
 ### Project Guidelines
-Located in `.junie/guidelines.md`, these files encode:
+Located in `.junie/AGENTS.md`, root `AGENTS.md`, or legacy `.junie/guidelines.md`, these files encode:
 - Technology stack and frameworks
 - Coding conventions and patterns
 - Testing approaches
@@ -136,12 +144,17 @@ Located in `.junie/guidelines.md`, these files encode:
 - Accessibility testing
 - TypeScript output
 
+For repeatable Playwright workflows, prefer a Skill that teaches Junie your team's conventions and then run Playwright through the local CLI.
+
 ## 📚 Additional Resources
 
 ### Documentation
-- [Getting Started with Junie](https://www.jetbrains.com/help/junie/get-started-with-junie.html)
-- [Guidelines Documentation](https://www.jetbrains.com/help/junie/customize-guidelines.html)
-- [MCP Settings Guide](https://www.jetbrains.com/help/junie/mcp-settings.html)
+- [Getting Started with Junie](https://junie.jetbrains.com/docs/get-started-with-junie.html)
+- [Junie CLI](https://junie.jetbrains.com/docs/junie-cli.html)
+- [Remote Mode](https://junie.jetbrains.com/docs/junie-cli-remote-mode.html)
+- [Guidelines and Memory](https://junie.jetbrains.com/docs/guidelines-and-memory.html)
+- [Agent Skills](https://junie.jetbrains.com/docs/agent-skills.html)
+- [MCP](https://junie.jetbrains.com/docs/mcp.html)
 
 ### GitHub Resources
 - [Junie Guidelines Catalog](https://github.com/JetBrains/junie-guidelines)

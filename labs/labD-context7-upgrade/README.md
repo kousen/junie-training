@@ -1,18 +1,18 @@
 # Lab D: Smart Dependency Upgrades with context7 MCP
 
-## Duration: 20-30 minutes
+## Duration: 20-30 minutes in the four-hour workshop, longer if you execute the full migration
 
 ## Learning Objectives
 - Configure and use MCP tools in Junie
 - Use context7 for real-time library documentation
-- Plan and execute major version upgrades
+- Plan a major version upgrade before editing
 - Generate migration documentation
 - Handle breaking changes systematically
 
 ## Prerequisites
 - Any JetBrains IDE with Junie installed (or Junie CLI)
 - Node.js project with outdated dependencies
-- MCP configured in Junie settings
+- MCP configured in Junie settings or with Junie CLI `/mcp`
 
 ## Part 1: MCP Setup (5 minutes)
 
@@ -20,10 +20,10 @@
 
 **IDE path:**
 1. Open Junie Settings: Settings → Junie → MCP
-2. Click "Add" to edit `mcp.json`
+2. Edit `mcp.json`
 3. Add context7 configuration:
 
-> **CLI path:** Junie CLI supports one-click MCP server installation and auto-detection. Run `junie` and ask it to set up context7.
+> **CLI path:** Run `junie` in the project directory and use `/mcp` to configure context7. Project MCP config belongs in `.junie/mcp/mcp.json`; user config belongs in `~/.junie/mcp/mcp.json`.
 
 ```json
 {
@@ -49,6 +49,29 @@ Use context7 to get the latest stable version of React and its major changes fro
 ```
 
 You should see Junie invoke the context7 tool.
+
+## Recommended Four-Hour Fast Path (15-20 minutes)
+
+Use this version when the goal is to teach MCP-assisted planning, not finish every dependency upgrade.
+
+1. Confirm `/mcp` or IDE settings show context7.
+2. Start in Plan mode and paste:
+
+```
+Use context7 and inspect this project. Create a migration plan first; do not edit files yet.
+
+Plan a safe React 17 to React 18 upgrade:
+- Confirm current React 18 migration guidance
+- Identify package changes and affected source files
+- Identify testing-library and ReactDOM createRoot changes
+- Call out risks, breaking changes, and rollback strategy
+- Propose one small implementation slice we can complete now
+
+After I approve the plan, implement only the first contained slice, run the relevant test/build command, and summarize the result.
+```
+
+3. Discuss whether the plan used current documentation well.
+4. Approve only the first implementation slice if time allows.
 
 ## Part 2: Analyze Current Dependencies (5 minutes)
 
@@ -77,7 +100,7 @@ You should see Junie invoke the context7 tool.
 
 ### Task 3: Dependency Audit
 
-In Code mode with context7:
+In Ask or Plan mode with context7:
 ```
 Use context7 to:
 1. Check the latest stable versions of all dependencies
@@ -96,7 +119,7 @@ Expected findings:
 
 ### Task 4: Create Detailed Migration Plan
 
-In Code mode:
+In Plan mode:
 ```
 Using context7, create a detailed migration plan for React 17 to 18:
 1. Get the official React 18 migration guide
@@ -137,7 +160,7 @@ Expected plan structure:
 
 ### Task 5: Execute React Upgrade
 
-In Code mode:
+After approving the plan, switch to Code mode:
 ```
 Execute the React 18 upgrade:
 1. Update react and react-dom to latest v18

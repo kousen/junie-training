@@ -4,14 +4,15 @@ Complete this setup **before** the workshop to hit the ground running.
 
 ## 1. JetBrains IDE (Required)
 
-You need **one or more** of the following IDEs (2025.1+ recommended):
+You need **one or more** of the following IDEs. Use the latest stable version you can; 2026.1+ is recommended if you want the CLI to connect back to the IDE for richer project context.
 
 | Lab | IDE | Language |
 |-----|-----|----------|
-| Lab A | IntelliJ IDEA | Java 17+ |
+| Lab A | IntelliJ IDEA | Java 21+ |
 | Lab B | PyCharm | Python 3.8+ |
 | Lab C | WebStorm | TypeScript / React |
 | Lab D | Any of the above | MCP tools |
+| Mini-Lab F | Any of the above | Agent Skills + Playwright CLI |
 
 **Install/Update:** [jetbrains.com/ides](https://www.jetbrains.com/ides/)
 
@@ -25,20 +26,20 @@ You need **one or more** of the following IDEs (2025.1+ recommended):
 
 ### JetBrains AI Subscription
 
-Junie requires a JetBrains AI subscription **or** your own API keys (BYOK).
+Junie requires a JetBrains AI subscription, a Junie API key, **or** your own API keys (BYOK).
 
 | Tier | Cost | AI Credits / 30 days |
 |------|------|---------------------|
 | **AI Free** | Free | 3 credits |
 | **AI Pro** | $10/month | 10 credits |
 | **AI Ultimate** | $30/month | 35 credits |
-| **BYOK** | Your provider costs | Unlimited (your own keys) |
+| **BYOK** | Your provider costs | Your provider quota |
 
 1 AI Credit = $1 USD of LLM usage.
 
 **Sign up or manage:** [jetbrains.com/ai](https://www.jetbrains.com/ai/)
 
-**BYOK setup:** Settings > Tools > AI Assistant > AI Providers > Add your OpenAI, Anthropic, Google, or xAI API key.
+**BYOK setup:** Settings > Tools > AI Assistant > AI Providers. Add your OpenAI, Anthropic, Google, xAI, OpenRouter, GitHub Copilot, or local runtime configuration where supported.
 
 ### Verify IDE Setup
 
@@ -48,14 +49,14 @@ Junie requires a JetBrains AI subscription **or** your own API keys (BYOK).
 
 ---
 
-## 2. Junie CLI (Optional but Recommended)
+## 2. Junie CLI (Recommended)
 
 The CLI lets you use Junie from the terminal, outside the IDE.
 
 ### macOS (Homebrew)
 
 ```bash
-brew tap jetbrains/junie
+brew tap jetbrains-junie/junie
 brew update
 brew install junie
 ```
@@ -66,13 +67,21 @@ brew install junie
 curl -fsSL https://junie.jetbrains.com/install.sh | bash
 ```
 
+### npm
+
+```bash
+npm install -g @jetbrains/junie
+```
+
 ### Authentication
 
-On first run, Junie CLI will prompt you to authenticate. You have three options:
+On first run, Junie CLI may prompt you to authenticate and choose a model. The model list can include provider models and local runtimes such as Ollama; it does not necessarily show a JetBrains-branded model.
+
+You have three authentication options:
 
 1. **JetBrains account** (browser login)
 2. **API key**: Set `JUNIE_API_KEY` environment variable
-3. **BYOK**: Use your own provider keys directly
+3. **BYOK**: Use supported provider keys directly, such as `--openai-api-key`, `--anthropic-api-key`, `--google-api-key`, `--grok-api-key`, or `--openrouter-api-key`
 
 ### Verify CLI Setup
 
@@ -87,24 +96,35 @@ junie
 
 - [ ] `junie --version` prints a version number
 - [ ] `junie` starts an interactive session
+- [ ] `junie --help` shows non-interactive usage such as `junie --task "Fix the bug"`
+
+### Optional: Verify Remote Mode
+
+Remote mode lets you continue the same running CLI session from a browser, including a phone browser.
+
+1. Start `junie` in a project directory.
+2. Run `/remote`.
+3. Open `junie.jetbrains.com/remote` in your browser.
+4. Run `/remote` again in the terminal to stop the remote session.
+
+Remote mode uses the Junie service. JetBrains Account sign-in is the simplest path; a `JUNIE_API_KEY` is the alternate route. BYOK-only setups may need additional Junie authentication.
 
 ---
 
-## 3. JetBrains Air (Optional Preview)
+## 3. Optional Comparison Tools
 
-Air is JetBrains' new agentic development environment. It's in **public preview** (macOS only as of March 2026).
+The workshop focuses on Junie. The instructor may briefly compare the same task in other coding agents when that helps explain tool fit.
 
-**Download:** [air.dev](https://air.dev/)
+- **Cursor**: Useful comparison for AI-first editor workflows and Cursor rules
+- **Codex**: Useful comparison for terminal/app/GitHub workflows
+- **Claude Desktop or Claude Code**: Useful comparison for Anthropic-centered workflows
+- **Antigravity**: Useful comparison for browser-oriented or multi-surface workflows
 
-**Docs:** [Getting Started with Air](https://www.jetbrains.com/help/air/getting-started.html)
-
-We will demo Air briefly during the workshop but it is **not required** for any labs.
-
-- [ ] (Optional) Air is installed and opens
+Participants do **not** need to install these tools for the Junie workshop.
 
 ---
 
-## 4. MCP Tools (For Lab D and Playwright Demo)
+## 4. MCP Tools (For Lab D and Browser Exploration)
 
 MCP (Model Context Protocol) tools extend Junie with external capabilities. We'll configure these together during the workshop, but you can set them up ahead of time.
 
@@ -123,7 +143,7 @@ MCP (Model Context Protocol) tools extend Junie with external capabilities. We'l
     },
     "playwright": {
       "command": "npx",
-      "args": ["@playwright/mcp-server"]
+      "args": ["-y", "@playwright/mcp"]
     }
   }
 }
@@ -134,10 +154,19 @@ MCP (Model Context Protocol) tools extend Junie with external capabilities. We'l
 - **Node.js 18+** is required for `npx` to work
 - **Playwright** (for the demo): `npx playwright install chromium`
 
+### In the CLI
+
+Run `junie` in the project directory and use `/mcp` to open the MCP setup assistant. Project MCP configuration lives in `.junie/mcp/mcp.json`; user-level configuration lives in `~/.junie/mcp/mcp.json`.
+
+### Playwright Note
+
+For repeatable Playwright test generation, the workshop demonstrates a Skill plus local Playwright CLI. Playwright MCP remains useful for interactive browser exploration.
+
 ### Verify MCP Setup
 
 - [ ] Node.js 18+ is installed (`node --version`)
 - [ ] MCP configuration is saved in the IDE
+- [ ] Optional: `/mcp` in Junie CLI can see the project MCP configuration
 
 ---
 
@@ -155,7 +184,7 @@ Each lab is in its own directory under `labs/` with a `README.md` that renders a
 ### Language-Specific Setup
 
 **Java (Lab A):**
-- Java 17+ JDK installed
+- Java 21+ JDK installed
 - IntelliJ should detect the Gradle/Maven project automatically
 
 **Python (Lab B):**
@@ -177,13 +206,14 @@ npm install
 
 | Item | Required? | Status |
 |------|-----------|--------|
-| JetBrains IDE (2025.1+) | Yes | [ ] |
+| Current JetBrains IDE | Yes | [ ] |
 | Junie enabled in AI Chat | Yes | [ ] |
 | JetBrains AI subscription or BYOK | Yes | [ ] |
 | Junie CLI | Recommended | [ ] |
-| JetBrains Air | Optional | [ ] |
+| Cursor/Codex/Claude/Antigravity | Instructor comparison only | [ ] |
 | Node.js 18+ (for MCP) | For Labs D/Demo | [ ] |
-| Java 17+ | For Lab A | [ ] |
+| Playwright browsers | For Mini-Lab F | [ ] |
+| Java 21+ | For Lab A | [ ] |
 | Python 3.8+ | For Lab B | [ ] |
 | Training repo cloned | Yes | [ ] |
 
@@ -193,11 +223,11 @@ npm install
 
 | Problem | Solution |
 |---------|----------|
-| Junie not in agent dropdown | Update IDE to 2025.1+, install Junie plugin from Settings > Plugins |
+| Junie not in agent dropdown | Update the IDE, install Junie from Settings > Plugins, or use the standalone Junie tool window |
 | "No AI subscription" error | Check JetBrains account at [account.jetbrains.com](https://account.jetbrains.com) |
 | CLI `command not found` | Restart your terminal, or check `~/.local/bin` is in your PATH |
 | MCP tools not loading | Verify Node.js 18+ with `node --version`, check mcp.json syntax |
-| Slow or no response | Check your AI Credits balance, or switch to BYOK |
+| Slow or no response | Check your AI Credits balance, use `/usage`, switch models, or use BYOK |
 
 ---
 

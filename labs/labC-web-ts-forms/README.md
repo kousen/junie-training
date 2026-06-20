@@ -1,9 +1,10 @@
 # Lab C: React Forms with TypeScript in WebStorm
 
-## Duration: 30-45 minutes
+## Duration: 25-35 minutes in the four-hour workshop, 30-45 minutes for the full lab
 
 ## Learning Objectives
 - Build accessible React forms with TypeScript
+- Use Plan mode before implementation
 - Implement comprehensive validation
 - Use React Testing Library effectively
 - Follow accessibility best practices
@@ -54,6 +55,32 @@ Review Junie's recommendations for:
 - Validation approach (Yup vs Zod vs custom)
 - Accessibility requirements
 - Testing strategies
+
+## Recommended Four-Hour Fast Path (15-20 minutes)
+
+Use this when time matters. It asks Junie for the whole professional slice: plan, implementation, tests, and self-review.
+
+1. Make sure `.junie/AGENTS.md` exists. If it does not, use Task 4 below first.
+2. Start in Plan mode and paste:
+
+```
+Inspect the React TypeScript project and create a plan first. Wait for approval before editing.
+
+After approval, implement RegisterForm end to end:
+- Email validation
+- Password validation: at least 8 characters, one number, one special character
+- Confirm password must match
+- Terms checkbox is required
+- Accessible labels, error messages, and keyboard behavior
+- TypeScript interfaces for form data and component props
+- React Testing Library tests for render, validation errors, successful submit, and accessibility-oriented queries
+- Run npm test and fix failures
+
+Follow .junie/AGENTS.md. Keep the diff focused and summarize changed files, test results, and accessibility choices.
+```
+
+3. Approve only after the plan includes validation strategy, accessibility, and tests.
+4. Use the detailed path below when you want to compare code generated before and after guidelines.
 
 ### Current Starter Code
 
