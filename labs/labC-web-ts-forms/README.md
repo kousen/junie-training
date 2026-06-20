@@ -1,14 +1,13 @@
 # Lab C: React Forms with TypeScript in WebStorm
 
-## Duration: 25-35 minutes in the four-hour workshop, 30-45 minutes for the full lab
+## Duration: ~25 minutes for the core exercise; the Extended Practice is self-paced/take-home
 
 ## Learning Objectives
-- Build accessible React forms with TypeScript
 - Use Plan mode before implementation
-- Implement comprehensive validation
+- Drive Junie with one complete, well-scoped prompt (the professional pattern)
+- Build accessible React forms with TypeScript and comprehensive validation
 - Use React Testing Library effectively
-- Follow accessibility best practices
-- Achieve 90%+ test coverage
+- Understand the impact of project guidelines (`.junie/AGENTS.md`)
 - Experience Junie in WebStorm
 
 ## Prerequisites
@@ -26,41 +25,33 @@ npm install
 # or
 yarn install
 ```
-3. Verify the development server works:
-```bash
-npm run dev
-```
+3. Verify the development server works: `npm run dev`
 4. Open Junie: **AI Chat panel → Agent dropdown → Junie** (or `Ctrl/Cmd+Alt+J`)
 5. Run initial tests: `npm test`
 
 > **Alternative — Junie CLI:** Run `junie` in the project directory.
 
-## Part 2: Analyze Requirements (5 minutes)
+### Starter code — `src/components/RegisterForm.tsx`
+```tsx
+import React from 'react';
 
-### Task 1: Understand the Requirements
-
-In Ask mode, request:
+export const RegisterForm: React.FC = () => {
+  return (
+    <form>
+      <h2>Register</h2>
+      {/* TODO: Implement form */}
+    </form>
+  );
+};
 ```
-I need to build a registration form with these requirements:
-- Email field with validation
-- Password field (min 8 chars, 1 special, 1 number)
-- Confirm password field (must match)
-- Terms checkbox (must be checked)
-- Accessible with ARIA labels
-What's the best approach using React, TypeScript, and React Hook Form?
-```
 
-Review Junie's recommendations for:
-- Form library choice (React Hook Form vs Formik)
-- Validation approach (Yup vs Zod vs custom)
-- Accessibility requirements
-- Testing strategies
+## Part 2: The Core Exercise — Plan-First Full Prompt (15-20 minutes)
 
-## Recommended Four-Hour Fast Path (15-20 minutes)
+This is the main lab. It mirrors how a professional drives a coding agent: **one complete,
+well-scoped prompt, reviewed before and after** — not a long sequence of tiny instructions.
 
-Use this when time matters. It asks Junie for the whole professional slice: plan, implementation, tests, and self-review.
-
-1. Make sure `.junie/AGENTS.md` exists. If it does not, use Task 4 below first.
+1. Make sure `.junie/AGENTS.md` exists. If it does not, generate it first — see
+   **"Generate project guidelines"** under Extended Practice, then come back here.
 2. Start in Plan mode and paste:
 
 ```
@@ -79,30 +70,41 @@ After approval, implement RegisterForm end to end:
 Follow .junie/AGENTS.md. Keep the diff focused and summarize changed files, test results, and accessibility choices.
 ```
 
-3. Approve only after the plan includes validation strategy, accessibility, and tests.
-4. Use the detailed path below when you want to compare code generated before and after guidelines.
+3. **Review the plan before approving.** This is the teaching moment — approve only after
+   the plan includes the validation strategy, accessibility, and tests. Ask the room what
+   they'd change.
+4. After approval, **review the diff and the test output** before accepting the result.
 
-### Current Starter Code
+### Optional: the guidelines contrast (5 minutes)
 
-`src/components/RegisterForm.tsx`:
-```tsx
-import React from 'react';
+To show *why* guidelines matter, build a first version **before** creating `.junie/AGENTS.md`,
+then create the guidelines and rebuild. Compare the two for query strategy (accessible roles
+vs. test IDs), validation approach, and accessibility coverage. The full step-by-step version
+of this comparison lives in Extended Practice below.
 
-export const RegisterForm: React.FC = () => {
-  return (
-    <form>
-      <h2>Register</h2>
-      {/* TODO: Implement form */}
-    </form>
-  );
-};
+---
+
+## Extended Practice (Take-Home / If Time Allows)
+
+The tasks below break the same workflow into smaller steps. They are ideal for **self-paced
+practice after the workshop**, or for filling time if your group moves quickly. You will
+**not** complete all of these in a four-hour session — the Core Exercise above is the lab.
+
+### Analyze requirements with Ask Mode
 ```
+I need to build a registration form with these requirements:
+- Email field with validation
+- Password field (min 8 chars, 1 special, 1 number)
+- Confirm password field (must match)
+- Terms checkbox (must be checked)
+- Accessible with ARIA labels
+What's the best approach using React, TypeScript, and React Hook Form?
+```
+Review recommendations for form library, validation approach (Yup vs Zod vs custom),
+accessibility, and testing strategy.
 
-## Part 3: Build Form WITHOUT Guidelines (10 minutes)
-
-### Task 2: Create Basic Form
-
-In Code mode, request:
+### Build the form WITHOUT guidelines
+In Code mode:
 ```
 Create a registration form component with:
 1. Email input with validation
@@ -113,16 +115,7 @@ Create a registration form component with:
 6. Display validation errors
 Use React Hook Form and TypeScript
 ```
-
-Review the generated code and note:
-- Form structure
-- Validation approach
-- Error handling
-- TypeScript usage
-
-### Task 3: Add Initial Tests
-
-Still in Code mode:
+Then add initial tests:
 ```
 Create tests for RegisterForm using React Testing Library:
 - Test form rendering
@@ -130,39 +123,23 @@ Create tests for RegisterForm using React Testing Library:
 - Test successful submission
 - Test accessibility
 ```
-
 Run tests: `npm test`
 
-## Part 4: Create Guidelines and Rebuild (10 minutes)
-
-### Task 4: Generate React/TypeScript Guidelines
-
-By now you've seen Junie generate code without guidelines. Ask it to create guidelines based on what it observes in the project. In Ask mode:
+### Generate project guidelines
+In Ask mode:
 ```
 Analyze this React TypeScript project and generate an AGENTS.md file with
 guidelines covering: technology stack, TypeScript standards, form patterns,
 accessibility requirements, testing standards, and component structure.
 Save it to .junie/AGENTS.md
 ```
-
 > **Note:** The legacy path `.junie/guidelines.md` still works, but `AGENTS.md` is the current standard.
 
-Review what Junie generates. It should cover areas like:
-- Technology stack (React, TypeScript, form library, validation, testing)
-- TypeScript standards (strict mode, interfaces vs types, generics)
-- Form patterns (React Hook Form + Zod integration)
-- Accessibility (labels, ARIA attributes, focus management, semantic HTML)
-- Testing standards (React Testing Library queries, jest-axe, coverage)
-- Component structure (file organization, state management)
+**Refine as needed** — for example: "Query by accessible roles first, never use test IDs
+unless necessary," a coverage target, `interface` over `type` for component props, or an
+error summary at the top of the form for screen readers.
 
-**Refine as needed.** Compare what Junie generated against the code it produced in Task 2. For example, you might want to add:
-- "Query by accessible roles first, never use test IDs unless necessary"
-- Minimum 90% coverage
-- `interface` over `type` for component props
-- Error summary at top of form for screen readers
-
-### Task 5: Rebuild with Guidelines
-
+### Rebuild with guidelines and compare
 Delete the previous implementation and request:
 ```
 Create a registration form following our guidelines:
@@ -172,14 +149,9 @@ Create a registration form following our guidelines:
 4. Follow our component structure
 5. Include comprehensive error handling
 ```
+Compare the quality difference — this is the with/without-guidelines contrast in detail.
 
-Compare the quality difference.
-
-## Part 5: Comprehensive Testing (10 minutes)
-
-### Task 6: Create Accessibility Tests
-
-In Code mode:
+### Accessibility and interaction tests
 ```
 Add comprehensive accessibility tests:
 1. Test with jest-axe for WCAG compliance
@@ -188,9 +160,6 @@ Add comprehensive accessibility tests:
 4. Test focus management
 5. Test error announcements
 ```
-
-### Task 7: Add User Interaction Tests
-
 ```
 Create user interaction tests:
 1. Test complete form fill and submit
@@ -201,24 +170,7 @@ Create user interaction tests:
 Use @testing-library/user-event for realistic interactions
 ```
 
-### Task 8: Coverage Analysis
-
-```
-Review test coverage and add missing tests:
-1. Show current coverage report
-2. Identify uncovered branches
-3. Add edge case tests
-4. Test error boundaries
-Target: 95% coverage
-```
-
-Run coverage: `npm test -- --coverage`
-
-## Part 6: Advanced Features (10 minutes)
-
-### Task 9: Add Password Strength Indicator
-
-In Code mode:
+### Advanced features
 ```
 Add a real-time password strength indicator:
 1. Show strength as user types (Weak/Fair/Good/Strong)
@@ -227,9 +179,6 @@ Add a real-time password strength indicator:
 4. Update aria-live region for screen readers
 5. Add tests for all strength levels
 ```
-
-### Task 10: Add Form Persistence
-
 ```
 Implement form persistence:
 1. Save form progress to localStorage
@@ -238,9 +187,6 @@ Implement form persistence:
 4. Add "Clear form" button
 5. Test persistence behavior
 ```
-
-### Task 11: Add Async Email Validation
-
 ```
 Add async email uniqueness check:
 1. Debounce email input (500ms)
@@ -250,15 +196,8 @@ Add async email uniqueness check:
 5. Test with mock API calls
 ```
 
-## Part 7: Optimization (5 minutes)
-
-### Task 12: Performance Optimization
-
-Ask mode first:
-```
-Analyze the RegisterForm component for performance issues
-```
-
+### Performance optimization
+Ask mode first: `Analyze the RegisterForm component for performance issues`
 Then Code mode:
 ```
 Optimize the form for performance:
@@ -300,9 +239,9 @@ Optimize the form for performance:
 
 ## Best Practices Demonstrated
 
+✓ One complete, plan-first prompt beats a long sequence of tiny instructions
 ✓ Accessibility-first development
 ✓ Type-safe form handling
-✓ Comprehensive validation
 ✓ User-friendly error messages
 ✓ Thorough test coverage
 
@@ -315,12 +254,3 @@ Optimize the form for performance:
 - [ ] All validation rules tested
 - [ ] Success path tested
 - [ ] Error states tested
-- [ ] 90%+ code coverage
-
-## Final Verification
-
-1. Run accessibility audit: `npm run test:a11y`
-2. Run tests with coverage: `npm test -- --coverage`
-3. Test with screen reader (NVDA/JAWS/VoiceOver)
-4. Test keyboard-only navigation
-5. Test on mobile viewport

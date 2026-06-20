@@ -1,14 +1,13 @@
 # Lab A: Spring Boot REST API with Junie
 
-## Duration: 35-45 minutes in the four-hour workshop, 45-60 minutes for the full lab
+## Duration: ~25 minutes for the core exercise; the Extended Practice is self-paced/take-home
 
 ## Learning Objectives
-- Use Ask mode to analyze existing code patterns
 - Use Plan mode to align before implementation
-- Use Code mode to generate new endpoints
-- Understand the impact of project guidelines
-- Generate comprehensive test suites with AssertJ
-- Compare outputs with and without guidelines
+- Drive Junie with one complete, well-scoped prompt (the professional pattern)
+- Review a plan and a diff critically before accepting
+- Understand the impact of project guidelines (`.junie/AGENTS.md`)
+- Generate comprehensive test suites with JUnit + AssertJ
 
 ## Prerequisites
 - IntelliJ IDEA with Junie installed (or Junie CLI)
@@ -24,42 +23,13 @@
 
 > **Alternative — Junie CLI:** Run `junie` in the project directory. Use `Shift+Tab` or `/plan` to start with Plan mode.
 
-## Part 2: Analyze Existing Code with Ask Mode (10 minutes)
+## Part 2: The Core Exercise — Plan-First Full Prompt (15-20 minutes)
 
-### Task 1: Understanding the Current Structure
+This is the main lab. It mirrors how a professional drives a coding agent: **one complete,
+well-scoped prompt, reviewed before and after** — not a long sequence of tiny instructions.
 
-In Junie's Ask mode, type:
-```
-Analyze the HelloController class and explain:
-1. The current endpoint structure
-2. What improvements could be made
-3. What testing approach would be best
-```
-
-Expected insights:
-- Simple controller with basic GET endpoint
-- No service layer separation
-- No DTOs or validation
-- Missing comprehensive tests
-
-### Task 2: Explore Testing Patterns
-
-Ask Junie:
-```
-What testing patterns are commonly used for Spring Boot REST controllers?
-Show examples with MockMvc and AssertJ.
-```
-
-Review Junie's explanation of:
-- @WebMvcTest vs @SpringBootTest
-- MockMvc for API testing
-- AssertJ fluent assertions
-
-## Recommended Four-Hour Fast Path (15-20 minutes)
-
-Use this when the class needs to move quickly. It shows Junie's stronger coding-agent behavior and saves time compared with a long sequence of tiny prompts.
-
-1. Make sure `.junie/AGENTS.md` exists. If it does not, use Task 6 below first.
+1. Make sure `.junie/AGENTS.md` exists. If it does not, generate it first — see
+   **"Generate project guidelines"** under Extended Practice, then come back here.
 2. Start in Plan mode and paste this full prompt:
 
 ```
@@ -77,13 +47,49 @@ Acceptance criteria:
 Follow .junie/AGENTS.md. Keep the implementation small and explain the changed files, test command, and any tradeoffs.
 ```
 
-3. Review the plan before approving implementation.
-4. Review the diff and test output before accepting the final result.
-5. If you want the guidelines contrast, run a shorter version of the same prompt before creating `.junie/AGENTS.md`, then compare the output.
+3. **Review the plan before approving.** This is the teaching moment — ask the room what
+   they would change about scope, assumptions, or the testing strategy before any code exists.
+4. After approval, **review the diff and the test output** before accepting the result.
 
-## Part 3: Generate Code WITHOUT Guidelines (15 minutes)
+### Optional: the guidelines contrast (5 minutes)
 
-### Task 3: Create User Endpoint
+To show *why* guidelines matter, run a shorter version of the same prompt **before**
+creating `.junie/AGENTS.md`, then create the guidelines and re-run. Compare the two
+outputs for consistency of structure, naming, DTO style, and test conventions. The full
+step-by-step version of this comparison lives in Extended Practice below.
+
+---
+
+## Extended Practice (Take-Home / If Time Allows)
+
+The tasks below break the same workflow into smaller steps. They are ideal for **self-paced
+practice after the workshop**, or for filling time if your group moves quickly. You will
+**not** complete all of these in a four-hour session — the Core Exercise above is the lab.
+
+### Analyze existing code with Ask Mode
+
+**Task: Understand the current structure.** In Ask mode:
+```
+Analyze the HelloController class and explain:
+1. The current endpoint structure
+2. What improvements could be made
+3. What testing approach would be best
+```
+
+Expected insights:
+- Simple controller with basic GET endpoint
+- No service layer separation
+- No DTOs or validation
+- Missing comprehensive tests
+
+**Task: Explore testing patterns.** Ask Junie:
+```
+What testing patterns are commonly used for Spring Boot REST controllers?
+Show examples with MockMvc and AssertJ.
+```
+Review the explanation of `@WebMvcTest` vs `@SpringBootTest`, MockMvc for API testing, and AssertJ fluent assertions.
+
+### Generate code WITHOUT guidelines
 
 Switch to Code mode and request:
 ```
@@ -96,15 +102,10 @@ Create a new REST endpoint for user management:
 - Include error handling
 ```
 
-**Before accepting changes:**
-1. Review the generated plan
-2. Check the Action Allowlist
-3. Examine each diff carefully
-4. Note the style and patterns used
+**Before accepting changes:** review the generated plan, check the Action Allowlist,
+examine each diff carefully, and note the style and patterns used.
 
-### Task 4: Generate Tests
-
-Still in Code mode:
+Then generate tests:
 ```
 Generate comprehensive tests for the UserController using:
 - JUnit 5
@@ -113,23 +114,17 @@ Generate comprehensive tests for the UserController using:
 - Test all endpoints and error cases
 ```
 
-Review and apply the generated tests.
-
-### Task 5: Run and Verify
-
-1. Run the tests: `./gradlew test`
-2. Start the application: `./gradlew bootRun`
-3. Test manually with curl or Postman:
+Run and verify:
 ```bash
+./gradlew test
+./gradlew bootRun
 curl http://localhost:8080/api/users
 curl -X POST http://localhost:8080/api/users \
   -H "Content-Type: application/json" \
   -d '{"name":"John","email":"john@example.com"}'
 ```
 
-## Part 4: Create and Apply Guidelines (10 minutes)
-
-### Task 6: Generate Project Guidelines
+### Generate project guidelines
 
 Ask Junie to analyze the project and generate guidelines. In Ask mode:
 ```
@@ -140,41 +135,18 @@ and testing standards. Save it to .junie/AGENTS.md
 
 > **Note:** The legacy path `.junie/guidelines.md` still works, but `AGENTS.md` is the current standard and is recognized by other AI coding agents too.
 
-Review what Junie generates. It should cover areas like:
-- Technology stack (Java version, Spring Boot, testing frameworks)
-- Architecture patterns (layered architecture, DTOs, records)
-- REST conventions (base path, resource naming, status codes)
-- Code style (constructor injection, validation, exception handling)
-- Testing standards (naming patterns, test types, coverage)
-- Antipatterns to avoid
+It should cover technology stack, architecture patterns, REST conventions, code style,
+testing standards, and antipatterns to avoid. **Refine as needed** — for example, you might
+specify Given-When-Then test naming, a minimum coverage target, Java records for DTOs, or
+constructor injection only (no `@Autowired` on fields).
 
-**Refine as needed.** If Junie missed something important or made a choice you disagree with, edit the file or ask Junie to update it. For example, you might want to specify:
-- Given-When-Then test naming pattern
-- Minimum 80% code coverage
-- Java records for DTOs
-- Constructor injection only (no `@Autowired` on fields)
+### Regenerate with guidelines and compare
 
-### Task 7: Regenerate with Guidelines
+Delete or rename the UserController and tests, then repeat the same Code-mode request from
+"Generate code WITHOUT guidelines." Compare the new output with the previous version — this
+is the with/without-guidelines contrast in its detailed form.
 
-1. Delete or rename the UserController and tests
-2. In Code mode, repeat the same request:
-```
-Create a new REST endpoint for user management:
-- GET /api/users - list all users
-- GET /api/users/{id} - get user by id
-- POST /api/users - create new user
-- Use appropriate DTOs
-- Add basic validation
-- Include error handling
-```
-
-3. Compare the new output with the previous version
-
-## Part 5: Advanced Features (15 minutes)
-
-### Task 8: Add Service Layer
-
-In Code mode:
+### Add a service layer
 ```
 Refactor the UserController to use a proper service layer:
 - Create UserService interface and implementation
@@ -183,8 +155,7 @@ Refactor the UserController to use a proper service layer:
 - Maintain test coverage
 ```
 
-### Task 9: Add Exception Handling
-
+### Add global exception handling
 ```
 Add global exception handling:
 - Create custom UserNotFoundException
@@ -193,8 +164,7 @@ Add global exception handling:
 - Add tests for error scenarios
 ```
 
-### Task 10: Add Integration Tests
-
+### Add integration tests
 ```
 Create integration tests using @SpringBootTest:
 - Test the full request/response cycle
@@ -203,19 +173,14 @@ Create integration tests using @SpringBootTest:
 - Include database setup/teardown if needed
 ```
 
-## Part 6: Experiment with Brave Mode (5 minutes)
-
-### Task 11: Try Brave Mode
-
-1. Enable Brave Mode in Junie settings
+### Experiment with Brave Mode
+1. Enable Brave Mode in Junie settings (or `Ctrl+B` in the CLI)
 2. Make a simple request:
 ```
 Add a PATCH endpoint to update user email only.
 Include validation and tests.
 ```
-
-3. Notice how Junie proceeds with fewer interruptions
-4. Review all changes after completion
+3. Notice how Junie proceeds with fewer interruptions — then review all changes after completion.
 
 ## Reflection Questions
 
@@ -244,8 +209,8 @@ Include validation and tests.
 
 ## Key Takeaways
 
-✓ Ask mode helps understand before implementing
+✓ One complete, plan-first prompt beats a long sequence of tiny instructions
+✓ Review the plan and the diff — that's where your judgment adds value
 ✓ Guidelines ensure consistent code generation
-✓ Review diffs carefully before accepting
 ✓ Build trust gradually before using Brave Mode
 ✓ Junie can handle complex, multi-file changes

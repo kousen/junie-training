@@ -1,14 +1,13 @@
 # Lab B: Python Refactoring with PyCharm and Junie
 
-## Duration: 25-35 minutes in the four-hour workshop, 30-45 minutes for the full lab
+## Duration: ~25 minutes for the core exercise; the Extended Practice is self-paced/take-home
 
 ## Learning Objectives
-- Refactor messy Python code to PEP 8 standards
 - Use Plan mode before a broad refactor
-- Add comprehensive type hints
-- Write Google-style docstrings
+- Drive Junie with one complete, well-scoped prompt (the professional pattern)
+- Refactor messy Python to PEP 8 with complete type hints and docstrings
 - Create parametrized pytest test suites
-- Achieve 100% test coverage
+- Understand the impact of project guidelines (`.junie/AGENTS.md`)
 - Experience Junie's capabilities in PyCharm
 
 ## Prerequisites
@@ -30,15 +29,13 @@ pip install -r requirements.txt
 
 > **Alternative — Junie CLI:** Run `junie` in the project directory.
 
-## Part 2: Analyze the Messy Code (5 minutes)
-
-### Current State of math_tools.py:
+### The code you'll be refactoring — `src/math_tools.py`
 ```python
 def calc(x,y,op):
     if op=="add": return x+y
     elif op=="sub": return x-y
     elif op=="mul": return x*y
-    elif op=="div": 
+    elif op=="div":
         if y==0: return None
         return x/y
     else: return None
@@ -58,7 +55,7 @@ class stats:
         for n in numbers:
             total+=n
         return total/len(numbers)
-    
+
     def median(self,nums):
         if not nums: return None
         sorted_nums=sorted(nums)
@@ -68,31 +65,13 @@ class stats:
         return sorted_nums[n//2]
 ```
 
-### Task 1: Analyze with Ask Mode
+## Part 2: The Core Exercise — Plan-First Full Prompt (15-20 minutes)
 
-In Ask mode, request:
-```
-Analyze math_tools.py and identify:
-1. PEP 8 violations
-2. Missing type hints
-3. Poor naming conventions
-4. Lack of documentation
-5. Potential bugs
-```
+This is the main lab. It mirrors how a professional drives a coding agent: **one complete,
+well-scoped prompt, reviewed before and after** — not a long sequence of tiny instructions.
 
-Expected issues identified:
-- No type hints
-- Poor variable/function names
-- No docstrings
-- Inconsistent spacing
-- Class name not capitalized
-- Division by zero handling
-
-## Recommended Four-Hour Fast Path (15-20 minutes)
-
-Use this if you want a single richer Junie interaction instead of a long sequence of individual refactor prompts.
-
-1. Make sure `.junie/AGENTS.md` exists. If it does not, use Task 4 below first.
+1. Make sure `.junie/AGENTS.md` exists. If it does not, generate it first — see
+   **"Generate project guidelines"** under Extended Practice, then come back here.
 2. Start in Plan mode and paste:
 
 ```
@@ -110,14 +89,39 @@ After approval, refactor the module so it is production-quality Python:
 Follow .junie/AGENTS.md. Summarize changed files, test results, and any behavior changes.
 ```
 
-3. Approve only after the plan explains behavior compatibility and test coverage.
-4. Use the full lab below when you want participants to compare unguided and guided output.
+3. **Review the plan before approving.** This is the teaching moment — approve only after
+   the plan explains behavior compatibility and test coverage. Ask the room what they'd change.
+4. After approval, **review the diff and the test output** before accepting the result.
 
-## Part 3: Refactor WITHOUT Guidelines (10 minutes)
+### Optional: the guidelines contrast (5 minutes)
 
-### Task 2: Initial Refactoring
+To show *why* guidelines matter, run a shorter refactor prompt **before** creating
+`.junie/AGENTS.md`, then create the guidelines and re-run. Compare the two outputs for
+docstring style, exception handling, and test structure. The full step-by-step version of
+this comparison lives in Extended Practice below.
 
-Switch to Code mode and request:
+---
+
+## Extended Practice (Take-Home / If Time Allows)
+
+The tasks below break the same workflow into smaller steps. They are ideal for **self-paced
+practice after the workshop**, or for filling time if your group moves quickly. You will
+**not** complete all of these in a four-hour session — the Core Exercise above is the lab.
+
+### Analyze the messy code with Ask Mode
+```
+Analyze math_tools.py and identify:
+1. PEP 8 violations
+2. Missing type hints
+3. Poor naming conventions
+4. Lack of documentation
+5. Potential bugs
+```
+Expected issues: no type hints, poor names, no docstrings, inconsistent spacing, class name
+not capitalized, division-by-zero handling.
+
+### Refactor WITHOUT guidelines
+Switch to Code mode:
 ```
 Refactor math_tools.py to:
 1. Follow PEP 8 standards
@@ -126,50 +130,29 @@ Refactor math_tools.py to:
 4. Add error handling
 5. Keep the same functionality
 ```
-
-Review the changes and note the style choices made.
-
-### Task 3: Add Basic Tests
-
-Still in Code mode:
+Then add basic tests:
 ```
 Create a pytest test file for math_tools.py with:
 - Test all functions
 - Test edge cases
 - Test error conditions
 ```
-
 Run tests: `pytest -v`
 
-## Part 4: Create Guidelines and Re-refactor (10 minutes)
-
-### Task 4: Generate Python Guidelines
-
-Ask Junie to analyze the project and generate guidelines. In Ask mode:
+### Generate project guidelines
+In Ask mode:
 ```
 Analyze this Python project and generate an AGENTS.md file with guidelines
 covering: PEP 8 standards, type hints, docstring style, naming conventions,
 error handling, and testing standards. Save it to .junie/AGENTS.md
 ```
-
 > **Note:** The legacy path `.junie/guidelines.md` still works, but `AGENTS.md` is the current standard.
 
-Review what Junie generates. It should cover areas like:
-- Code standards (PEP 8, line length, Python version features)
-- Type hints (typing module usage, complete annotations)
-- Documentation (docstring style — Google, NumPy, or Sphinx)
-- Naming conventions (snake_case, PascalCase, UPPER_SNAKE_CASE)
-- Error handling (specific exceptions, no bare except)
-- Testing standards (pytest, parametrize, coverage targets)
+**Refine as needed** — for example, you might specify Google-style docstrings, 88-character
+line length (Black default), parametrized tests with `@pytest.mark.parametrize`, or a
+minimum coverage target.
 
-**Refine as needed.** For example, you might want to specify:
-- Google-style docstrings (not NumPy or Sphinx)
-- 88-character line length (Black formatter default)
-- Parametrized tests with `@pytest.mark.parametrize`
-- Minimum 95% coverage
-
-### Task 5: Regenerate with Guidelines
-
+### Regenerate with guidelines and compare
 Delete the previous refactoring and in Code mode:
 ```
 Refactor math_tools.py following our project guidelines:
@@ -178,14 +161,9 @@ Refactor math_tools.py following our project guidelines:
 3. Improve error handling
 4. Make it production-ready
 ```
+Compare with the previous version — this is the with/without-guidelines contrast in detail.
 
-Compare with the previous version.
-
-## Part 5: Comprehensive Testing (10 minutes)
-
-### Task 6: Create Parametrized Tests
-
-In Code mode:
+### Comprehensive testing
 ```
 Create comprehensive pytest tests for math_tools.py:
 1. Use parametrize for multiple test cases
@@ -194,39 +172,28 @@ Create comprehensive pytest tests for math_tools.py:
 4. Group related tests in classes
 5. Add fixtures for common test data
 ```
-
-### Task 7: Add Coverage Configuration
-
-Create `pytest.ini`:
+Add coverage configuration in `pytest.ini`:
 ```ini
 [tool:pytest]
 testpaths = tests
 python_files = test_*.py
 python_classes = Test*
 python_functions = test_*
-addopts = 
+addopts =
     --verbose
     --cov=src
     --cov-report=term-missing
     --cov-report=html
     --cov-fail-under=95
 ```
-
-### Task 8: Achieve 100% Coverage
-
-Ask Junie:
+Then close gaps:
 ```
 Review the test coverage report and add any missing tests
-to achieve 100% coverage. Show me which lines are not covered.
+to achieve full coverage. Show me which lines are not covered.
 ```
-
 Run coverage: `pytest --cov=src --cov-report=term-missing`
 
-## Part 6: Advanced Refactoring (10 minutes)
-
-### Task 9: Extract Classes
-
-In Code mode:
+### Advanced refactoring
 ```
 Refactor math_tools.py to use proper OOP:
 1. Create a Calculator class for basic operations
@@ -235,9 +202,7 @@ Refactor math_tools.py to use proper OOP:
 4. Maintain backward compatibility
 5. Update all tests
 ```
-
-### Task 10: Add Validation Decorator
-
+And a validation decorator:
 ```
 Create a validation decorator that:
 1. Checks input types match type hints
@@ -247,16 +212,9 @@ Create a validation decorator that:
 Include tests for the decorator
 ```
 
-## Part 7: Performance and Optimization (5 minutes)
-
-### Task 11: Optimize Performance
-
-Ask in Ask mode first:
-```
-Analyze the current implementation and suggest performance improvements
-```
-
-Then in Code mode:
+### Performance and optimization
+Ask mode first: `Analyze the current implementation and suggest performance improvements`
+Then Code mode:
 ```
 Optimize the statistics calculations:
 1. Use NumPy where appropriate
@@ -280,7 +238,7 @@ Optimize the statistics calculations:
 **Issue**: Type hints not recognized
 **Solution**: Install `pip install typing-extensions` for older Python
 
-**Issue**: Coverage not reaching 100%
+**Issue**: Coverage not reaching the target
 **Solution**: Check for unreachable code or missing edge cases
 
 ## Challenge Extensions
@@ -293,8 +251,8 @@ Optimize the statistics calculations:
 
 ## Best Practices Demonstrated
 
-✓ PEP 8 compliance is non-negotiable
-✓ Type hints improve code clarity and IDE support
+✓ One complete, plan-first prompt beats a long sequence of tiny instructions
+✓ PEP 8 compliance and type hints improve clarity and IDE support
 ✓ Docstrings are essential documentation
 ✓ Parametrized tests reduce code duplication
 ✓ Coverage metrics drive test completeness
@@ -304,7 +262,7 @@ Optimize the statistics calculations:
 - [ ] All functions have type hints
 - [ ] All functions have docstrings
 - [ ] PEP 8 compliance (run `flake8`)
-- [ ] 100% test coverage
+- [ ] Strong test coverage
 - [ ] Tests are parametrized where applicable
 - [ ] Error handling is comprehensive
 - [ ] Code is organized into logical classes/modules

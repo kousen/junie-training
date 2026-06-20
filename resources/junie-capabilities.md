@@ -48,7 +48,7 @@
 ### ❌ Boundaries to Remember
 
 **Surface Differences**
-- Some features are CLI-first, such as slash commands, `/mcp`, `/review`, `/remote`, and non-interactive `junie --task`
+- Some features are CLI-first, such as slash commands, `/mcp`, `/review`, `/remote`, and non-interactive `junie "<prompt>"`
 - Some features are IDE-first, such as debugger-backed workflows, inspections, refactorings, and richer project indexing
 - CI/CD uses GitHub Actions or GitLab CI rather than an interactive IDE session
 - Remote mode is a browser UI for a running CLI session, including phone browsers; it is not a replacement for the terminal

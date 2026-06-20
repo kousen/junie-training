@@ -182,6 +182,16 @@ background: 'linear-gradient(135deg, #b91c1c, #7f1d1d)'
 
 </div>
 
+</div>
+
+---
+background: 'linear-gradient(135deg, #b91c1c, #7f1d1d)'
+---
+
+## <span style="color: #fbbf24;">🆕 Junie After Beta (continued)</span>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; font-size: 1em;">
+
 <div style="background: rgba(52,211,153,0.15); padding: 1em; border-radius: 8px; border-left: 4px solid #34d399;">
 
 ### <span style="color: #86efac;">Shared Agent Context</span>
@@ -243,6 +253,10 @@ graph TD
 <div style="text-align: center; margin-top: 1em; color: #94a3b8; font-size: 0.9em;">
 The CLI can connect to a matching JetBrains IDE for symbol-aware search, inspections, test discovery, and debugger-backed workflows.
 </div>
+
+---
+background: 'linear-gradient(135deg, #1e3a5f, #0f172a)'
+---
 
 ## <span style="color: #fbbf24;">🔄 Three Working Modes</span>
 
@@ -411,7 +425,7 @@ Style conflicts
 <strong style="color: #86efac;">✅ With Guidelines</strong><br/>
 <span style="color: #a7f3d0;">
 Consistent output<br/>
-70% fewer reviews<br/>
+Fewer review cycles<br/>
 Team alignment
 </span>
 </div>
@@ -565,13 +579,17 @@ background: 'linear-gradient(135deg, #1e40af, #1e3a8a)'
 
 ```mermaid
 graph LR
-    A[Lab A: Java] --> B[Lab B: Python]
-    B --> C[Lab C: React]
-    C --> D[Lab D: Upgrades]
-    D --> E[Mini-Lab: Skills]
+    P[Pick One] --> A[Lab A: Java]
+    P --> B[Lab B: Python]
+    P --> C[Lab C: React]
+    A --> D[Lab D: Upgrades]
+    B --> D
+    C --> D
+    D --> E[Mini-Lab F: Skills]
     E --> F[Cursor Compare]
     F --> G[Lab E: Weather Optional]
-    
+
+    style P fill:#334155,color:#fff
     style A fill:#dc2626,color:#fff
     style B fill:#eab308,color:#000
     style C fill:#0ea5e9,color:#fff
@@ -934,7 +952,8 @@ jobs:
     if: contains(github.event.comment.body, '@junie-agent')
     runs-on: ubuntu-latest
     steps:
-      - uses: JetBrains/junie-github-action@v0
+      - uses: actions/checkout@v4
+      - uses: JetBrains/junie-github-action@v1
         with:
           junie_api_key: ${{ secrets.JUNIE_API_KEY }}
 ```
@@ -942,7 +961,7 @@ jobs:
 <div style="margin-top: 1em; color: #fecaca; font-size: 1em; line-height: 1.7;">
 GitHub: `@junie-agent` in issues or PRs<br/>
 GitLab: `#junie` in merge request comments<br/>
-CLI: `junie --task "prompt"` for headless local automation
+CLI: `junie "prompt"` for headless local automation
 </div>
 
 ---
@@ -973,7 +992,7 @@ background: 'linear-gradient(135deg, #065f46, #047857)'
 2. Run `/remote`<br/>
 3. Open `junie.jetbrains.com/remote`<br/>
 4. Respond from the browser<br/>
-5. Run `/remote` again to stop
+5. Run `/remote` and choose Stop Remote Session
 </span>
 
 </div>

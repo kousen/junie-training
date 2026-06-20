@@ -5,4 +5,3 @@
 - HTTP routes under `/api/*`; include negative/4xx tests.
 - Tests: JUnit 5 + AssertJ (`assertThat`).
 - Keep functions small and intention-revealing.
-- Document non-trivial changes in `MIGRATION.md`.

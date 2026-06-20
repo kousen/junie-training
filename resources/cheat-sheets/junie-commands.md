@@ -10,7 +10,7 @@
 ### CLI
 - **Terminal**: Run `junie` in any project directory
 - **Auth**: JetBrains account, `JUNIE_API_KEY`, or BYOK with your own provider keys
-- **Non-interactive**: `junie --task "Fix the failing tests"` or `junie "Fix the failing tests"`
+- **Non-interactive**: `junie "Fix the failing tests"` or `junie --review`
 
 ## Mode Selection
 

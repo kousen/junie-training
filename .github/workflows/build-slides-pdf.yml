@@ -28,7 +28,7 @@ jobs:
           package-manager-cache: false
 
       - name: Install Slidev export dependencies
-        run: npm install --no-save @slidev/cli @slidev/theme-seriph playwright playwright-chromium
+        run: npm install --no-save @slidev/cli@52.16.0 @slidev/theme-seriph playwright playwright-chromium
 
       - name: Install Chromium system dependencies
         run: npx playwright install --with-deps chromium

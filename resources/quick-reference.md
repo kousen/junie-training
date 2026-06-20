@@ -16,7 +16,7 @@ brew tap jetbrains-junie/junie && brew install junie
 curl -fsSL https://junie.jetbrains.com/install.sh | bash
 
 # npm
-npm install -g @jetbrains/junie
+npm install -g @jetbrains/junie-cli
 ```
 
 ### Pricing (AI Credits — 1 Credit = $1 USD)
@@ -83,8 +83,8 @@ For repeatable Playwright conventions, create a Skill and run `npx playwright te
 ### Junie CLI
 ```bash
 junie
-junie --task "Add tests for the registration form"
-junie --project labs/labA-java-rest
+junie "Add tests for the registration form"
+junie --review
 junie --model sonnet
 junie --help
 ```

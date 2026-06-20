@@ -70,7 +70,7 @@ curl -fsSL https://junie.jetbrains.com/install.sh | bash
 ### npm
 
 ```bash
-npm install -g @jetbrains/junie
+npm install -g @jetbrains/junie-cli
 ```
 
 ### Authentication
@@ -96,7 +96,7 @@ junie
 
 - [ ] `junie --version` prints a version number
 - [ ] `junie` starts an interactive session
-- [ ] `junie --help` shows non-interactive usage such as `junie --task "Fix the bug"`
+- [ ] `junie --help` shows non-interactive usage such as `junie "Fix the bug"` and `junie --review`
 
 ### Optional: Verify Remote Mode
 
@@ -199,6 +199,41 @@ npm install
 
 - [ ] Repository cloned
 - [ ] Language runtimes installed for your chosen labs
+
+---
+
+## 6. Credit Conservation (Read This)
+
+Junie usage draws on AI Credits (1 Credit = $1 USD of LLM usage) unless you use BYOK or a
+local runtime. To make a subscription last through a 4-hour workshop:
+
+- **Prefer one complete prompt** over many small ones — every lab here ships a "Fast Path"
+  prompt for exactly this reason. Re-running the same feature repeatedly burns credits fast.
+- **Use Ask/Plan mode for exploration.** Reading and planning is cheaper than generating
+  and regenerating code.
+- **Pick the model intentionally** with `/model`. Reserve the most expensive models for the
+  hardest tasks.
+- **Check `/usage`** periodically (confirm the exact command with `junie --help`) to watch
+  your balance.
+- **For heavy practice, use BYOK or a local runtime** (Ollama / LM Studio / LiteLLM) so the
+  practice does not consume JetBrains credits.
+- **Code completion / Next Edit suggestions are free** and do not draw from your quota.
+
+---
+
+## 7. Live-Demo Fallback Plan
+
+The two demos most likely to fail live depend on the network *and* the Junie service:
+
+| Demo | Failure risk | Fallback |
+|------|--------------|----------|
+| CI/CD `@junie-agent` on a PR | Action queue, secrets, network | Have a **pre-recorded screen capture** ready; show a completed PR from a previous run |
+| Remote mode (`/remote` + phone) | Tunnel/service, machine sleep | Pre-recorded clip; or show the browser UI on the same laptop |
+| MCP (context7) | `npx` download, network | Pre-run `npx -y @upstash/context7-mcp` once before class to warm the cache; have a screenshot of a successful tool call |
+| Credits exhausted mid-class | Quota | Switch to **BYOK** or a **local model** via `/model`; keep a backup provider key handy |
+
+General safety net: keep a clean clone of this repo with the labs already at a known-good
+state so you can reset quickly if a live edit goes sideways.
 
 ---
 

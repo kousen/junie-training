@@ -12,6 +12,7 @@
 - Node.js 18+ and npm
 - WebStorm with Junie installed, or Junie CLI
 - An OpenWeatherMap API key in `.env` (see below)
+- **One Call 3.0 requires its own subscription.** Even the free allotment (1,000 calls/day) needs a separate "One Call by Call" subscription with a credit card on file. Set this up *before* class — see https://openweathermap.org/api/one-call-3
 - Key propagation: new keys may take 30-60 minutes to activate for programmatic calls.
 
 ## Part 1: Project Setup (5 minutes)

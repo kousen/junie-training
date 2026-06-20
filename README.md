@@ -15,7 +15,7 @@ This training covers:
 ## 📚 Repository Contents
 
 ### Slides
-- `slides.md` - Source slides in Slidev format (60+ slides)
+- `slides.md` - Source slides in Slidev format (~30 focused slides)
 - `slides.pdf` - Exported PDF for distribution
 
 ### Labs
@@ -159,6 +159,20 @@ For repeatable Playwright workflows, prefer a Skill that teaches Junie your team
 ### GitHub Resources
 - [Junie Guidelines Catalog](https://github.com/JetBrains/junie-guidelines)
 - [Context7 MCP](https://github.com/upstash/context7)
+
+## 🚀 After the Workshop
+
+Three things to try this week to make the workshop stick:
+
+1. **Add an `AGENTS.md` to one real project.** Ask Junie to draft it from the existing code,
+   then refine it. Re-run a recent task and compare the output.
+2. **Create one Skill** in `.junie/skills/` for a workflow your team repeats (test conventions,
+   review checklist, endpoint scaffolding). Use Mini-Lab F as the template.
+3. **Wire Junie into one repo's CI** with the GitHub Action or GitLab CI, and try a
+   `@junie-agent` comment on a throwaway PR.
+
+Then pick your default safety posture (Approvals → Allowlist → Brave) and your default model
+(`/model`), and keep an eye on `/usage` until you have a feel for credit consumption.
 
 ## 👤 Instructor
 
