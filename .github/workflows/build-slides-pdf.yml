@@ -20,11 +20,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
+          package-manager-cache: false
 
       - name: Install Slidev export dependencies
         run: npm install --no-save @slidev/cli @slidev/theme-seriph playwright playwright-chromium
@@ -47,4 +48,3 @@ jobs:
           git add slides.pdf
           git commit -m "chore: update slides PDF"
           git push
-
