@@ -17,6 +17,7 @@ This training covers:
 ### Slides
 - `slides.md` - Source slides in Slidev format (~30 focused slides)
 - `slides.pdf` - Exported PDF for distribution
+- 📥 [**Download the latest PDF**](https://github.com/kousen/junie-training/releases/latest/download/slides.pdf) - always the newest CI build (rolling `slides-latest` release)
 
 ### Labs
 - **Lab A (Java)**: Spring Boot REST API with JUnit/AssertJ testing

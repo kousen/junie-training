@@ -1,4 +1,4 @@
-name: Build slides PDF
+name: Build & publish slides PDF
 
 on:
   push:
@@ -35,6 +35,18 @@ jobs:
 
       - name: Export slides to PDF
         run: npx slidev export slides.md --format pdf --output slides.pdf --dark
+
+      - name: Publish rolling "latest" release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: slides-latest
+          name: Latest slides PDF
+          body: |
+            Auto-built from `slides.md` at commit ${{ github.sha }}.
+
+            Download: [`slides.pdf`](https://github.com/${{ github.repository }}/releases/latest/download/slides.pdf)
+          files: slides.pdf
+          make_latest: true
 
       - name: Commit regenerated PDF
         run: |
