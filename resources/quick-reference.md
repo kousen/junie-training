@@ -94,7 +94,8 @@ junie --help
 |---------|-----|
 | `/plan <task>` | Create a plan before implementation |
 | `/mcp` | Configure or inspect MCP servers |
-| `/model` | Switch models |
+| `/model` | Switch models (searchable catalog with price/effort) |
+| `/effort` | Set reasoning effort (trades depth for cost/speed) |
 | `/usage` | Check usage and credits |
 | `/review` | Review local changes |
 | `/remote` | Continue a CLI session in the browser |
@@ -198,14 +199,18 @@ Useful examples in this repo:
 
 ## 📊 Model Selection (LLM-Agnostic)
 
-| Provider | Alias | Notes |
-|----------|-------|-------|
-| **OpenAI** | `gpt`, `gpt-codex` | |
-| **Anthropic** | `opus`, `sonnet` | |
-| **Google** | `gemini-pro`, `gemini-flash` | |
-| **xAI** | `grok` | |
+Run `/model` to open a searchable catalog. For each model it shows the **input/output price
+per million tokens, an adjustable effort level, and the provider**. Type to filter by name.
 
-Aliases always point to the latest supported version. BYOK: Use your own provider API keys via Junie CLI or IDE settings.
+- The JetBrains AI **default** is an intentionally low-cost model (currently a Gemini Flash preview).
+- Premium coding models (latest Claude Opus, GPT, Gemini Pro, Grok) cost several times more per
+  token — the picker flags models that consume multiples of the default's credits.
+- The catalog spans **Anthropic (Claude), OpenAI (GPT), Google (Gemini), and xAI (Grok)** via
+  JetBrains AI, plus any **BYOK or local (Ollama / LM Studio / LiteLLM)** models you configure.
+
+> Model names are versioned and change often (e.g., GPT-5.x, Claude Opus 4.x). Rather than
+> memorize a version, pick by family + cost/effort in the `/model` picker and let your credit
+> budget guide the choice. Use `/effort` to trade reasoning depth for cost.
 
 ## 🎯 Prompt Templates
 

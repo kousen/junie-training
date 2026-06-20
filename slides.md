@@ -1253,6 +1253,7 @@ background: 'linear-gradient(135deg, #1e40af, #1e3a8a)'
 • `Shift+Tab` - Plan mode<br/>
 • `/mcp` - MCP setup<br/>
 • `/model` - Choose model<br/>
+• `/effort` - Reasoning effort/cost<br/>
 • `/usage` - Credits usage<br/>
 • `Ctrl+B` - Brave mode<br/>
 • `Ctrl+R` - Prompt history

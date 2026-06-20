@@ -207,14 +207,18 @@ npm install
 Junie usage draws on AI Credits (1 Credit = $1 USD of LLM usage) unless you use BYOK or a
 local runtime. To make a subscription last through a 4-hour workshop:
 
-- **Prefer one complete prompt** over many small ones — every lab here ships a "Fast Path"
+- **Prefer one complete prompt** over many small ones — every lab ships a plan-first full
   prompt for exactly this reason. Re-running the same feature repeatedly burns credits fast.
 - **Use Ask/Plan mode for exploration.** Reading and planning is cheaper than generating
   and regenerating code.
-- **Pick the model intentionally** with `/model`. Reserve the most expensive models for the
-  hardest tasks.
-- **Check `/usage`** periodically (confirm the exact command with `junie --help`) to watch
-  your balance.
+- **Pick the model intentionally** with `/model`. The picker shows each model's input/output
+  price per million tokens and flags ones that consume several times the default's credits —
+  the JetBrains AI default is an intentionally low-cost model, so reserve premium models for
+  the hardest tasks.
+- **Lower the effort with `/effort`** for routine work. Effort trades reasoning depth for
+  cost and speed; high effort is worth it only on genuinely hard tasks.
+- **Check `/usage`** periodically — it shows your license, remaining AI Credits, and session
+  token usage.
 - **For heavy practice, use BYOK or a local runtime** (Ollama / LM Studio / LiteLLM) so the
   practice does not consume JetBrains credits.
 - **Code completion / Next Edit suggestions are free** and do not draw from your quota.

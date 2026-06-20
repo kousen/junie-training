@@ -137,8 +137,16 @@ Use when you want to:
 | `/model` | Choose or switch models |
 | `/usage` | Check usage and credits |
 | `/review` | Review local changes |
+| `/effort` | Set reasoning effort (trades depth for cost/speed) |
 | `/remote` | Continue the CLI session in a browser |
 | `/ide` | Connect the CLI to a matching JetBrains IDE |
+
+## Input Prefixes and Mid-Run Steering
+
+- `@` — search for a file or folder to add as context
+- `!` — run a bash command
+- `?` — show help
+- **Add context mid-run:** just type a message while Junie is working; it incorporates the new detail without interrupting the run.
 
 ## Remote Mode
 
