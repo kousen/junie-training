@@ -70,17 +70,17 @@ practice after the workshop**, or for filling time if your group moves quickly. 
 
 **Task: Understand the current structure.** In Ask mode:
 ```
-Analyze the HelloController class and explain:
+Analyze the UserController class and explain:
 1. The current endpoint structure
 2. What improvements could be made
 3. What testing approach would be best
 ```
 
 Expected insights:
-- Simple controller with basic GET endpoint
-- No service layer separation
-- No DTOs or validation
-- Missing comprehensive tests
+- REST controller with GET (list/by-id) and POST endpoints
+- Delegates to a UserService via constructor injection
+- Uses UserRequest/UserResponse DTOs with bean validation
+- Has local @ExceptionHandler methods (could move to @ControllerAdvice)
 
 **Task: Explore testing patterns.** Ask Junie:
 ```
