@@ -3,14 +3,18 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "jest -c ./jest.config.ts",
-    "test:watch": "jest -c ./jest.config.ts --watch"
+    "build": "node scripts/build-dist.mjs",
+    "dev": "npm run build && python3 -m http.server 5173 -d dist",
+    "test": "jest -c ./jest.config.cjs",
+    "test:e2e": "playwright test",
+    "test:watch": "jest -c ./jest.config.cjs --watch"
   },
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.0",
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
