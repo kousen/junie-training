@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.web.UserEmailUpdateRequest;
 import com.example.web.UserRequest;
 import com.example.web.UserResponse;
 import org.springframework.stereotype.Service;
@@ -30,5 +31,10 @@ public class UserService {
         UserResponse newUser = new UserResponse(id, request.name(), request.email());
         users.put(id, newUser);
         return newUser;
+    }
+
+    public Optional<UserResponse> updateUserEmail(Long id, UserEmailUpdateRequest request) {
+        return Optional.ofNullable(users.computeIfPresent(id, (ignored, existing) ->
+                new UserResponse(existing.id(), existing.name(), request.email())));
     }
 }

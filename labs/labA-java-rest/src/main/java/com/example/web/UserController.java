@@ -32,4 +32,10 @@ public class UserController {
     public UserResponse createUser(@Valid @RequestBody UserRequest request) {
         return userService.createUser(request);
     }
+
+    @PatchMapping("/{id}")
+    public UserResponse updateUserEmail(@PathVariable Long id, @Valid @RequestBody UserEmailUpdateRequest request) {
+        return userService.updateUserEmail(id, request)
+                .orElseThrow(() -> new UserNotFoundException(id));
+    }
 }

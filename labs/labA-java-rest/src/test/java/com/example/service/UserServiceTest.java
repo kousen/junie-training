@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.web.UserEmailUpdateRequest;
 import com.example.web.UserRequest;
 import com.example.web.UserResponse;
 import org.junit.jupiter.api.Test;
@@ -46,5 +47,33 @@ class UserServiceTest {
 
         assertThat(created.name()).isEqualTo("Jane Doe");
         assertThat(created.email()).isEqualTo("jane@example.com");
+    }
+
+    @Test
+    void updateUserEmailUpdatesOnlyEmail() {
+        UserResponse created = userService.createUser(new UserRequest("Jane Doe", "jane@example.com"));
+
+        UserResponse updated = userService.updateUserEmail(created.id(), new UserEmailUpdateRequest("new@example.com"))
+                .orElseThrow();
+
+        assertThat(updated.id()).isEqualTo(created.id());
+        assertThat(updated.name()).isEqualTo("Jane Doe");
+        assertThat(updated.email()).isEqualTo("new@example.com");
+    }
+
+    @Test
+    void updateUserEmailNormalizesEmail() {
+        UserResponse created = userService.createUser(new UserRequest("Jane Doe", "jane@example.com"));
+
+        UserResponse updated = userService.updateUserEmail(created.id(), new UserEmailUpdateRequest("  NEW@EXAMPLE.COM  "))
+                .orElseThrow();
+
+        assertThat(updated.email()).isEqualTo("new@example.com");
+    }
+
+    @Test
+    void updateUserEmailReturnsEmptyWhenMissing() {
+        assertThat(userService.updateUserEmail(99L, new UserEmailUpdateRequest("new@example.com")))
+                .isEmpty();
     }
 }

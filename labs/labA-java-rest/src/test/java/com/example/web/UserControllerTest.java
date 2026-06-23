@@ -16,6 +16,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -118,5 +119,72 @@ class UserControllerTest {
 
         assertThat(result.getResponse().getContentAsString())
                 .contains("Name is required and cannot be blank");
+    }
+
+    @Test
+    void updateUserEmailReturnsUserWithUpdatedEmail() throws Exception {
+        UserEmailUpdateRequest request = new UserEmailUpdateRequest("new@example.com");
+        UserResponse response = new UserResponse(1L, "Jane Doe", "new@example.com");
+        when(userService.updateUserEmail(1L, request)).thenReturn(Optional.of(response));
+
+        mockMvc.perform(patch("/api/users/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.name").value("Jane Doe"))
+                .andExpect(jsonPath("$.email").value("new@example.com"));
+    }
+
+    @Test
+    void updateUserEmailReturns404WhenNotFound() throws Exception {
+        UserEmailUpdateRequest request = new UserEmailUpdateRequest("new@example.com");
+        when(userService.updateUserEmail(99L, request)).thenReturn(Optional.empty());
+
+        var result = mockMvc.perform(patch("/api/users/99")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(MediaType.APPLICATION_PROBLEM_JSON))
+                .andExpect(jsonPath("$.title").value("User not found"))
+                .andExpect(jsonPath("$.status").value(404))
+                .andReturn();
+
+        assertThat(result.getResponse().getContentAsString())
+                .contains("User 99 was not found");
+    }
+
+    @Test
+    void updateUserEmailReturns400WhenEmailIsInvalid() throws Exception {
+        String invalidJson = "{\"email\": \"invalid-email\"}";
+
+        var result = mockMvc.perform(patch("/api/users/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(invalidJson))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(MediaType.APPLICATION_PROBLEM_JSON))
+                .andExpect(jsonPath("$.title").value("Validation failed"))
+                .andExpect(jsonPath("$.status").value(400))
+                .andReturn();
+
+        assertThat(result.getResponse().getContentAsString())
+                .contains("Email must be valid");
+    }
+
+    @Test
+    void updateUserEmailReturns400WhenEmailIsBlank() throws Exception {
+        String invalidJson = "{\"email\": \"\"}";
+
+        var result = mockMvc.perform(patch("/api/users/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(invalidJson))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(MediaType.APPLICATION_PROBLEM_JSON))
+                .andExpect(jsonPath("$.title").value("Validation failed"))
+                .andExpect(jsonPath("$.status").value(400))
+                .andReturn();
+
+        assertThat(result.getResponse().getContentAsString())
+                .contains("Email is required and cannot be blank");
     }
 }
