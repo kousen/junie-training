@@ -1,0 +1,5 @@
+/* Breathing room between slide titles and their body content */
+.slidev-layout h1,
+.slidev-layout h2 {
+  margin-bottom: 0.8em;
+}

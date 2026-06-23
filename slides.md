@@ -599,6 +599,12 @@ graph LR
     style G fill:#f97316,color:#fff
 ```
 
+---
+background: 'linear-gradient(135deg, #1e40af, #1e3a8a)'
+---
+
+## <span style="color: #fbbf24;">🧪 Lab Overview — Tracks</span>
+
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-top: 1.2em;">
 
 <div style="background: rgba(220,38,38,0.15); padding: 1em; border-radius: 8px; text-align: center; border: 1px solid #dc2626;">
