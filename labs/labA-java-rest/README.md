@@ -70,17 +70,17 @@ practice after the workshop**, or for filling time if your group moves quickly. 
 
 **Task: Understand the current structure.** In Ask mode:
 ```
-Analyze the HelloController class and explain:
-1. The current endpoint structure
-2. What improvements could be made
-3. What testing approach would be best
+Analyze this Spring Boot starter project and explain:
+1. The current project structure and dependencies
+2. Where REST controllers, services, and DTOs should live
+3. What testing approach would be best for the endpoints you'll add
 ```
 
 Expected insights:
-- Simple controller with basic GET endpoint
-- No service layer separation
-- No DTOs or validation
-- Missing comprehensive tests
+- Minimal Spring Boot app with no controllers yet (empty `web` package)
+- spring-boot-starter-web plus the test starter and AssertJ on the classpath
+- Standard Gradle layout, ready for you to add the user-management API
+- A clean starting point — you generate the controller in the next steps
 
 **Task: Explore testing patterns.** Ask Junie:
 ```
