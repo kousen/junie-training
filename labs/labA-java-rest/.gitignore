@@ -1,0 +1,9 @@
+.gradle/
+build/
+.idea/
+*.iml
+.DS_Store
+
+# Keep shared Junie guidelines versioned, but ignore local/session artifacts.
+.junie/memory/
+.junie/plans/

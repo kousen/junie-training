@@ -1,4 +1,4 @@
-package com.example.dto;
+package com.example.web;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -10,4 +10,8 @@ public record UserRequest(
         @Email(message = "Email must be valid")
         String email
 ) {
+    public UserRequest {
+        name = name == null ? null : name.trim();
+        email = email == null ? null : email.trim().toLowerCase();
+    }
 }

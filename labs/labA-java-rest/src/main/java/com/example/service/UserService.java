@@ -1,9 +1,10 @@
 package com.example.service;
 
-import com.example.dto.UserRequest;
-import com.example.dto.UserResponse;
+import com.example.web.UserRequest;
+import com.example.web.UserResponse;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
@@ -15,7 +16,9 @@ public class UserService {
     private final AtomicLong idGenerator = new AtomicLong(1);
 
     public List<UserResponse> getAllUsers() {
-        return List.copyOf(users.values());
+        return users.values().stream()
+                .sorted(Comparator.comparing(UserResponse::id))
+                .toList();
     }
 
     public Optional<UserResponse> getUserById(Long id) {
