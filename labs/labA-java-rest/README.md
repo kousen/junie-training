@@ -80,7 +80,7 @@ Expected insights:
 - REST controller with GET (list/by-id) and POST endpoints
 - Delegates to a UserService via constructor injection
 - Uses UserRequest/UserResponse DTOs with bean validation
-- Has local @ExceptionHandler methods (could move to @ControllerAdvice)
+- Uses `@RestControllerAdvice` and `ProblemDetail` for structured API errors
 
 **Task: Explore testing patterns.** Ask Junie:
 ```
@@ -107,22 +107,26 @@ examine each diff carefully, and note the style and patterns used.
 
 Then generate tests:
 ```
-Generate comprehensive tests for the UserController using:
+Generate comprehensive tests for the UserController and UserService using:
 - JUnit 5
 - MockMvc
 - AssertJ assertions
 - Test all endpoints and error cases
+- Test service behavior such as ID generation, lookup, storage, and ordering
 ```
 
 Run and verify:
 ```bash
 ./gradlew test
+./gradlew test jacocoTestReport
 ./gradlew bootRun
 curl http://localhost:8080/api/users
 curl -X POST http://localhost:8080/api/users \
   -H "Content-Type: application/json" \
   -d '{"name":"John","email":"john@example.com"}'
 ```
+
+The JaCoCo HTML coverage report is generated at `build/reports/jacoco/test/html/index.html`.
 
 ### Generate project guidelines
 
@@ -159,8 +163,8 @@ Refactor the UserController to use a proper service layer:
 ```
 Add global exception handling:
 - Create custom UserNotFoundException
-- Add @ControllerAdvice for global handling
-- Return proper error responses with details
+- Add @RestControllerAdvice for global handling
+- Return ProblemDetail error responses with details
 - Add tests for error scenarios
 ```
 
