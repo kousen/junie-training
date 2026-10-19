@@ -99,6 +99,14 @@ Discuss how review differs from implementation:
 - It focuses on the diff.
 - It can use project guidelines and relevant Skills.
 
+## Part 5: Optional — Invoke the Skill from Air (2 minutes, instructor-led)
+
+Open this repository in JetBrains Air, pick Junie, and send the Part 3 prompt again. The
+`playwright-e2e` Skill is picked up because it lives in the project's `.junie/skills/`, not
+in anyone's home directory. That is the point of project-scoped skills: they travel with the
+repo into whichever cockpit runs the agent. Skills in `~/.junie/skills` would not be visible
+here, since Air's bundled Junie keeps its own home.
+
 ## Reflection Questions
 
 1. What changed when the workflow lived in a Skill instead of the prompt?

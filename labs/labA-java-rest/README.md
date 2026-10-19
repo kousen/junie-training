@@ -58,6 +58,15 @@ creating `.junie/AGENTS.md`, then create the guidelines and re-run. Compare the 
 outputs for consistency of structure, naming, DTO style, and test conventions. The full
 step-by-step version of this comparison lives in Extended Practice below.
 
+### Optional: run the same task in Air (3 minutes, instructor-led)
+
+JetBrains Air hosts coding agents, Junie included, in one panel. Open this lab folder in Air,
+choose Junie, and give it the next task from Extended Practice (the service layer is a good
+one). Nothing about the project changes: Air's Junie reads the same `.junie/AGENTS.md` and
+project skills because they live in the repo. If another agent such as Claude Code or Codex
+is connected, hand it the same task and compare. Keep this as a demo; Air sessions can run
+long, and the cloud tier (Air Teams) is not needed and may be waitlisted.
+
 ---
 
 ## Extended Practice (Take-Home / If Time Allows)

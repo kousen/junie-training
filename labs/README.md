@@ -31,4 +31,5 @@ self-paced, take-home). Times below are for the in-class core exercise.
 - Use the optional guidelines contrast to show before/after value, but do not spend the whole class regenerating the same feature.
 - Use MCP for external context and live tools; use Skills for repeatable team workflows.
 - Run the smallest relevant verification command before accepting generated changes.
+- JetBrains Air is optional and instructor-driven: show the same Junie inside Air once (Lab A or Lab F) to make the "same agent, different cockpit" point, then move on. Details in `resources/setup-guide.md`, section 8.
 

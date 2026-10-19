@@ -243,6 +243,36 @@ state so you can reset quickly if a live edit goes sideways.
 
 ---
 
+## 8. Air in the Walkthroughs (Instructor)
+
+JetBrains Air is the multi-agent cockpit; Junie is one of the agents it hosts, next to Claude
+Code, Codex, Copilot, and any ACP agent. The deck argues fit and never mentions Air. Show it
+only in walkthroughs you drive, as the same Junie in a different window.
+
+Two insertion points that earn their time:
+
+1. **After the first Junie run in Lab A.** Open the same lab folder in Air, pick Junie, and
+   give it the next task. Same `.junie/AGENTS.md`, same project skills, because they live in
+   the repo. If Claude Code or Codex is also connected, switch agents on the same task: that
+   is the live demo for the "Why Junie at All?" slide.
+2. **After the Playwright skill exists (Lab F).** Invoke `playwright-e2e` from inside Air to
+   show a project-scoped skill travelling with the repo.
+
+Caveats:
+
+- **Time.** Air sessions can run long. Keep it a demo, not a follow-along exercise.
+- **Separate homes.** Air's bundled agents read the project's `.junie/` folder, but not your
+  user-level `~/.junie/skills` or MCP configs. Anything you want visible in both must be in
+  the repo; the labs already are.
+- **Stay off the cloud tier.** Air Teams (cloud runs, automations) is behind a waitlist and
+  needs a JetBrains AI subscription. Do not click toward it on stage; stay in the plugin or
+  the desktop app.
+- **Free tier.** Junie Lite inside Air is free for a limited time with a JetBrains Account.
+
+Docs: https://www.jetbrains.com/help/air-ides/air-quickstart-guide.html
+
+---
+
 ## Setup Checklist Summary
 
 | Item | Required? | Status |
@@ -252,6 +282,7 @@ state so you can reset quickly if a live edit goes sideways.
 | JetBrains AI subscription or BYOK | Yes | [ ] |
 | Junie CLI | Recommended | [ ] |
 | Cursor/Codex/Claude/Antigravity | Instructor comparison only | [ ] |
+| JetBrains Air in IDEs plugin | Instructor demo only | [ ] |
 | Node.js 18+ (for MCP) | For Labs D/Demo | [ ] |
 | Playwright browsers | For Mini-Lab F | [ ] |
 | Java 21+ | For Lab A | [ ] |
