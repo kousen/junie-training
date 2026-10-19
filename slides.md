@@ -151,6 +151,59 @@ graph TD
 ```
 
 ---
+background: 'linear-gradient(135deg, #0f172a, #1e3a5f)'
+---
+
+## <span style="color: #fbbf24;">🤔 Why Junie at All?</span>
+
+<div style="color: #e0f2fe; font-size: 1.05em; margin-bottom: 0.8em;">
+Claude Code, Codex, and Cursor already exist. Pick by <strong>fit</strong>, not by leaderboard.
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+
+<div style="background: rgba(96,165,250,0.15); padding: 1em; border-radius: 8px; border-left: 4px solid #60a5fa;">
+
+### <span style="color: #93c5fd;">Junie fits when…</span>
+<div style="color: #dbeafe;">
+• Your team lives in JetBrains IDEs<br/>
+• The IDE's debugger, refactorings, and indexes belong in the loop<br/>
+• You want model choice: JetBrains AI, BYOK, or local<br/>
+• One agent across IDE, CLI, and CI
+</div>
+
+</div>
+
+<div style="background: rgba(168,85,247,0.15); padding: 1em; border-radius: 8px; border-left: 4px solid #a78bfa;">
+
+### <span style="color: #c4b5fd;">Claude Code / Codex fit when…</span>
+<div style="color: #e9d5ff;">
+• You are editor-agnostic<br/>
+• You want the model vendor's own harness<br/>
+• Newest vendor features matter most<br/>
+• One model family is fine
+</div>
+
+</div>
+
+<div style="background: rgba(251,191,36,0.15); padding: 1em; border-radius: 8px; border-left: 4px solid #fbbf24;">
+
+### <span style="color: #fde047;">Cursor fits when…</span>
+<div style="color: #fef3c7;">
+• A VS Code-based editor is acceptable<br/>
+• Tab completion is central<br/>
+• You want an AI-first editor, not a plugin
+</div>
+
+</div>
+
+</div>
+
+<div style="margin-top: 0.9em; color: #a7f3d0; font-size: 0.95em;">
+Not a model contest: Junie runs Anthropic, OpenAI, Google, xAI, and local models. `/import` brings your existing Claude Code, Codex, or Cursor configs along, so trying it costs little.
+</div>
+
+---
 background: 'linear-gradient(135deg, #b91c1c, #7f1d1d)'
 ---
 
@@ -1031,7 +1084,7 @@ Remote mode uses the Junie service. JetBrains Account sign-in is the simplest pa
 background: 'linear-gradient(135deg, #0f172a, #1e3a5f)'
 ---
 
-## <span style="color: #fbbf24;">🤔 Why Junie Instead of Cursor?</span>
+## <span style="color: #fbbf24;">🔁 Junie or Cursor? Compare Live</span>
 
 <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 1em;">
 
@@ -1074,7 +1127,7 @@ background: 'linear-gradient(135deg, #0f172a, #1e3a5f)'
 </div>
 
 <div style="text-align: center; margin-top: 1em; color: #94a3b8; font-size: 0.9em;">
-Cursor can also run inside JetBrains through ACP, so this is about workflow fit.
+Cursor and other ACP agents can also run inside JetBrains AI Chat. That is the agent, not the Cursor editor, so this is about workflow fit.
 </div>
 
 ---
