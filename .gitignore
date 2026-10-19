@@ -209,3 +209,5 @@ TODO.local.md
 NOTES.local.md
 scratch/
 UNSPLASH_SUGGESTIONS.md
+# Junie per-project session memory (local state, not course content)
+.junie/memory/

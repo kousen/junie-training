@@ -199,7 +199,8 @@ background: 'linear-gradient(135deg, #b91c1c, #7f1d1d)'
 • `.junie/AGENTS.md` first<br/>
 • Root `AGENTS.md` also supported<br/>
 • Skills live in `.junie/skills/`<br/>
-• Extensions bundle skills, MCP, commands, agents
+• Extensions bundle skills, MCP, commands, agents<br/>
+• `/import` pulls Claude Code, Codex, or Cursor configs
 </div>
 
 </div>
@@ -209,7 +210,8 @@ background: 'linear-gradient(135deg, #b91c1c, #7f1d1d)'
 ### <span style="color: #fde047;">Beyond the IDE</span>
 <div style="color: #fef3c7;">
 • `/review` for local diffs<br/>
-• `/debug` with JetBrains debugger context<br/>
+• `/ide` connects a running JetBrains IDE<br/>
+• `/debug` drives that IDE's debugger<br/>
 • `/remote` to continue a CLI session in browser<br/>
 • GitHub Action and GitLab CI workflows
 </div>
@@ -351,6 +353,10 @@ graph LR
 Use Plan mode when the cost of the wrong implementation is higher than the cost of five minutes of alignment.
 </div>
 
+<div style="text-align: center; margin-top: 0.8em; font-size: 1em; color: #fde68a;">
+Mid-run steering: in the CLI, type a follow-up while a task runs and Junie folds it in. Steer, don't restart.
+</div>
+
 ---
 background: 'linear-gradient(135deg, #0f172a, #1e3a5f)'
 ---
@@ -444,7 +450,8 @@ background: 'linear-gradient(135deg, #dc2626, #991b1b)'
 graph TD
     A[Safety Levels] --> B[Approvals Mode]
     A --> C[Action Allowlist]
-    A --> D[Brave Mode]
+    A --> D[Brave Auto]
+    A --> E[Brave On]
     
     B --> B1[Review every diff]
     B --> B2[Line-by-line inspection]
@@ -452,12 +459,16 @@ graph TD
     C --> C1[Preview file changes]
     C --> C2[Approve scope]
     
-    D --> D1[Autonomous execution]
-    D --> D2[For trusted tasks only]
+    D --> D1[Safe commands auto-approved]
+    D --> D2[Risky commands still ask]
+    
+    E --> E1[Autonomous execution]
+    E --> E2[For trusted tasks only]
     
     style B fill:#34d399,stroke:#fff,stroke-width:2px,color:#000
     style C fill:#fbbf24,stroke:#fff,stroke-width:2px,color:#000
-    style D fill:#f87171,stroke:#fff,stroke-width:2px,color:#fff
+    style D fill:#fb923c,stroke:#fff,stroke-width:2px,color:#000
+    style E fill:#f87171,stroke:#fff,stroke-width:2px,color:#fff
 ```
 
 ---
@@ -472,6 +483,7 @@ background: 'linear-gradient(135deg, #065f46, #047857)'
 .mode-table th { background: rgba(251,191,36,0.2); color: #fbbf24; }
 .good { color: #86efac; }
 .caution { color: #fbbf24; }
+.warm { color: #fdba74; }
 .danger { color: #f87171; }
 </style>
 
@@ -495,7 +507,12 @@ background: 'linear-gradient(135deg, #065f46, #047857)'
 <td>• Exploratory changes<br/>• Unknown impact</td>
 </tr>
 <tr>
-<td><strong class="danger">Brave</strong></td>
+<td><strong class="warm">Brave Auto</strong></td>
+<td>• Build and test loops<br/>• Long tasks you are watching<br/>• Most day-to-day work</td>
+<td>• Unfamiliar repos<br/>• Anything destructive</td>
+</tr>
+<tr>
+<td><strong class="danger">Brave On</strong></td>
 <td>• Test generation<br/>• Formatting<br/>• Documentation</td>
 <td>• Production code<br/>• Database changes<br/>• First attempts</td>
 </tr>
@@ -1075,7 +1092,7 @@ background: 'linear-gradient(135deg, #065f46, #047857)'
 
 ✅ **Skills preserve workflows** - Reuse task-specific patterns
 
-✅ **Build trust gradually** - Approvals → Allowlist → Brave
+✅ **Build trust gradually** - Approvals → Allowlist → Brave Auto → Brave On
 
 ✅ **CLI matters** - Use Junie outside the IDE and in automation
 
@@ -1153,7 +1170,7 @@ background: 'linear-gradient(135deg, #065f46, #047857)'
 ### Agent Workflows
 • 🐙 [GitHub Action](https://github.com/JetBrains/junie-github-action)<br/>
 • 🦊 [GitLab CI](https://junie.jetbrains.com/docs/junie-gitlab-ci-cd.html)<br/>
-• 🧭 [Plan Mode](https://junie.jetbrains.com/docs/junie-plan-mode.html)<br/>
+• 🧭 [Plan Mode](https://junie.jetbrains.com/docs/junie-cli-plan-mode.html)<br/>
 • 📱 [Remote Mode](https://junie.jetbrains.com/docs/junie-cli-remote-mode.html)
 
 </div>
@@ -1261,7 +1278,7 @@ background: 'linear-gradient(135deg, #1e40af, #1e3a8a)'
 • `/model` - Choose model<br/>
 • `/effort` - Reasoning effort/cost<br/>
 • `/usage` - Credits usage<br/>
-• `Ctrl+B` - Brave mode<br/>
+• `Ctrl+B` - Brave: Off / Auto / On<br/>
 • `Ctrl+R` - Prompt history
 </span>
 

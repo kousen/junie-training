@@ -75,6 +75,8 @@ npm install -g @jetbrains/junie-cli
 
 ### Authentication
 
+The first launch in any project folder asks you to **trust the project**. Accept it; Junie will not read or edit files until you do, and you will see the prompt once per lab folder.
+
 On first run, Junie CLI may prompt you to authenticate and choose a model. The model list can include provider models and local runtimes such as Ollama; it does not necessarily show a JetBrains-branded model.
 
 You have three authentication options:

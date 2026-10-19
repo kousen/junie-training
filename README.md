@@ -155,7 +155,7 @@ For repeatable Playwright workflows, prefer a Skill that teaches Junie your team
 - [Remote Mode](https://junie.jetbrains.com/docs/junie-cli-remote-mode.html)
 - [Guidelines and Memory](https://junie.jetbrains.com/docs/guidelines-and-memory.html)
 - [Agent Skills](https://junie.jetbrains.com/docs/agent-skills.html)
-- [MCP](https://junie.jetbrains.com/docs/mcp.html)
+- [MCP](https://junie.jetbrains.com/docs/junie-cli-mcp-configuration.html)
 
 ### GitHub Resources
 - [Junie Guidelines Catalog](https://github.com/JetBrains/junie-guidelines)
