@@ -982,6 +982,7 @@ jobs:
 ```
 
 <div style="margin-top: 1em; color: #fecaca; font-size: 1em; line-height: 1.7;">
+Shortcut: `/install-github-action` in Junie CLI generates this workflow for your repo<br/>
 GitHub: `@junie-agent` in issues or PRs<br/>
 GitLab: `#junie` in merge request comments<br/>
 CLI: `junie "prompt"` for headless local automation

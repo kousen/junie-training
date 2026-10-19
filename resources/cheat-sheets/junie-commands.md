@@ -140,6 +140,10 @@ Use when you want to:
 | `/effort` | Set reasoning effort (trades depth for cost/speed) |
 | `/remote` | Continue the CLI session in a browser |
 | `/ide` | Connect the CLI to a matching JetBrains IDE |
+| `/brave` | Cycle brave mode: Off, Auto, On (also `Ctrl+B`) |
+| `/skills` | List loaded skills; enable or disable them |
+| `/import` | Import guidelines, skills, commands, and MCP configs from Claude Code, Codex, or Cursor |
+| `/install-github-action` | Wizard that adds the Junie GitHub Action to the current repo |
 
 ## Input Prefixes and Mid-Run Steering
 

@@ -27,11 +27,13 @@ In this lab, Playwright itself remains a local CLI tool. The Skill teaches Junie
 
 ## Part 1: Inspect Existing Skills (2 minutes)
 
-From the repository root, inspect:
+Start Junie from the repository root and run:
 
-```bash
-find .junie/skills -maxdepth 2 -type f -name SKILL.md -print
+```text
+/skills
 ```
+
+You should see `add-tests`, `code-review`, and `add-rest-endpoint` listed as Enabled. Any skill that failed to load appears under Errors with the reason. (Without Junie running, `find .junie/skills -name SKILL.md` lists the same folders.)
 
 Open one of the existing skills:
 
@@ -64,7 +66,7 @@ The Skill should guide Junie when creating or improving Playwright tests:
 Include a concise SKILL.md with good frontmatter. Add a small checklist file if helpful.
 ```
 
-Review the generated files before accepting them.
+Review the generated files before accepting them. Then run `/skills` again and confirm `playwright-e2e` now appears as Enabled. Every enabled skill is also callable directly as a slash command (`/playwright-e2e`) or referenced inside a prompt as `$playwright-e2e`.
 
 ## Part 3: Use the Skill (5 minutes)
 
