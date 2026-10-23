@@ -1,6 +1,7 @@
 plugins {
   id("org.springframework.boot") version "4.1.2"
   id("io.spring.dependency-management") version "1.1.7"
+  id("info.solidsoft.pitest") version "1.19.0"
   java
   jacoco
 }
@@ -30,4 +31,13 @@ tasks.test {
 
 tasks.jacocoTestReport {
   dependsOn(tasks.test)
+}
+
+pitest {
+  pitestVersion.set("1.30.1")
+  junit5PluginVersion.set("1.2.3")
+  targetClasses.set(listOf("com.example.*"))
+  excludedClasses.set(listOf("com.example.LabAApplication"))
+  outputFormats.set(listOf("HTML", "XML"))
+  timestampedReports.set(false)
 }
