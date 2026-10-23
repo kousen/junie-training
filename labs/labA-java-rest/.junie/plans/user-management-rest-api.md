@@ -5,21 +5,23 @@ sessionId: session-261023-083756-kfeb
 # Requirements
 
 ### Overview & Goals
-Build a clean, small user-management REST API in this Spring Boot project following `.junie/AGENTS.md` and `.junie/guidelines.md`. The API will support listing all users, retrieving a user by ID, and creating a new user with input validation and normalization, backed by clear error handling and `MockMvc` + AssertJ tests.
+Build a clean, small user-management REST API in this Spring Boot project following `.junie/AGENTS.md`. The API will support listing all users, retrieving a user by ID, and creating a new user with input validation and normalization, backed by clear error handling and `MockMvc` + AssertJ tests.
 
 ### Scope
 #### In Scope
-- Upgrade `build.gradle.kts` to the latest stable Spring Boot 4 release (`4.1.2`), Java 25 toolchain, and Spring Boot 4's modular web/test starters (`spring-boot-starter-webmvc` and `spring-boot-starter-webmvc-test`), providing JUnit 6 and AssertJ.
+- Upgrade `build.gradle.kts` to the latest stable Spring Boot 4 release (`4.1.2`), Java 25 toolchain, Spring Boot 4's modular starters (`spring-boot-starter-webmvc`, `spring-boot-starter-validation`, and `spring-boot-starter-webmvc-test`), JaCoCo code coverage, and PIT (`info.solidsoft.pitest`) mutation testing.
 - `GET /api/users`: Return all users as a JSON array of DTO records (`200 OK`).
 - `GET /api/users/{id}`: Return a single user DTO record (`200 OK`) or a structured `404 Not Found` error response if the user does not exist.
-- `POST /api/users`: Validate and normalize input (`name` and `email`), create a new user, and return `201 Created` (with `Location` header and created user DTO) or `400 Bad Request` on invalid input.
-- Java `record` DTOs using compact constructors for validation and normalization (`trim()`, email format check).
+- `POST /api/users`: Validate (`@Valid`, `@NotBlank`, `@Email`) and normalize input (`name` and `email`), create a new user, and return `201 Created` (with `Location` header and created user DTO) or `400 Bad Request` on invalid input.
+- `PUT /api/users/{id}`: Validate and normalize input, replace an existing user's `name` and `email`, and return `200 OK` (or `404 Not Found` / `400 Bad Request`).
+- `DELETE /api/users/{id}`: Delete an existing user and return `204 No Content` (or `404 Not Found` if missing).
+- Java `record` DTOs in `com.example.dto` using Jakarta Bean Validation and compact constructors for normalization (`trim()`, lowercase email) and invariant validation.
 - Service layer in `com.example.service` and controller + exception handling in `com.example.web`.
-- Unit and `MockMvc` tests using JUnit 6 and AssertJ (`assertThat`) for both happy paths and 4xx failure paths.
+- Unit, `@WebMvcTest` (`MockMvc`), and `@SpringBootTest` (`RestClient`) integration tests using JUnit 6 and AssertJ (`assertThat`) for both happy paths and 4xx failure paths, verified with JaCoCo and PIT mutation testing.
 
 #### Out of Scope
 - External database / JPA persistence (an in-memory thread-safe store keeps the implementation small and self-contained without adding unrequested dependencies).
-- Authentication, authorization, pagination, or `PUT`/`DELETE` endpoints.
+- Authentication, authorization, or pagination.
 
 ### User Stories
 - **As an API client**, I want to call `GET /api/users` so that I can retrieve the list of all registered users.
@@ -62,7 +64,7 @@ Build a clean, small user-management REST API in this Spring Boot project follow
    - *Rationale*: When Jackson deserializes a JSON request into `CreateUserRequest`, an `IllegalArgumentException` thrown in the record's compact constructor is either surfaced directly or wrapped in `HttpMessageNotReadableException` (`ValueInstantiationException`). Handling both in `GlobalExceptionHandler` ensures consistent `400 Bad Request` responses with the original validation message.
 
 ### Data Models / Contracts
-- **`com.example.web.UserDto`**
+- **`com.example.dto.UserDto`**
   ```java
   public record UserDto(Long id, String name, String email) {
       public UserDto {
@@ -80,18 +82,18 @@ Build a clean, small user-management REST API in this Spring Boot project follow
       }
   }
   ```
-- **`com.example.web.CreateUserRequest`**
+- **`com.example.dto.CreateUserRequest`**
   ```java
-  public record CreateUserRequest(String name, String email) {
+  public record CreateUserRequest(
+          @NotBlank(message = "Name must not be blank")
+          String name,
+          @NotBlank(message = "Email must not be blank")
+          @Email(message = "Email must be a valid address")
+          String email
+  ) {
       public CreateUserRequest {
-          if (name == null || name.isBlank()) {
-              throw new IllegalArgumentException("Name must not be blank");
-          }
-          if (email == null || email.isBlank() || !email.contains("@")) {
-              throw new IllegalArgumentException("Email must be a valid address");
-          }
-          name = name.trim();
-          email = email.trim().toLowerCase();
+          name = name != null ? name.trim() : null;
+          email = email != null ? email.trim().toLowerCase() : null;
       }
   }
   ```
@@ -120,27 +122,35 @@ Build a clean, small user-management REST API in this Spring Boot project follow
   - `List<UserDto> findAll()`
   - `UserDto findById(Long id)` (throws `UserNotFoundException` if missing)
   - `UserDto create(CreateUserRequest request)`
+  - `UserDto update(Long id, CreateUserRequest request)` (throws `UserNotFoundException` if missing)
+  - `void delete(Long id)` (throws `UserNotFoundException` if missing)
 
 ### File Structure
 ```text
-build.gradle.kts                         (modified: Spring Boot 4.1.2, Java 25, spring-boot-starter-webmvc / spring-boot-starter-webmvc-test)
+build.gradle.kts                         (Spring Boot 4.1.2, Java 25, webmvc/validation/webmvc-test starters, JaCoCo, pitest)
 src/main/java/com/example/
 ├── LabAApplication.java
+├── dto/
+│   ├── CreateUserRequest.java       (added)
+│   └── UserDto.java                 (added)
 ├── service/
 │   ├── UserNotFoundException.java   (added)
 │   └── UserService.java             (added)
 └── web/
-    ├── CreateUserRequest.java       (added)
     ├── ErrorResponse.java           (added)
     ├── GlobalExceptionHandler.java  (added)
-    ├── UserController.java          (added)
-    └── UserDto.java                 (added)
+    └── UserController.java          (added)
 
 src/test/java/com/example/
 ├── LabAApplicationTests.java
+├── UserApiIntegrationTest.java      (added)
+├── dto/
+│   ├── CreateUserRequestTest.java   (added)
+│   └── UserDtoTest.java             (added)
 ├── service/
 │   └── UserServiceTest.java         (added)
 └── web/
+    ├── ErrorResponseTest.java       (added)
     └── UserControllerTest.java      (added)
 ```
 
@@ -233,3 +243,9 @@ Request validation uses Jakarta Bean Validation (`spring-boot-starter-validation
 - Annotate `@Valid @RequestBody CreateUserRequest request` in `UserController.createUser`.
 - Add `@ExceptionHandler(MethodArgumentNotValidException.class)` in `GlobalExceptionHandler` to return `400 Bad Request` with validation error messages.
 - Update `UserServiceTest` and `UserControllerTest` and run `./gradlew test` to verify all tests pass.
+
+### ✓ Step 4: Configure PIT (pitest) mutation testing
+PIT (`info.solidsoft.pitest`) is configured in `build.gradle.kts` with JUnit 5/6 platform support (`pitest-junit5-plugin`) and verified via `./gradlew pitest`.
+
+- Add `id("info.solidsoft.pitest")` plugin to `build.gradle.kts` and configure `pitest` extension (latest `pitestVersion`, `junit5PluginVersion`, `targetClasses`, `outputFormats`).
+- Run `./gradlew pitest` to verify PIT mutation testing executes cleanly on Java 25 with JUnit 6 and generates the mutation coverage report.

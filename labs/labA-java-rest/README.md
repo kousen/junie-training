@@ -7,12 +7,12 @@
 - Drive Junie with one complete, well-scoped prompt (the professional pattern)
 - Review a plan and a diff critically before accepting
 - Understand the impact of project guidelines (`.junie/AGENTS.md`)
-- Generate comprehensive test suites with JUnit + AssertJ
+- Generate comprehensive test suites with JUnit 6 + AssertJ, verified with JaCoCo code coverage and PIT (`pitest`) mutation testing
 
 ## Prerequisites
 - IntelliJ IDEA with Junie installed (or Junie CLI)
-- Java 21+ installed
-- Gradle or Maven configured
+- Java 25 installed
+- Gradle configured (the Gradle 9.6.0 wrapper is included; the project uses Spring Boot 4.1.2)
 
 ## Part 1: Project Setup (5 minutes)
 
@@ -39,6 +39,8 @@ Acceptance criteria:
 - GET /api/users returns all users
 - GET /api/users/{id} returns one user or a 404 response
 - POST /api/users creates a user from validated input
+- PUT /api/users/{id} replaces a user's name and email
+- DELETE /api/users/{id} deletes a user or returns 404
 - Use DTOs or records where appropriate
 - Add clear error handling
 - Add MockMvc tests with AssertJ assertions for success and failure cases
@@ -75,21 +77,101 @@ The tasks below break the same workflow into smaller steps. They are ideal for *
 practice after the workshop**, or for filling time if your group moves quickly. You will
 **not** complete all of these in a four-hour session — the Core Exercise above is the lab.
 
+### Reference implementation
+
+The current repository includes a completed in-memory user-management API built with **Spring Boot 4.1.2** and **Java 25**. Use it as a reference when working through the core exercise or the practice tasks.
+
+```text
+src/main/java/com/example
+├── LabAApplication.java
+├── dto
+│   ├── CreateUserRequest.java      # @NotBlank / @Email validation + compact constructor normalization
+│   └── UserDto.java                # compact constructor invariant checks + normalization
+├── service
+│   ├── UserService.java            # thread-safe in-memory CRUD (ConcurrentHashMap + AtomicLong)
+│   └── UserNotFoundException.java
+└── web
+    ├── UserController.java         # /api/users REST endpoints (GET, POST, PUT, DELETE)
+    ├── ErrorResponse.java          # structured error DTO record
+    └── GlobalExceptionHandler.java # @RestControllerAdvice for 404 and 400 responses
+
+src/test/java/com/example
+├── LabAApplicationTests.java       # @SpringBootTest context load check
+├── UserApiIntegrationTest.java     # end-to-end HTTP CRUD & error test using RestClient
+├── dto
+│   ├── CreateUserRequestTest.java  # normalization + Jakarta Validator unit tests
+│   └── UserDtoTest.java            # record invariant unit tests
+├── service
+│   └── UserServiceTest.java        # CRUD service unit tests
+└── web
+    ├── ErrorResponseTest.java      # ErrorResponse defaults unit tests
+    └── UserControllerTest.java     # @WebMvcTest + @MockitoBean + MockMvc slice tests
+```
+
+#### Key Technical Highlights
+- **Spring Boot 4 Modular Starters**: Uses `spring-boot-starter-webmvc`, `spring-boot-starter-validation`, and `spring-boot-starter-webmvc-test` (with `@WebMvcTest` in `org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest`, `@MockitoBean`, and Jackson 3 `tools.jackson.databind.ObjectMapper`).
+- **Jakarta Bean Validation + Record Compact Constructors**:
+  - `CreateUserRequest` uses Jakarta Bean Validation (`@NotBlank`, `@Email`) triggered by `@Valid` in `UserController`, while its compact constructor normalizes input (`name.trim()` and `email.trim().toLowerCase()`).
+  - `UserDto` enforces positive `id`, non-blank `name`, and valid `email` invariants directly in its compact constructor.
+- **Centralized Error Handling**: `GlobalExceptionHandler` (`@RestControllerAdvice`) maps `UserNotFoundException` to `404 Not Found` and validation/type/JSON errors (`MethodArgumentNotValidException`, `IllegalArgumentException`, `MethodArgumentTypeMismatchException`, `HttpMessageNotReadableException`) to `400 Bad Request` with a structured `ErrorResponse` body.
+
+All routes use the `/api` prefix:
+
+| Method | Route | Behavior |
+|---|---|---|
+| `GET` | `/api/users` | List all users (`200 OK`) |
+| `GET` | `/api/users/{id}` | Return one user (`200 OK`), or `404 Not Found` if missing |
+| `POST` | `/api/users` | Create a validated, normalized user; returns `201 Created` and a `Location` header |
+| `PUT` | `/api/users/{id}` | Replace a user's name and email; returns `200 OK`, `404 Not Found` if missing, or `400 Bad Request` for invalid input |
+| `DELETE` | `/api/users/{id}` | Delete a user; returns `204 No Content` or `404 Not Found` if missing |
+
+Try the full API after starting the application with `./gradlew bootRun`:
+
+```bash
+curl http://localhost:8080/api/users
+curl http://localhost:8080/api/users/1
+curl -X POST http://localhost:8080/api/users \
+  -H "Content-Type: application/json" \
+  -d '{"name":"John","email":"john@example.com"}'
+curl -X PUT http://localhost:8080/api/users/1 \
+  -H "Content-Type: application/json" \
+  -d '{"name":"John Smith","email":"john.smith@example.com"}'
+curl -X DELETE http://localhost:8080/api/users/1
+```
+
+The service stores users in memory, so the data is reset when the application restarts.
+
+#### Testing, Code Coverage (JaCoCo), and Mutation Testing (PIT)
+
+The project is configured with **JUnit 6**, **AssertJ**, **JaCoCo** code coverage, and **PIT (`pitest`)** mutation testing to verify not only that lines and branches are executed, but also that tests contain strong assertions that detect broken code (killing mutants).
+
+```bash
+# Run all unit, @WebMvcTest, and integration tests (automatically generates the JaCoCo report)
+./gradlew test
+
+# Run PIT mutation testing against com.example.*
+./gradlew pitest
+```
+
+Generated HTML & XML reports:
+- **JaCoCo Coverage Report**: `build/reports/jacoco/test/html/index.html`
+- **PIT Mutation Coverage Report**: `build/reports/pitest/index.html` (and `build/reports/pitest/mutations.xml`)
+
 ### Analyze existing code with Ask Mode
 
 **Task: Understand the current structure.** In Ask mode:
 ```
-Analyze this Spring Boot starter project and explain:
+Analyze this Spring Boot project and explain:
 1. The current project structure and dependencies
 2. Where REST controllers, services, and DTOs should live
 3. What testing approach would be best for the endpoints you'll add
 ```
 
 Expected insights:
-- Minimal Spring Boot app with no controllers yet (empty `web` package)
-- spring-boot-starter-web plus the test starter and AssertJ on the classpath
-- Standard Gradle layout, ready for you to add the user-management API
-- A clean starting point — you generate the controller in the next steps
+- The reference implementation is already present in `dto`, `service`, and `web`
+- Spring MVC, Bean Validation, and the Spring Boot web MVC test starter are configured
+- The API supports listing, finding, creating, updating, and deleting users
+- User data is stored in memory and is lost when the app restarts
 
 **Task: Explore testing patterns.** Ask Junie:
 ```
@@ -106,6 +188,8 @@ Create a new REST endpoint for user management:
 - GET /api/users - list all users
 - GET /api/users/{id} - get user by id
 - POST /api/users - create new user
+- PUT /api/users/{id} - replace a user's name and email
+- DELETE /api/users/{id} - delete a user
 - Use appropriate DTOs
 - Add basic validation
 - Include error handling
@@ -117,7 +201,7 @@ examine each diff carefully, and note the style and patterns used.
 Then generate tests:
 ```
 Generate comprehensive tests for the UserController using:
-- JUnit 5
+- JUnit 6
 - MockMvc
 - AssertJ assertions
 - Test all endpoints and error cases
@@ -177,7 +261,7 @@ Add global exception handling:
 ```
 Create integration tests using @SpringBootTest:
 - Test the full request/response cycle
-- Use TestRestTemplate
+- Use RestClient (or MockMvcTester) against a RANDOM_PORT server
 - Test with real beans (not mocks)
 - Include database setup/teardown if needed
 ```
@@ -204,7 +288,7 @@ Include validation and tests.
 **Solution**: Specify version in guidelines
 
 **Issue**: Tests fail due to missing dependencies
-**Solution**: Ask Junie to "check and add required test dependencies to build.gradle"
+**Solution**: Ask Junie to "check and add required test dependencies to build.gradle.kts"
 
 **Issue**: Different assertion styles in tests
 **Solution**: Specify AssertJ exclusively in guidelines

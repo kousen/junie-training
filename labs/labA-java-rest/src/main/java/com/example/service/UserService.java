@@ -1,7 +1,7 @@
 package com.example.service;
 
-import com.example.web.CreateUserRequest;
-import com.example.web.UserDto;
+import com.example.dto.CreateUserRequest;
+import com.example.dto.UserDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,5 +35,23 @@ public class UserService {
         UserDto created = new UserDto(id, request.name(), request.email());
         users.put(id, created);
         return created;
+    }
+
+    public UserDto update(Long id, CreateUserRequest request) {
+        if (request == null) {
+            throw new IllegalArgumentException("CreateUserRequest must not be null");
+        }
+        UserDto updated = users.computeIfPresent(id,
+                (userId, existing) -> new UserDto(userId, request.name(), request.email()));
+        if (updated == null) {
+            throw new UserNotFoundException(id);
+        }
+        return updated;
+    }
+
+    public void delete(Long id) {
+        if (users.remove(id) == null) {
+            throw new UserNotFoundException(id);
+        }
     }
 }

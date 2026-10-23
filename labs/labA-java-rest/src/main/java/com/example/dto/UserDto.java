@@ -1,4 +1,4 @@
-package com.example.web;
+package com.example.dto;
 
 public record UserDto(Long id, String name, String email) {
     public UserDto {
