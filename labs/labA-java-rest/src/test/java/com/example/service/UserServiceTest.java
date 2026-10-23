@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.web.CreateUserRequest;
+import com.example.web.ErrorResponse;
 import com.example.web.UserDto;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Set;
 
@@ -65,10 +67,61 @@ class UserServiceTest {
     }
 
     @Test
-    void userDtoRejectsNonPositiveId() {
+    void createUserRequestHandlesNullFields() {
+        CreateUserRequest request = new CreateUserRequest(null, null);
+
+        assertThat(request.name()).isNull();
+        assertThat(request.email()).isNull();
+    }
+
+    @Test
+    void userDtoRejectsInvalidFields() {
+        assertThatThrownBy(() -> new UserDto(null, "Alice", "alice@example.com"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("User id must be positive");
+
         assertThatThrownBy(() -> new UserDto(0L, "Alice", "alice@example.com"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("User id must be positive");
+
+        assertThatThrownBy(() -> new UserDto(1L, null, "alice@example.com"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Name must not be blank");
+
+        assertThatThrownBy(() -> new UserDto(1L, "   ", "alice@example.com"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Name must not be blank");
+
+        assertThatThrownBy(() -> new UserDto(1L, "Alice", null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Email must be a valid address");
+
+        assertThatThrownBy(() -> new UserDto(1L, "Alice", "   "))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Email must be a valid address");
+
+        assertThatThrownBy(() -> new UserDto(1L, "Alice", "invalid-email"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Email must be a valid address");
+    }
+
+    @Test
+    void errorResponseAppliesCompactConstructorDefaults() {
+        ErrorResponse withNullMessageAndTimestamp = new ErrorResponse(400, "Bad Request", null, "/api/users", null);
+        assertThat(withNullMessageAndTimestamp.message()).isEqualTo("Unexpected error");
+        assertThat(withNullMessageAndTimestamp.timestamp()).isNotNull();
+
+        Instant fixedTime = Instant.parse("2026-01-01T00:00:00Z");
+        ErrorResponse withBlankMessage = new ErrorResponse(400, "Bad Request", "   ", "/api/users", fixedTime);
+        assertThat(withBlankMessage.message()).isEqualTo("Unexpected error");
+        assertThat(withBlankMessage.timestamp()).isEqualTo(fixedTime);
+    }
+
+    @Test
+    void createRejectsNullRequest() {
+        assertThatThrownBy(() -> userService.create(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("CreateUserRequest must not be null");
     }
 
     @Test

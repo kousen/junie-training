@@ -166,4 +166,25 @@ class UserControllerTest {
         assertThat(error.path()).isEqualTo("/api/users");
         verifyNoInteractions(userService);
     }
+
+    @Test
+    void createUserWhenServiceThrowsIllegalArgumentReturns400() throws Exception {
+        when(userService.create(any(CreateUserRequest.class)))
+                .thenThrow(new IllegalArgumentException("Email must be a valid address"));
+
+        MvcResult result = mockMvc.perform(post("/api/users")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"name": "Alice", "email": "alice@example.com"}
+                                """))
+                .andReturn();
+
+        assertThat(result.getResponse().getStatus()).isEqualTo(400);
+        ErrorResponse error = objectMapper.readValue(result.getResponse().getContentAsString(), ErrorResponse.class);
+        assertThat(error.status()).isEqualTo(400);
+        assertThat(error.error()).isEqualTo("Bad Request");
+        assertThat(error.message()).isEqualTo("Email must be a valid address");
+        assertThat(error.path()).isEqualTo("/api/users");
+        assertThat(error.timestamp()).isNotNull();
+    }
 }
